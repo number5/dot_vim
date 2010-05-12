@@ -26,13 +26,13 @@ set expandtab
 set showmatch
 set showcmd
 
-set rtp+=/home/bruce/src/git/snipmate.vim
+set rtp+=~/src/git/snipmate.vim
 
-let g:pydiction_location = '/home/bruce/.vim/pydiction/complete-dict'
+let g:pydiction_location = '~/.vim/pydiction/complete-dict'
 
 " TagList Plugin Configuration
 
-let Tlist_Ctags_Cmd='/usr/local/bin/ctags' " point taglist to ctags
+let Tlist_Ctags_Cmd='/usr/bin/ctags' " point taglist to ctags
 let Tlist_GainFocus_On_ToggleOpen = 1 " Focus on the taglist when its toggled
 let Tlist_Exit_OnlyWindow = 1     " exit if taglist is last window open
 let Tlist_Show_One_File = 1       " Only show tags for current buffer

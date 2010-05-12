@@ -4,7 +4,7 @@
 " highlightng as well as numbers
 set wildmenu
 set completeopt-=preview
-set guifont=Monaco:h14
+set guifont=Droid\ Sans\ Mono\ Slashed\ 12
 set lines=36 columns=82
 
 
