@@ -4,7 +4,7 @@
 " highlightng as well as numbers
 set wildmenu
 set completeopt-=preview
-set guifont=Droid\ Sans\ Mono\ 11
+set guifont=Monaco:h14
 set lines=36 columns=82
 
 
@@ -20,7 +20,7 @@ set guioptions-=r
 " key mapping for cut/copy/paste
 imap <C-X> <Esc>"+x
 "imap <C-C> <Esc>"+y 
-imap <C-V> <Esc>"+gP
+"imap <C-V> <Esc>"+gP
 
 
 

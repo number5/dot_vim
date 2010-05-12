@@ -31,9 +31,8 @@ set rtp+=/home/bruce/src/git/snipmate.vim
 let g:pydiction_location = '/home/bruce/.vim/pydiction/complete-dict'
 
 " TagList Plugin Configuration
-nnoremap <silent> <F2> :TlistToggle<CR>
 
-let Tlist_Ctags_Cmd='/usr/bin/ctags' " point taglist to ctags
+let Tlist_Ctags_Cmd='/usr/local/bin/ctags' " point taglist to ctags
 let Tlist_GainFocus_On_ToggleOpen = 1 " Focus on the taglist when its toggled
 let Tlist_Exit_OnlyWindow = 1     " exit if taglist is last window open
 let Tlist_Show_One_File = 1       " Only show tags for current buffer
@@ -46,4 +45,6 @@ let Tlist_File_Fold_Auto_Close = 1 " Close folds for inactive files
 
 " bufExplorer
 
-nnoremap <silent> <F3> :bufExplorerVer 
+"key mapping
+source ~/.vim/key-mapping.vim
+
