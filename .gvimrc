@@ -18,7 +18,9 @@ set guioptions-=m
 set guioptions-=r
 
 " key mapping for cut/copy/paste
-imap <C-X> "+x
-imap <C-C> "+y 
-imap <C-V> "+gP
+imap <C-X> <Esc>"+x
+"imap <C-C> <Esc>"+y 
+imap <C-V> <Esc>"+gP
+
+
 

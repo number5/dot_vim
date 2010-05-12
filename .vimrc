@@ -24,8 +24,26 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 set showmatch
+set showcmd
 
 set rtp+=/home/bruce/src/git/snipmate.vim
 
 let g:pydiction_location = '/home/bruce/.vim/pydiction/complete-dict'
 
+" TagList Plugin Configuration
+nnoremap <silent> <F2> :TlistToggle<CR>
+
+let Tlist_Ctags_Cmd='/usr/bin/ctags' " point taglist to ctags
+let Tlist_GainFocus_On_ToggleOpen = 1 " Focus on the taglist when its toggled
+let Tlist_Exit_OnlyWindow = 1     " exit if taglist is last window open
+let Tlist_Show_One_File = 1       " Only show tags for current buffer
+let Tlist_Inc_Winwidth = 0 " no window resize 
+let Tlist_Close_On_Select = 1 " Close when something's selected
+"let Tlist_Use_Right_Window = 1 " Project uses the left window
+let Tlist_File_Fold_Auto_Close = 1 " Close folds for inactive files 
+
+" yankring config
+
+" bufExplorer
+
+nnoremap <silent> <F3> :bufExplorerVer 
