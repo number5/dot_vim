@@ -27,6 +27,9 @@ set showmatch
 set showcmd
 set showbreak=...\  
 
+"key mapping
+source ~/.vim/key-mapping.vim
+
 set rtp+=~/src/git/snipmate.vim
 
 let g:pydiction_location = '~/.vim/pydiction/complete-dict'
@@ -50,14 +53,13 @@ let g:bufExplorerShowRelativePath=1  " Show relative paths.
 " => Fuzzy finder
 try
     call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-    map <leader>t :FufCWD **/<CR>
+    map <leader>f :FufCWD **/<CR>
 catch
 endtry
+noremap  <silent> g] :FufTagWithCursorWord!<CR>
 
 " pydiction
 set iskeyword+=.
 
 
-"key mapping
-source ~/.vim/key-mapping.vim
 
