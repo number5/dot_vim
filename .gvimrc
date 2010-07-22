@@ -6,6 +6,9 @@ set wildmenu
 set completeopt-=preview
 set guifont=Droid\ Sans\ Mono\ 12
 set lines=36 columns=82
+set t_Co=256
+set background=dark
+colorscheme wombat
 
 
 set langmenu=en_US.utf-8
