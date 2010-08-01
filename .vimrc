@@ -1,6 +1,7 @@
 set nocompatible
 syntax on
-colorscheme torte
+" colorscheme torte
+colorscheme wombat256mod
 set lz " do not redraw while running macros (much faster) 
 set nobackup " Disable Generation of Backup Files
 set noswapfile
@@ -14,7 +15,7 @@ set novisualbell
 set smartindent " Set Better Indention
 set cmdheight=2 " Statusbar
 set laststatus=2
-set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]\ [%l/%L\ (%p%%)]
+set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]\ [%l/%L,%c\ (%p%%)]
 set number
 set enc=utf-8
 set hlsearch
@@ -26,6 +27,8 @@ set expandtab
 set showmatch
 set showcmd
 set showbreak=...\  
+highlight OverLength ctermbg=red ctermfg=white 
+match OverLength /\%81v.\+/
 
 "key mapping
 source ~/.vim/key-mapping.vim
@@ -57,7 +60,7 @@ try
     map <leader>f :FufCWD **/<CR>
 catch
 endtry
-noremap  <silent> g] :FufTagWithCursorWord!<CR>
+noremap  <silent> <leader>b :FufBuffer<CR>
 
 " pydiction
 set iskeyword+=.
