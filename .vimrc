@@ -17,6 +17,7 @@ set cmdheight=2 " Statusbar
 set laststatus=2
 set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]\ [%l/%L,%c\ (%p%%)]
 set number
+set autochdir
 set enc=utf-8
 set hlsearch
 set ignorecase
