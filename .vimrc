@@ -5,8 +5,6 @@ colorscheme wombat256mod
 set lz " do not redraw while running macros (much faster) 
 set nobackup " Disable Generation of Backup Files
 set noswapfile
-filetype on
-filetype plugin on
 set ruler
 set completeopt-=preview
 set linebreak
@@ -34,8 +32,14 @@ match OverLength /\%81v.\+/
 "key mapping
 source ~/.vim/key-mapping.vim
 
-set rtp+=~/src/git/snipmate.vim
-set rtp+=~/src/hg/vim-autocomplpop
+call pathogen#runtime_append_all_bundles() 
+
+filetype off
+filetype on
+filetype plugin on
+
+"set rtp+=~/src/git/snipmate.vim
+"set rtp+=~/src/hg/vim-autocomplpop
 
 let g:pydiction_location = '~/.vim/pydiction/complete-dict'
 
