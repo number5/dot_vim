@@ -38,8 +38,6 @@ filetype off
 filetype on
 filetype plugin on
 
-"set rtp+=~/src/git/snipmate.vim
-"set rtp+=~/src/hg/vim-autocomplpop
 
 let g:pydiction_location = '~/.vim/pydiction/complete-dict'
 
