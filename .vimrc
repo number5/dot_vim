@@ -33,6 +33,7 @@ match OverLength /\%81v.\+/
 source ~/.vim/key-mapping.vim
 
 call pathogen#runtime_append_all_bundles() 
+call pathogen#helptags()
 
 filetype off
 filetype on
