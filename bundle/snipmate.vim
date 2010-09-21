@@ -1,1 +1,0 @@
-/home/bwang/src/git/snipmate.vim
