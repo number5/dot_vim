@@ -80,3 +80,7 @@ au FileType python syn keyword pythonDecorator True None False self
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
+
+" wicked mapping
+" Titlise Visually Selected Text (map for .vimrc)
+vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
