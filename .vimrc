@@ -59,12 +59,9 @@ let Tlist_File_Fold_Auto_Close = 1 " Close folds for inactive files
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 
 " => Fuzzy finder
-try
-    call fuf#defineLaunchCommand('FufCWD', 'file', 'fnamemodify(getcwd(), ''%:p:h'')')
-    map <leader>f :FufCWD **/<CR>
-catch
-endtry
+noremap  <silent> <leader>f :FufFileWithFullCwd<CR>
 noremap  <silent> <leader>b :FufBuffer<CR>
+noremap  <silent> <leader>q :FufQuickFix<CR>
 
 " pydiction
 set iskeyword+=.
