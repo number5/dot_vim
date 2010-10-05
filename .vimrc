@@ -61,7 +61,7 @@ let g:bufExplorerShowRelativePath=1  " Show relative paths.
 " => Fuzzy finder
 noremap  <silent> <leader>f :FufFileWithFullCwd<CR>
 noremap  <silent> <leader>b :FufBuffer<CR>
-noremap  <silent> <leader>q :FufQuickFix<CR>
+noremap  <silent> <leader>q :FufQuickfix<CR>
 
 " pydiction
 set iskeyword+=.
