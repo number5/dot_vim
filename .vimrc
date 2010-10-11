@@ -29,8 +29,6 @@ set showbreak=...\
 highlight OverLength ctermbg=red ctermfg=white 
 match OverLength /\%81v.\+/
 
-"key mapping
-source ~/.vim/key-mapping.vim
 
 call pathogen#runtime_append_all_bundles() 
 call pathogen#helptags()
@@ -58,11 +56,6 @@ let Tlist_File_Fold_Auto_Close = 1 " Close folds for inactive files
 " bufExplorer
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 
-" => Fuzzy finder
-noremap  <silent> <leader>f :FufFileWithFullCwd<CR>
-noremap  <silent> <leader>b :FufBuffer<CR>
-noremap  <silent> <leader>q :FufQuickfix<CR>
-
 " pydiction
 set iskeyword+=.
 
@@ -78,6 +71,26 @@ au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 
+" key mapping
+
 " wicked mapping
 " Titlise Visually Selected Text (map for .vimrc)
 vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
+
+nmap <silent> <C-l> :TlistToggle<CR>
+nmap <script> <silent>  :BufExplorer<CR>
+
+let mapleader = ','
+let localmapleader = ',' 
+
+noremap <C-left> :bprev<CR>
+noremap <C-right> :bnext<CR> 
+
+noremap <silent> <C-y> "+y
+noremap <silent> <C-p> "+p
+
+" => Fuzzy finder
+noremap  <silent> <leader>f :FufFileWithFullCwd<CR>
+noremap  <silent> <leader>b :FufBuffer<CR>
+noremap  <silent> <leader>q :FufQuickfix<CR>
+
