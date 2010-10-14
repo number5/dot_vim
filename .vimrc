@@ -2,6 +2,7 @@ set nocompatible
 syntax on
 " colorscheme torte
 colorscheme wombat256mod
+set t_Co=256
 set lz " do not redraw while running macros (much faster) 
 set nobackup " Disable Generation of Backup Files
 set noswapfile
@@ -26,9 +27,12 @@ set expandtab
 set showmatch
 set showcmd
 set showbreak=...\  
-highlight OverLength ctermbg=red ctermfg=white 
-match OverLength /\%81v.\+/
 
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+ 
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
 
 call pathogen#runtime_append_all_bundles() 
 call pathogen#helptags()
@@ -59,14 +63,6 @@ let g:bufExplorerShowRelativePath=1  " Show relative paths.
 " pydiction
 set iskeyword+=.
 
-
-""""""""""""""""""""""""""""""
-" => Python section
-" """"""""""""""""""""""""""""""
-au FileType python set nocindent
-let python_highlight_all = 1
-au FileType python syn keyword pythonDecorator True None False self
-
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
@@ -90,7 +86,7 @@ noremap <silent> <C-y> "+y
 noremap <silent> <C-p> "+p
 
 " => Fuzzy finder
-noremap  <silent> <leader>f :FufFileWithFullCwd<CR>
+noremap  <silent> <leader>f :FufFileWithCurrentBufferDir<CR>
 noremap  <silent> <leader>b :FufBuffer<CR>
 noremap  <silent> <leader>q :FufQuickfix<CR>
 
