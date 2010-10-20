@@ -15,6 +15,8 @@ set smartindent " Set Better Indention
 set cmdheight=2 " Statusbar
 set laststatus=2
 set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]\ [%l/%L,%c\ (%p%%)]
+set scrolloff=7
+set backspace=indent,eol,start
 set number
 set autochdir
 set enc=utf-8
@@ -27,6 +29,13 @@ set expandtab
 set showmatch
 set showcmd
 set showbreak=...\  
+
+let mapleader = ','
+let localmapleader = ',' 
+
+" CommandT
+" nmap <leader>t :CommandT<CR>
+set wildignore+=*.o,*.obj,.git,*.pyc
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -52,11 +61,10 @@ let Tlist_Exit_OnlyWindow = 1     " exit if taglist is last window open
 let Tlist_Show_One_File = 1       " Only show tags for current buffer
 let Tlist_Inc_Winwidth = 0 " no window resize 
 let Tlist_Close_On_Select = 1 " Close when something's selected
-"let Tlist_Use_Right_Window = 1 " Project uses the left window
 let Tlist_File_Fold_Auto_Close = 1 " Close folds for inactive files 
 
 " yankring config
-
+nnoremap <F11>  :YRShow<CR>
 " bufExplorer
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 
@@ -76,8 +84,6 @@ vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
 nmap <silent> <C-l> :TlistToggle<CR>
 nmap <script> <silent>  :BufExplorer<CR>
 
-let mapleader = ','
-let localmapleader = ',' 
 
 noremap <C-left> :bprev<CR>
 noremap <C-right> :bnext<CR> 
