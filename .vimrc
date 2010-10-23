@@ -1,37 +1,59 @@
 set nocompatible
+
+filetype off
+call pathogen#runtime_append_all_bundles() 
+call pathogen#helptags()
+
+filetype on
+filetype plugin on
 syntax on
+
 " colorscheme torte
 colorscheme wombat256mod
-set t_Co=256
-set lz " do not redraw while running macros (much faster) 
-set nobackup " Disable Generation of Backup Files
-set noswapfile
-set ruler
-set completeopt-=preview
-set linebreak
-set wrap
-set novisualbell
-set smartindent " Set Better Indention
-set cmdheight=2 " Statusbar
-set laststatus=2
-set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]\ [%l/%L,%c\ (%p%%)]
-set scrolloff=7
-set backspace=indent,eol,start
-set number
+
 set autochdir
+set backspace=indent,eol,start
+set cmdheight=2 " Statusbar
+set completeopt-=preview
 set enc=utf-8
+set expandtab
+set hidden
+set history=1000
 set hlsearch
 set ignorecase
 set incsearch
-set tabstop=4
+set laststatus=2
+set linebreak
+set lz " do not redraw while running macros (much faster) 
+set nobackup " Disable Generation of Backup Files
+set noswapfile
+set novisualbell
+set number
+set ruler
+set scrolloff=7
 set shiftwidth=4
-set expandtab
-set showmatch
-set showcmd
 set showbreak=...\  
-
+set showcmd
+set showmatch
+set smartindent " Set Better Indention
+set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]\ [%l/%L,%c\ (%p%%)]
+set switchbuf=useopen
+set title
+set t_Co=256
+set tabstop=4
+set wrap
+set wildmenu                    " make tab completion for files/buffers act like bash
+set wildmode=list:full          " show a list when pressing tab and complete
+                                "    first full match
 let mapleader = ','
 let localmapleader = ',' 
+
+" map ; to :
+nnoremap ; :
+
+" Avoid accidental hits of <F1> while aiming for <Esc>
+map! <F1> <Esc>
+
 
 " CommandT
 " nmap <leader>t :CommandT<CR>
@@ -39,18 +61,11 @@ set wildignore+=*.o,*.obj,.git,*.pyc
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
- 
+
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-call pathogen#runtime_append_all_bundles() 
-call pathogen#helptags()
-
-filetype off
-filetype on
-filetype plugin on
-
-
+let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 let g:pydiction_location = '~/.vim/pydiction/complete-dict'
 
 " TagList Plugin Configuration
@@ -64,7 +79,9 @@ let Tlist_Close_On_Select = 1 " Close when something's selected
 let Tlist_File_Fold_Auto_Close = 1 " Close folds for inactive files 
 
 " yankring config
+let g:yankring_history_dir = '$HOME/.var'
 nnoremap <F11>  :YRShow<CR>
+
 " bufExplorer
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 
@@ -96,3 +113,13 @@ noremap  <silent> <leader>f :FufFileWithCurrentBufferDir<CR>
 noremap  <silent> <leader>b :FufBuffer<CR>
 noremap  <silent> <leader>q :FufQuickfix<CR>
 
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+" Run Ack fast (mind the trailing space here, wouldya?)
+nnoremap <leader>a :LAck 
+
+" highlight conflict markers
+match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
+
+" shortcut to jump to next conflict marker
+nmap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
