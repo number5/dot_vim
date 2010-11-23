@@ -113,7 +113,7 @@ noremap  <silent> <leader>f :FufFileWithCurrentBufferDir<CR>
 noremap  <silent> <leader>b :FufBuffer<CR>
 noremap  <silent> <leader>q :FufQuickfix<CR>
 
-nmap <silent> <leader>/ :nohlsearch<CR>
+nmap <silent><leader>/ :nohlsearch<CR>
 
 " Run Ack fast (mind the trailing space here, wouldya?)
 nnoremap <leader>a :LAck 
@@ -122,4 +122,24 @@ nnoremap <leader>a :LAck
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
 " shortcut to jump to next conflict marker
-nmap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+nmap <silent><leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+
+
+" neocomplcache
+" Disable AutoComplPop. 
+let g:acp_enableAtStartup = 0 
+" Use neocomplcache. 
+let g:neocomplcache_enable_at_startup = 1 
+" Use smartcase. 
+let g:neocomplcache_enable_smart_case = 1 
+" Recommended key-mappings. 
+imap <silent><expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" <CR>: close popup and save indent. 
+"inoremap <expr><CR>  neocomplcache#smart_close_popup() 
+" <TAB>: completion. 
+"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>" 
+" <C-h>, <BS>: close popup and delete backword char. 
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>" 
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>" 
+inoremap <expr><C-y>  neocomplcache#close_popup() 
+inoremap <expr><C-e>  neocomplcache#cancel_popup() 
