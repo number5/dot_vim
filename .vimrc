@@ -91,6 +91,7 @@ set iskeyword+=.
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
+au BufNewFile,BufRead Vagrantfile set ft=ruby
 
 " key mapping
 

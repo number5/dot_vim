@@ -4,7 +4,8 @@
 " highlightng as well as numbers
 set wildmenu
 set completeopt-=preview
-set guifont=Droid\ Sans\ Mono\ 12
+"set guifont=Droid\ Sans\ Mono\ 12
+set guifont=Inconsolata\ Medium\ 14
 set lines=36 columns=82
 set background=dark
 colorscheme wombat256mod
