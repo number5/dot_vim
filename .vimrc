@@ -16,6 +16,7 @@ set backspace=indent,eol,start
 set cmdheight=2 " Statusbar
 set completeopt-=preview
 set enc=utf-8
+set smarttab
 set expandtab
 set hidden
 set history=1000
@@ -41,8 +42,9 @@ set switchbuf=useopen
 set title
 set t_Co=256
 set tabstop=4
+set softtabstop=4
 set wrap
-set wildmenu                    " make tab completion for files/buffers act like bash
+set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=list:full          " show a list when pressing tab and complete
                                 "    first full match
 let mapleader = ','
@@ -53,7 +55,6 @@ nnoremap ; :
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
-
 
 " CommandT
 " nmap <leader>t :CommandT<CR>
@@ -92,6 +93,7 @@ au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
+au BufNewFile,BufRead *.wiki set sw=2
 
 " key mapping
 
@@ -144,3 +146,9 @@ inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>" 
 inoremap <expr><C-y>  neocomplcache#close_popup() 
 inoremap <expr><C-e>  neocomplcache#cancel_popup() 
+
+" vimwiki
+:map <Leader>d <Plug>VimwikiMakeDiaryNote
+:map <leader><Space> <Plug>VimwikiToggleListItem
+let g:vimwiki_fold_lists = 1
+
