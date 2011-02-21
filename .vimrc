@@ -37,9 +37,11 @@ set showbreak=...\
 set showcmd
 set showmatch
 set smartindent " Set Better Indention
+inoremap # X#
 set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]\ [%l/%L,%c\ (%p%%)]
 set switchbuf=useopen
 set title
+set ttyfast
 set t_Co=256
 set tabstop=4
 set softtabstop=4
@@ -148,7 +150,26 @@ inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup() 
 
 " vimwiki
-:map <Leader>d <Plug>VimwikiMakeDiaryNote
-:map <leader><Space> <Plug>VimwikiToggleListItem
+nnoremap <Leader>t :e ~/vimwiki/TODO.wiki<CR>
+nnoremap <Leader>d <Plug>VimwikiMakeDiaryNote
+nnoremap <leader><Space> <Plug>VimwikiToggleListItem
 let g:vimwiki_fold_lists = 1
+
+" quicker window switching
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
+
+
+" tab for brackets
+nnoremap <tab> %
+vnoremap <tab> %
+
+" Command-T support
+nnoremap <leader>o :CommandT<CR>
+
+" NerdTree
+nnoremap <leader>p :NERDTree<CR>
+let NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 
