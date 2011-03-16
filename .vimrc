@@ -115,8 +115,8 @@ noremap <silent> <C-y> "+y
 noremap <silent> <C-p> "+p
 
 " => Fuzzy finder
-noremap  <silent> <leader>f :FufFileWithCurrentBufferDir<CR>
-noremap  <silent> <leader>q :FufQuickfix<CR>
+"noremap  <silent> <leader>f :FufFileWithCurrentBufferDir<CR>
+"noremap  <silent> <leader>q :FufQuickfix<CR>
 
 nmap <silent><leader>/ :nohlsearch<CR>
 
