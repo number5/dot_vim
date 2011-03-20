@@ -5,7 +5,7 @@ _BUNDLE_FILE="$HOME/.vim/bundlerc"
 
 update() {
 for d in $_BUNDLE_DIR/*; do
-    print $d
+    echo $d
     cd $d
     [ -d .git ] && git pull
     #[ -d .hg ] && hg pull -u
