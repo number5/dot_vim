@@ -170,6 +170,8 @@ vnoremap <tab> %
 let g:syntastic_auto_loc_list=1
 let g:syntastic_enable_signs=1
 
+" Unite / quick fix
+nnoremap <leader>q :Unite qf<CR>
 
 " Command-T support
 nnoremap <leader>o :CommandT<CR>
