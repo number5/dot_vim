@@ -69,8 +69,16 @@ set listchars=tab:▸\ ,eol:¬
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 let g:pydiction_location = '~/.vim/pydiction/complete-dict'
 
+" Tagbar
+let g:tagbar_left = 1
+let g:tagbar_expand = 1
+let g:tagbar_width = 30
+let g:tagbar_autofocus = 1
+
+nnoremap <silent> <C-l> :TagbarToggle<CR>
+
 " TagList Plugin Configuration
-nmap <silent> <C-l> :TlistToggle<CR>
+"nmap <silent> <C-l> :TlistToggle<CR>
 let Tlist_Ctags_Cmd='/usr/bin/ctags' " point taglist to ctags
 let Tlist_GainFocus_On_ToggleOpen = 1 " Focus on the taglist when its toggled more
 let Tlist_Exit_OnlyWindow = 1     " exit if taglist is last window open
