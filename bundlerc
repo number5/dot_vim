@@ -9,6 +9,7 @@ https://github.com/scrooloose/nerdtree.git
 https://github.com/kevinw/pyflakes-vim.git
 git://github.com/vim-scripts/slimv.vim.git
 http://github.com/vim-scripts/tComment.git
+https://github.com/godlygeek/tabular
 https://github.com/majutsushi/tagbar.git
 https://github.com/sgur/unite-qf.git
 https://github.com/Shougo/unite.vim.git
@@ -19,5 +20,4 @@ git://github.com/tpope/vim-ragtag.git
 git://github.com/tpope/vim-surround.git
 https://github.com/jmcantrell/vim-virtualenv.git
 http://github.com/gmarik/vim-visual-star-search.git
-https://github.com/Shougo/vimproc.git
 https://github.com/vim-scripts/vimwiki.git

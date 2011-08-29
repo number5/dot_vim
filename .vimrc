@@ -50,6 +50,8 @@ set wrap
 set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=list:full          " show a list when pressing tab and complete
                                 "    first full match
+set cpo&vim " for neocomplcache
+
 let mapleader = ','
 let localmapleader = ',' 
 
@@ -107,7 +109,7 @@ au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
 au BufNewFile,BufRead *.wiki set sw=2
-au FileType javascript set makeprg=jslint\ %
+au FileType javascript set makeprg=jshint\ %
 
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
