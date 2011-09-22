@@ -3,6 +3,7 @@ git://github.com/vim-scripts/YankRing.vim.git
 http://github.com/mileszs/ack.vim.git
 https://github.com/vim-scripts/calendar.vim--Matsumoto.git
 http://github.com/vim-scripts/jQuery.git
+https://github.com/walm/jshint.vim.git
 https://github.com/vim-scripts/md5.vim.git
 http://github.com/Shougo/neocomplcache.git
 https://github.com/scrooloose/nerdtree.git
@@ -17,7 +18,6 @@ http://github.com/vim-scripts/bufexplorer.zip.git
 http://github.com/tpope/vim-markdown.git
 git://github.com/tpope/vim-pathogen.git
 git://github.com/tpope/vim-ragtag.git
+https://github.com/nvie/vim-rst-tables.git
 git://github.com/tpope/vim-surround.git
-https://github.com/jmcantrell/vim-virtualenv.git
-http://github.com/gmarik/vim-visual-star-search.git
 https://github.com/vim-scripts/vimwiki.git
