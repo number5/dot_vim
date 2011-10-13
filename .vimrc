@@ -50,6 +50,8 @@ set wrap
 set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=list:full          " show a list when pressing tab and complete
                                 "    first full match
+set cpo&vim " for neocomplcache
+
 let mapleader = ','
 let localmapleader = ',' 
 
@@ -101,13 +103,14 @@ set iskeyword+=.
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
+au FileType javascript set makeprg=jshint\ %
 
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
 au BufNewFile,BufRead *.wiki set sw=2
-au FileType javascript set makeprg=jslint\ %
+au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is diabled for root
 
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
@@ -118,8 +121,8 @@ vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
 noremap <C-left> :bprev<CR>
 noremap <C-right> :bnext<CR> 
 
-noremap <silent> <C-y> "+y
-noremap <silent> <C-p> "+p
+noremap <silent> <leader>y "+y
+noremap <silent> <leader>p i<C-r>+
 
 
 nmap <silent><leader>/ :nohlsearch<CR>
@@ -190,7 +193,7 @@ let g:CommandTMaxHeight=20
 let g:CommandTMatchWindowAtTop=1
 
 " NerdTree
-nnoremap <leader>p :NERDTree<CR>
+nnoremap <leader>[ :NERDTree<CR>
 let g:NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 let g:NERDTreeHijackNetrw=1
 
@@ -201,9 +204,11 @@ nnoremap <A-x> :VimwikiToggleListItem<CR>
 let g:vimwiki_fold_lists = 1
 
 " super powerful spells here
-
-cmap w!! %!sudo tee > /dev/null %
+cmap >fn <c-r>=expand('%:p')<cr>
+cmap >fd <c-r>=expand('%:p:h').'/'<cr>
+cmap w!! w !sudo tee %
 
 imap <F3> <C-R>=strftime("%x %r")<CR>
 
+" vim-virtualenv
 let g:virtualenv_directory = "/home/bwang/work/"
