@@ -103,7 +103,6 @@ set iskeyword+=.
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
-au FileType javascript set makeprg=jshint\ %
 
 au BufNewFile,BufRead *.jinja set syntax=htmljinja
 au BufNewFile,BufRead *.mako set ft=mako
@@ -111,6 +110,7 @@ au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
 au BufNewFile,BufRead *.wiki set sw=2
 au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is diabled for root
+au FileType javascript set makeprg=jshint\ %
 
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
