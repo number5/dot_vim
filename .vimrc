@@ -109,6 +109,7 @@ au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
 au BufNewFile,BufRead *.wiki set sw=2
+au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is diabled for root
 au FileType javascript set makeprg=jshint\ %
 
 " key mapping
