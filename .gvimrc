@@ -1,12 +1,9 @@
-" User Interface
+" GUI only config
 " --------------
-" activate wildmenu, permanent ruler and disable Toolbar, and add line
-" highlightng as well as numbers
-set wildmenu
 set completeopt-=preview
-set guifont=Droid\ Sans\ Mono\ Slashed\ 13
-"set guifont=Inconsolata\ Medium\ 14
-set lines=36 columns=82
+"set guifont=Droid\ Sans\ Mono\ Slashed\ 13
+set guifont=Inconsolata\ Medium\ 15
+set lines=36 columns=85
 
 set langmenu=en_US.utf-8
 language mes en_US.UTF-8
@@ -15,5 +12,15 @@ set guioptions+=c
 set guioptions-=e
 set guioptions-=T
 set guioptions-=m
+set guioptions-=l
+set guioptions-=L
 set guioptions-=r
+set guioptions-=R
 
+colorscheme solarized
+let g:solarized_termcolors=256
+let g:solarized_bold = 1
+let g:solarized_underline = 1
+let g:solarized_italic = 1
+let g:solarized_contrast = "high"
+set bg=light

@@ -10,6 +10,7 @@ syntax on
 
 " colorscheme torte
 colorscheme wombat256mod
+"colorscheme solarized
 set bg=dark
 
 " set autochdir  " disabled for command-T
@@ -17,8 +18,8 @@ set backspace=indent,eol,start
 set cmdheight=2 " Statusbar
 set completeopt-=preview
 set enc=utf-8
-set smarttab
 set expandtab
+set gdefault
 set hidden
 set history=1000
 set hlsearch
@@ -38,18 +39,19 @@ set showbreak=↪\ \
 set showcmd
 set showmatch
 set smartindent " Set Better Indention
+set smarttab
+set softtabstop=4
 set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
-
 set switchbuf=useopen
-set title
-set ttyfast
 set t_Co=256
 set tabstop=4
-set softtabstop=4
-set wrap
+set title
+set ttyfast
+set virtualedit=all
 set wildmenu         " make tab completion for files/buffers act like bash
-set wildmode=list:full          " show a list when pressing tab and complete
-                                "    first full match
+set wildmode=list:full " show a list when pressing tab and complete
+                       " first full match
+set wrap
 set cpo&vim " for neocomplcache
 
 let mapleader = ','
@@ -79,20 +81,10 @@ let g:tagbar_autofocus = 1
 
 nnoremap <silent> <C-l> :TagbarToggle<CR>
 
-" TagList Plugin Configuration
-"nmap <silent> <C-l> :TlistToggle<CR>
-let Tlist_Ctags_Cmd='/usr/bin/ctags' " point taglist to ctags
-let Tlist_GainFocus_On_ToggleOpen = 1 " Focus on the taglist when its toggled more
-let Tlist_Exit_OnlyWindow = 1     " exit if taglist is last window open
-"let Tlist_Show_One_File = 1       " Only show tags for current buffer
-let Tlist_Inc_Winwidth = 0 " no window resize 
-let Tlist_Close_On_Select = 1 " Close when something's selected
-let Tlist_File_Fold_Auto_Close = 1 " Close folds for inactive files 
-let Tlist_Sort_Type = "name"
 
 " yankring config
 let g:yankring_history_dir = '$HOME/.var'
-nnoremap <F11>  :YRShow<CR>
+nnoremap <leader>r  :YRShow<CR>
 
 " bufExplorer
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
@@ -104,7 +96,9 @@ set iskeyword+=.
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
 
-au BufNewFile,BufRead *.jinja set syntax=htmljinja
+au BufNewFile,BufRead *.jinja set syntax=jinja
+au BufNewFile,BufRead *.xhtml set syntax=jinja
+au BufNewFile,BufRead *.html set syntax=jinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
@@ -155,8 +149,8 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand) 
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand) 
 
 "Recommended key-mappings
 imap <silent><expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -172,6 +166,11 @@ nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
 nnoremap <A-l> <C-w>l
 
+" Remap j and k to act as expected when used on long, wrapped, lines
+nnoremap j gj
+nnoremap <Down> gj
+nnoremap k gk
+nnoremap <Up> gk
 
 " tab for brackets
 nnoremap <tab> %
@@ -212,3 +211,12 @@ imap <F3> <C-R>=strftime("%x %r")<CR>
 
 " vim-virtualenv
 let g:virtualenv_directory = "/home/bwang/work/"
+
+" paste
+nnoremap <silent> <F5> :set paste!<bar>set paste?<CR>
+set pastetoggle=<F5>
+
+" Edit the vimrc file
+"nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
+
