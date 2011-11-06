@@ -1,15 +1,14 @@
 set nocompatible
 
 filetype off
-call pathogen#runtime_append_all_bundles() 
-call pathogen#helptags()
+call pathogen#infect() 
 
 filetype on
 filetype plugin on
 syntax on
 
-" colorscheme torte
-colorscheme wombat256mod
+" colorscheme wombat256mod
+colorscheme mango
 "colorscheme solarized
 set bg=dark
 

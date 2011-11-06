@@ -4,6 +4,7 @@ http://github.com/mileszs/ack.vim.git
 https://github.com/vim-scripts/calendar.vim--Matsumoto.git
 http://github.com/vim-scripts/jQuery.git
 https://github.com/walm/jshint.vim.git
+https://github.com/goatslacker/mango.vim.git
 https://github.com/vim-scripts/md5.vim.git
 http://github.com/Shougo/neocomplcache.git
 https://github.com/scrooloose/nerdtree.git
@@ -16,6 +17,8 @@ https://github.com/sgur/unite-qf.git
 https://github.com/Shougo/unite.vim.git
 http://github.com/vim-scripts/bufexplorer.zip.git
 https://github.com/kchmck/vim-coffee-script.git
+git://github.com/altercation/solarized.git
+https://github.com/tpope/vim-fugitive.git
 http://github.com/tpope/vim-markdown.git
 git://github.com/tpope/vim-pathogen.git
 git://github.com/tpope/vim-ragtag.git
