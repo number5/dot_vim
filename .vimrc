@@ -16,6 +16,7 @@ set bg=dark
 set backspace=indent,eol,start
 set cmdheight=2 " Statusbar
 set completeopt-=preview
+set colorcolumn=80
 set enc=utf-8
 set expandtab
 set gdefault
@@ -101,6 +102,9 @@ au BufNewFile,BufRead *.html set syntax=jinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
+au BufNewFile,BufRead *.pp set ft=ruby
+au BufNewFile,BufRead *.hosts set ft=dns
+
 au BufNewFile,BufRead *.wiki set sw=2
 au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is diabled for root
 au FileType javascript set makeprg=jshint\ %
@@ -204,7 +208,7 @@ let g:vimwiki_fold_lists = 1
 " super powerful spells here
 cmap >fn <c-r>=expand('%:p')<cr>
 cmap >fd <c-r>=expand('%:p:h').'/'<cr>
-cmap w!! w !sudo tee %
+cmap w!! w !sudo tee % >/dev/null
 
 imap <F3> <C-R>=strftime("%x %r")<CR>
 
@@ -219,3 +223,25 @@ set pastetoggle=<F5>
 "nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+" CoffeeScript
+autocmd BufWritePost *.coffee silent CoffeeMake! | cwindow
+let g:coffee_make_options = ""
+
+" Add this type definition to your vimrc
+" or do
+" coffeetags --vim-conf >> <PATH TO YOUR VIMRC>
+" if you want your tags to include vars/objects do:
+" coffeetags --vim-conf --include-vars
+ let g:tagbar_type_coffee = {
+  \ 'kinds' : [
+  \   'f:functions',
+  \   'o:object'
+  \ ],
+  \ 'kind2scope' : {
+  \  'f' : 'object',
+  \   'o' : 'object'
+  \},
+  \ 'sro' : ".",
+  \ 'ctagsbin' : 'coffeetags',
+  \ 'ctagsargs' : '--include-vars --f -',
+  \}
