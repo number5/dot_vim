@@ -19,6 +19,7 @@ set completeopt-=preview
 set colorcolumn=80
 set enc=utf-8
 set expandtab
+"set digraph " causing trouble while coding
 set gdefault
 set hidden
 set history=1000
@@ -99,6 +100,7 @@ au FileType python  set tabstop=4 textwidth=79
 au BufNewFile,BufRead *.jinja set syntax=jinja
 au BufNewFile,BufRead *.xhtml set syntax=jinja
 au BufNewFile,BufRead *.html set syntax=jinja
+au BufNewFile,BufRead *.hbs set syntax=jinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
@@ -106,7 +108,7 @@ au BufNewFile,BufRead *.pp set ft=ruby
 au BufNewFile,BufRead *.hosts set ft=dns
 
 au BufNewFile,BufRead *.wiki set sw=2
-au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is diabled for root
+au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
 au FileType javascript set makeprg=jshint\ %
 
 " key mapping
@@ -185,6 +187,7 @@ let g:syntastic_enable_signs=1
 
 " Unite / quick fix
 nnoremap <leader>q :Unite qf<CR>
+nnoremap <leader>j :Unite jump<CR>
 
 " Command-T support
 nnoremap <leader>o :CommandT<CR>
@@ -223,16 +226,12 @@ set pastetoggle=<F5>
 "nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+"autocmd BufWritePost *.js silent JSHint | cwindow
 " CoffeeScript
 autocmd BufWritePost *.coffee silent CoffeeMake! | cwindow
 let g:coffee_make_options = ""
 
-" Add this type definition to your vimrc
-" or do
-" coffeetags --vim-conf >> <PATH TO YOUR VIMRC>
-" if you want your tags to include vars/objects do:
-" coffeetags --vim-conf --include-vars
- let g:tagbar_type_coffee = {
+let g:tagbar_type_coffee = {
   \ 'kinds' : [
   \   'f:functions',
   \   'o:object'
