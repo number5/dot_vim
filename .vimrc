@@ -101,6 +101,7 @@ au BufNewFile,BufRead *.jinja set syntax=jinja
 au BufNewFile,BufRead *.xhtml set syntax=jinja
 au BufNewFile,BufRead *.html set syntax=jinja
 au BufNewFile,BufRead *.hbs set syntax=jinja
+au BufNewFile,BufRead *.handlebars set syntax=jinja
 au BufNewFile,BufRead *.mako set ft=mako
 au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
@@ -113,7 +114,7 @@ au FileType javascript set makeprg=jshint\ %
 
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
-vmap ,c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
+vmap <leader>c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
 
 
 
@@ -131,9 +132,6 @@ nnoremap <leader>a :LAck
 
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" shortcut to jump to next conflict marker
-nmap <silent><leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
 
 " indent/unindent code
 vmap <A-]> >gv
@@ -226,7 +224,6 @@ set pastetoggle=<F5>
 "nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-"autocmd BufWritePost *.js silent JSHint | cwindow
 " CoffeeScript
 autocmd BufWritePost *.coffee silent CoffeeMake! | cwindow
 let g:coffee_make_options = ""
