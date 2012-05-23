@@ -7,9 +7,8 @@ filetype on
 filetype plugin on
 syntax on
 
-" colorscheme wombat256mod
-colorscheme mango
-"colorscheme solarized
+colorscheme solarized
+let g:solarized_termcolors=16
 set bg=dark
 
 " set autochdir  " disabled for command-T
@@ -241,3 +240,11 @@ let g:tagbar_type_coffee = {
   \ 'ctagsbin' : 'coffeetags',
   \ 'ctagsargs' : '--include-vars --f -',
   \}
+
+" indent guides
+let g:indent_guides_auto_colors = 1
+let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
+let g:indent_guides_enable_on_vim_startup = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
