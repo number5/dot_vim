@@ -186,9 +186,11 @@ let g:syntastic_enable_signs=1
 nnoremap <leader>q :Unite qf<CR>
 nnoremap <leader>j :Unite jump<CR>
 
-" Command-T support
-nnoremap <leader>o :CommandT<CR>
-nnoremap <leader>e :CommandT <C-R>=expand("%:p:h") . "/"<CR>
+" CtrlP support
+let g:ctrlp_match_window_bottom = 0
+let g:ctrlp_max_files = 5000
+nnoremap <leader>o :CtrlPMixed<CR>
+nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 set wildignore+=*.o,*.obj,.git,*.pyc
 set noequalalways
 let g:CommandTMaxHeight=20
