@@ -11,7 +11,7 @@ language mes en_US.UTF-8
 set guioptions+=c
 set guioptions-=e
 set guioptions-=T
-set guioptions-=m
+"set guioptions-=m
 set guioptions-=l
 set guioptions-=L
 set guioptions-=r
