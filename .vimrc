@@ -53,8 +53,12 @@ set virtualedit=all
 set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=list:full " show a list when pressing tab and complete
                        " first full match
-set wrap
+set nowrap
 set cpo&vim " for neocomplcache
+
+" for ruby
+set cf
+
 
 let mapleader = ','
 let localmapleader = ',' 
@@ -73,7 +77,6 @@ nmap <leader>l :set list!<CR>
 set listchars=tab:▸\ ,eol:¬
 
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
-let g:pydiction_location = '~/.vim/pydiction/complete-dict'
 
 " Tagbar
 let g:tagbar_left = 1
@@ -92,9 +95,6 @@ nnoremap <leader>r  :YRShow<CR>
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
 nmap <script> <silent><C-b> :BufExplorer<CR>
 
-" pydiction
-set iskeyword+=.
-
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 textwidth=79
 
@@ -108,7 +108,9 @@ au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
 au BufNewFile,BufRead *.pp set ft=ruby
 au BufNewFile,BufRead *.hosts set ft=dns
-
+autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
+autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
 au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
 au FileType javascript set makeprg=jshint\ %
@@ -176,13 +178,6 @@ nnoremap <Down> gj
 nnoremap k gk
 nnoremap <Up> gk
 
-" tab for brackets
-nnoremap <tab> %
-vnoremap <tab> %
-
-"syntastic 
-let g:syntastic_auto_loc_list=1
-let g:syntastic_enable_signs=1
 
 " Unite / quick fix
 nnoremap <leader>q :Unite qf<CR>
