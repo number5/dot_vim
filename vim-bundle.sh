@@ -1,21 +1,22 @@
-#!/bin/sh
+#!/bin/zsh
+set extendedglob
 
 _BUNDLE_DIR="$HOME/.vim/bundle"
 _BUNDLE_FILE="$HOME/.vim/bundlerc"
 
 update() {
-for d in $_BUNDLE_DIR/*; do
-    echo $d
-    cd $d
-    [ -d .git ] && git pull
-    #[ -d .hg ] && hg pull -u
-done
+  for d in $_BUNDLE_DIR/*; do
+      echo $d
+      cd $d
+      [ -d .git ] && git pull
+      #[ -d .hg ] && hg pull -u
+  done
 }
 
 show() {
-for d in $_BUNDLE_DIR/*; do
+    for d in $_BUNDLE_DIR/*; do
     cd $d
-    git config --get remote.origin.url
+    [ -d .git ] && git config --get remote.origin.url
 done 
 }
 
