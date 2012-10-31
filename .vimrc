@@ -9,9 +9,9 @@ filetype on
 filetype plugin on
 syntax on
 
+set bg=dark
 colorscheme solarized
 let g:solarized_termcolors=16
-set bg=dark
 
 set autoindent
 " set autochdir  " disabled for command-T
@@ -53,15 +53,15 @@ hi link User3 Comment
 hi link User4 Keyword
 hi link User5 Type
 set statusline=
-set statusline +=%4*\ %n\ %*            "buffer number
-set statusline +=%1*%f\ %*          "full path
-set statusline +=%2*%y%*              "file type
-set statusline +=%3*\ %{&ff}/%{&fenc}%*            "file format
+set statusline +=%2*\ %y%*              "file type
+set statusline +=%1*\ %<%f\ %*          "full path
 set statusline +=%2*%m%r%h%*            "modified/readonly/help flag
-set statusline +=%5*%=%5l%*             "current line
-set statusline +=%4*/%L,\ %*            "total lines
-set statusline +=%5*col\ %c\ %*         "column number
+set statusline +=%3*%=%{&ff}/%{&fenc}%*  "file format
+set statusline +=%5*\ %5l%*             "current line
+set statusline +=%4*/%L,%*            "total lines
+set statusline +=%5*%3c\ %*         "column number
 set statusline +=%4*(%p%%)\ %*          "percentage 
+
 
 set switchbuf=useopen
 set t_Co=256
