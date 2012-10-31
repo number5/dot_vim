@@ -74,6 +74,7 @@ set wildmode=list:full " show a list when pressing tab and complete
                        " first full match
 set nowrap
 set cpo&vim " for neocomplcache
+set secure
 
 " for ruby
 set cf
@@ -127,8 +128,6 @@ au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
 au BufNewFile,BufRead *.pp set ft=ruby
 au BufNewFile,BufRead *.hosts set ft=dns
-autocmd Filetype ruby setlocal ts=2 sts=2 sw=2
-autocmd Filetype yaml setlocal ts=2 sts=2 sw=2
 autocmd Filetype html setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
 au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
@@ -217,11 +216,6 @@ nnoremap <leader>[ :NERDTree<CR>
 let g:NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
 let g:NERDTreeHijackNetrw=1
 
-" vimwiki
-nnoremap <Leader>t :e ~/vimwiki/TODO.wiki<CR>
-nnoremap <Leader>d :VimwikiMakeDiaryNote<CR>
-nnoremap <A-x> :VimwikiToggleListItem<CR>
-let g:vimwiki_fold_lists = 1
 
 " super powerful spells here
 cmap >fn <c-r>=expand('%:p')<cr>
@@ -267,5 +261,32 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_enable_on_vim_startup = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+
+if has("gui_running")
+
+    " GUI only config
+    set completeopt-=preview
+    "set guifont=Droid\ Sans\ Mono\ Slashed\ 13
+    set guifont=Inconsolata\ Medium\ 15
+    set lines=40 columns=85
+
+    set langmenu=en_US.utf-8
+    language mes en_US.UTF-8
+    set guioptions+=c
+    set guioptions-=e
+    set guioptions-=T
+    set guioptions-=l
+    set guioptions-=L
+    set guioptions-=r
+    set guioptions-=R
+
+    set bg=light
+    colorscheme solarized
+    let g:solarized_termcolors=256
+    let g:solarized_bold = 1
+    let g:solarized_underline = 1
+    let g:solarized_italic = 1
+    "let g:solarized_contrast = "high"
+endif
 
 " EOF
