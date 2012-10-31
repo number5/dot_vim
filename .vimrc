@@ -13,6 +13,7 @@ colorscheme solarized
 let g:solarized_termcolors=16
 set bg=dark
 
+set autoindent
 " set autochdir  " disabled for command-T
 set backspace=indent,eol,start
 set cmdheight=2 " Statusbar
@@ -43,7 +44,25 @@ set showmatch
 set smartindent " Set Better Indention
 set smarttab
 set softtabstop=4
-set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
+" status line settings, stole
+" from https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
+"set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
+hi link User1 Title
+hi link User2 DiffChange
+hi link User3 Comment
+hi link User4 Keyword
+hi link User5 Type
+set statusline=
+set statusline +=%4*\ %n\ %*            "buffer number
+set statusline +=%1*%f\ %*          "full path
+set statusline +=%2*%y%*              "file type
+set statusline +=%3*\ %{&ff}/%{&fenc}%*            "file format
+set statusline +=%2*%m%r%h%*            "modified/readonly/help flag
+set statusline +=%5*%=%5l%*             "current line
+set statusline +=%4*/%L,\ %*            "total lines
+set statusline +=%5*col\ %c\ %*         "column number
+set statusline +=%4*(%p%%)\ %*          "percentage 
+
 set switchbuf=useopen
 set t_Co=256
 set tabstop=4
@@ -150,7 +169,7 @@ let g:neocomplcache_enable_smart_case = 1
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
@@ -208,6 +227,7 @@ let g:vimwiki_fold_lists = 1
 cmap >fn <c-r>=expand('%:p')<cr>
 cmap >fd <c-r>=expand('%:p:h').'/'<cr>
 cmap w!! w !sudo tee % >/dev/null
+cmap W w
 
 imap <F3> <C-R>=strftime("%x %r")<CR>
 
@@ -247,3 +267,5 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_enable_on_vim_startup = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+
+" EOF
