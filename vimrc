@@ -7,7 +7,9 @@ call pathogen#helptags()
 
 filetype on
 filetype plugin on
+filetype indent on
 syntax on
+compiler ruby
 
 set bg=dark
 colorscheme solarized
@@ -32,18 +34,20 @@ set laststatus=2
 set linebreak
 set lz " do not redraw while running macros (much faster) 
 set nobackup " Disable Generation of Backup Files
+set noballooneval
 set noswapfile
 set novisualbell
 set number
 set ruler
 set scrolloff=7
-set shiftwidth=4
+"set shiftwidth=4
 set showbreak=↪\ \  
 set showcmd
 set showmatch
 set smartindent " Set Better Indention
 set smarttab
-set softtabstop=4
+"set softtabstop=4
+
 " status line settings, stole
 " from https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
 "set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
@@ -65,7 +69,7 @@ set statusline +=%4*(%p%%)\ %*          "percentage
 
 set switchbuf=useopen
 set t_Co=256
-set tabstop=4
+"set tabstop=4
 set title
 set ttyfast
 set virtualedit=all
@@ -116,7 +120,7 @@ let g:bufExplorerShowRelativePath=1  " Show relative paths.
 nmap <script> <silent><C-b> :BufExplorer<CR>
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python  set tabstop=4 textwidth=79
+au FileType python  set tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 
 au BufNewFile,BufRead *.jinja set syntax=jinja
 au BufNewFile,BufRead *.xhtml set syntax=jinja
@@ -128,7 +132,8 @@ au BufNewFile,BufRead *.tac set ft=python
 au BufNewFile,BufRead Vagrantfile set ft=ruby
 au BufNewFile,BufRead *.pp set ft=ruby
 au BufNewFile,BufRead *.hosts set ft=dns
-autocmd Filetype html setlocal ts=2 sts=2 sw=2
+au Filetype html setlocal ts=2 sts=2 sw=2
+au Filetype ruby setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
 au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
 au FileType javascript set makeprg=jshint\ %
@@ -136,8 +141,6 @@ au FileType javascript set makeprg=jshint\ %
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
 vmap <leader>c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
-
-
 
 noremap <C-left> :bprev<CR>
 noremap <C-right> :bnext<CR> 
