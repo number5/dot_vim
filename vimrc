@@ -40,7 +40,7 @@ set novisualbell
 set number
 set ruler
 set scrolloff=7
-"set shiftwidth=4
+set shiftwidth=4  " set default to 4, need set to 2 for ruby type
 set showbreak=↪\ \  
 set showcmd
 set showmatch
@@ -48,8 +48,8 @@ set smartindent " Set Better Indention
 set smarttab
 "set softtabstop=4
 
-" status line settings, stole
-" from https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
+" status line settings, stole from
+" https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
 "set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
 hi link User1 Title
 hi link User2 DiffChange
