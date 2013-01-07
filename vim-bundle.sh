@@ -15,9 +15,9 @@ update() {
 
 show() {
     for d in $_BUNDLE_DIR/*; do
-    cd $d
-    [ -d .git ] && git config --get remote.origin.url
-done 
+        cd $d
+        [ -d .git ] && git config --get remote.origin.url
+    done 
 }
 
 checkout() {
@@ -31,13 +31,13 @@ done
 
 case "$1" in
   show) 
-    show;;
+    show | sort;;
   update)
     update;;
   checkout)
     checkout;;
   *)
-   show;;
+    show | sort;;
 esac
 
 

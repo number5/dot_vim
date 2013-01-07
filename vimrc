@@ -111,9 +111,8 @@ let g:tagbar_autofocus = 1
 nnoremap <silent> <C-l> :TagbarToggle<CR>
 
 
-" yankring config
-let g:yankring_history_dir = '$HOME/.var'
-nnoremap <leader>r  :YRShow<CR>
+" yankstack config
+nnoremap <leader>r  :Yanks<CR>
 
 " bufExplorer
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
@@ -201,12 +200,13 @@ nnoremap <Up> gk
 
 
 " Unite / quick fix
-nnoremap <leader>q :Unite qf<CR>
 nnoremap <leader>j :Unite jump<CR>
 
 " CtrlP support
+let g:ctrlp_map = '<S_F8>'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_max_files = 5000
+nnoremap <leader>q :CtrlPQuickfix<CR>
 nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 set wildignore+=*.o,*.obj,.git,*.pyc
