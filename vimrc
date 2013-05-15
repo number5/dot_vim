@@ -12,7 +12,8 @@ syntax on
 compiler ruby
 
 set bg=dark
-colorscheme solarized
+"colorscheme solarized
+colorscheme jellybeans
 let g:solarized_termcolors=16
 
 set autoindent
@@ -46,6 +47,8 @@ set showcmd
 set showmatch
 set smartindent " Set Better Indention
 set smarttab
+set splitbelow
+set splitright
 "set softtabstop=4
 
 " status line settings, stole from
@@ -284,7 +287,8 @@ if has("gui_running")
     set guioptions-=R
 
     set bg=light
-    colorscheme solarized
+    "colorscheme solarized
+    colorscheme jellybeans
     let g:solarized_termcolors=256
     let g:solarized_bold = 1
     let g:solarized_underline = 1
