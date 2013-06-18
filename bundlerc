@@ -1,11 +1,10 @@
 git://github.com/tpope/vim-pathogen.git
 git://github.com/tpope/vim-ragtag.git
+git://github.com/tpope/vim-rbenv.git
 git://github.com/tpope/vim-surround.git
-http://github.com/Shougo/neocomplcache.git
 http://github.com/tpope/vim-markdown.git
 http://github.com/vim-scripts/tComment.git
 https://github.com/avakhov/vim-yaml.git
-https://github.com/davidoc/taskpaper.vim.git
 https://github.com/goatslacker/mango.vim.git
 https://github.com/godlygeek/tabular
 https://github.com/kchmck/vim-coffee-script.git
@@ -19,8 +18,10 @@ https://github.com/nvie/vim-flake8.git
 https://github.com/nvie/vim-rst-tables.git
 https://github.com/saltstack/salt-vim.git
 https://github.com/scrooloose/nerdtree.git
+https://github.com/Shougo/neocomplete.vim.git
 https://github.com/Shougo/neosnippet.git
 https://github.com/Shougo/unite.vim.git
+https://github.com/terryma/vim-multiple-cursors.git
 https://github.com/tpope/vim-fugitive.git
 https://github.com/vim-scripts/bufexplorer.zip.git
 https://github.com/vim-scripts/md5.vim.git

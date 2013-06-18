@@ -1,5 +1,5 @@
 #!/bin/zsh
-set extendedglob
+setopt extendedglob
 
 _BUNDLE_DIR="$HOME/.vim/bundle"
 _BUNDLE_FILE="$HOME/.vim/bundlerc"
