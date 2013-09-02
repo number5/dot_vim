@@ -319,7 +319,7 @@ if has("gui_running")
     set completeopt-=preview
     "set guifont=Droid\ Sans\ Mono\ Slashed\ 13
     "set guifont=Inconsolata\ Medium\ 15
-    set guifont=Source\ Code\ Pro\ 14
+    set guifont=Source\ Code\ Pro:h15
     set lines=40 columns=85
 
     set langmenu=en_US.utf-8
