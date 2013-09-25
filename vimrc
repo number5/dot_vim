@@ -13,17 +13,15 @@ compiler ruby
 
 set bg=dark
 colorscheme jellybeans
-let g:solarized_termcolors=16
+let g:solarized_termcolors=256
 
 set autoindent
-" set autochdir  " disabled for command-T
 set backspace=indent,eol,start
 set cmdheight=2 " Statusbar
 set completeopt-=preview
 set colorcolumn=80
 set enc=utf-8
 set expandtab
-"set digraph " causing trouble while coding
 set gdefault
 set hidden
 set history=1000
@@ -48,7 +46,6 @@ set smartindent " Set Better Indention
 set smarttab
 set splitbelow
 set splitright
-"set softtabstop=4
 
 " status line settings, stole from
 " https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
@@ -71,7 +68,6 @@ set statusline +=%4*(%p%%)\ %*          "percentage
 
 set switchbuf=useopen
 set t_Co=256
-"set tabstop=4
 set title
 set ttyfast
 set virtualedit=all
@@ -83,7 +79,7 @@ set cpo&vim " for neocomplcache
 set secure
 
 " for ruby
-set cf
+set cf   " confirm
 
 
 let mapleader = ','
@@ -102,7 +98,7 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+let g:ackprg="ack -H --nocolor --nogroup --column"
 
 " Tagbar
 let g:tagbar_left = 1
@@ -115,6 +111,7 @@ nnoremap <silent> <C-l> :TagbarToggle<CR>
 
 " yankstack config
 nnoremap <leader>r  :Yanks<CR>
+set macmeta
 
 " bufExplorer
 let g:bufExplorerShowRelativePath=1  " Show relative paths.
@@ -143,8 +140,8 @@ au FileType javascript set makeprg=jshint\ %
 " Titlise Visually Selected Text (map for .vimrc)
 vmap <leader>c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
 
-noremap <C-left> :bprev<CR>
-noremap <C-right> :bnext<CR> 
+noremap <D-Left> :bprev<CR>
+noremap <D-Right> :bnext<CR> 
 
 noremap <silent> <leader>y "+y
 noremap <silent> <leader>p i<C-r>+
@@ -173,11 +170,11 @@ let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
 " Define dictionary.
-"let g:neocomplete#sources#dictionary#dictionaries = {
-"    \ 'default' : '',
-"    \ 'vimshell' : $HOME.'/.vimshell_hist',
-"    \ 'scheme' : $HOME.'/.gosh_completions'
-"        \ }
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -193,9 +190,9 @@ inoremap <expr><C-l>     neocomplete#complete_common_string()
 " <CR>: close popup and save indent.
 inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
 function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
+  "return neocomplete#smart_close_popup() . "\<CR>"
   " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
 endfunction
 " <TAB>: completion. (Used neosnippet's version instead)
 "inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -235,10 +232,10 @@ endif
 " end of neocomplete.vim settings
 
 " quicker window switching
-nnoremap <A-h> <C-w>h
-nnoremap <A-j> <C-w>j
-nnoremap <A-k> <C-w>k
-nnoremap <A-l> <C-w>l
+nnoremap <M-h> <C-w>h
+nnoremap <M-j> <C-w>j
+nnoremap <M-k> <C-w>k
+nnoremap <M-l> <C-w>l
 
 " Remap j and k to act as expected when used on long, wrapped, lines
 nnoremap j gj
@@ -259,8 +256,6 @@ nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 set wildignore+=*.o,*.obj,.git,*.pyc
 set noequalalways
-let g:CommandTMaxHeight=20
-let g:CommandTMatchWindowAtTop=1
 
 " NerdTree
 nnoremap <leader>[ :NERDTree<CR>
@@ -276,15 +271,12 @@ cmap w!! w !sudo tee % >/dev/null
 
 imap <F3> <C-R>=strftime("%x %r")<CR>
 
-" vim-virtualenv
-let g:virtualenv_directory = "/home/bwang/work/"
 
 " paste
 nnoremap <silent> <F5> :set paste!<bar>set paste?<CR>
 set pastetoggle=<F5>
 
 " Edit the vimrc file
-"nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " CoffeeScript
@@ -310,8 +302,10 @@ let g:indent_guides_auto_colors = 1
 let g:indent_guides_guide_size = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_enable_on_vim_startup = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=black
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=010
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
+
+"
 
 if has("gui_running")
 

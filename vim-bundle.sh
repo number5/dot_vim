@@ -22,10 +22,13 @@ show() {
 
 checkout() {
 mkdir -p $_BUNDLE_DIR 
+mkdir -p $HOME/src/git
 for url in $(cat $_BUNDLE_FILE); do
     echo $url
-    cd $_BUNDLE_DIR
+    cd $HOME/src/git
     git clone $url
+    repo=${${url##*/}%.*}
+    ln -sf $HOME/src/git/$repo $_BUNDLE_DIR/$repo
 done
 }
 
