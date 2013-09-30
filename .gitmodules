@@ -1,0 +1,3 @@
+[submodule "bundle/vim-python-combined"]
+	path = bundle/vim-python-combined
+	url = https://github.com/mitsuhiko/vim-python-combined.git
