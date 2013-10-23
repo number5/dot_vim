@@ -81,6 +81,9 @@ set secure
 " for ruby
 set cf   " confirm
 
+" for textobject-rubyblock
+runtime macros/matchit.vim 
+
 
 let mapleader = ','
 let localmapleader = ',' 
