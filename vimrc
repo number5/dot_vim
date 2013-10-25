@@ -55,9 +55,11 @@ hi link User2 DiffChange
 hi link User3 Comment
 hi link User4 Keyword
 hi link User5 Type
+hi link User6 WarningMsg
 set statusline=
 set statusline +=%2*\ %y%*              "file type
 set statusline +=%1*\ %<%f\ %*          "full path
+set statusline +=%6*%{&paste?'PASTE':''}%*
 set statusline +=%2*%m%r%h%*            "modified/readonly/help flag
 set statusline +=%3*%=%{&ff}/%{&fenc}%*  "file format
 set statusline +=%5*\ %5l%*             "current line
