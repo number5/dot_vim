@@ -19,3 +19,6 @@
 [submodule "bundle/vim-abolish"]
 	path = bundle/vim-abolish
 	url = https://github.com/tpope/vim-abolish.git
+[submodule "bundle/unite-outline"]
+	path = bundle/unite-outline
+	url = https://github.com/h1mesuke/unite-outline.git

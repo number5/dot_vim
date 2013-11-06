@@ -103,7 +103,7 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-let g:ackprg="ack -H --nocolor --nogroup --column"
+let g:ackprg="ag --nocolor --nogroup --column"
 
 " Tagbar
 let g:tagbar_left = 1
