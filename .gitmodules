@@ -28,3 +28,15 @@
 [submodule "bundle/vim-snippets"]
 	path = bundle/vim-snippets
 	url = https://github.com/honza/vim-snippets.git
+[submodule "bundle/timl"]
+	path = bundle/timl
+	url = https://github.com/tpope/timl.git
+[submodule "bundle/vim-fireplace"]
+	path = bundle/vim-fireplace
+	url = https://github.com/tpope/vim-fireplace.git
+[submodule "bundle/vim-classpath"]
+	path = bundle/vim-classpath
+	url = https://github.com/tpope/vim-classpath.git
+[submodule "bundle/vim-clojure-static"]
+	path = bundle/vim-clojure-static
+	url = https://github.com/guns/vim-clojure-static.git
