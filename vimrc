@@ -157,12 +157,8 @@ au FileType javascript set makeprg=jshint\ %
 " Titlise Visually Selected Text (map for .vimrc)
 vmap <leader>c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
 
-noremap <D-Left> :bprev<CR>
-noremap <D-Right> :bnext<CR> 
-
 noremap <silent> <leader>y "+y
 noremap <silent> <leader>p i<C-r>+
-
 
 nmap <silent><leader>/ :nohlsearch<CR>
 
@@ -268,10 +264,15 @@ nnoremap <leader>j :Unite jump<CR>
 let g:ctrlp_map = '<S_F8>'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_max_files = 5000
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   
+set wildignore+=*.o,*.obj,*.pyc
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
+let g:ctrlp_extensions = ['funky']
+
 nnoremap <leader>q :CtrlPQuickfix<CR>
 nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
-set wildignore+=*.o,*.obj,.git,*.pyc
+nnoremap <Leader>b :CtrlPBuffer<Cr>
 set noequalalways
 
 " NerdTree
