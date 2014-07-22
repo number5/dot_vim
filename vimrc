@@ -149,6 +149,7 @@ au BufNewFile,BufRead *.pp set ft=ruby
 au BufNewFile,BufRead *.hosts set ft=dns
 au Filetype html setlocal ts=2 sts=2 sw=2
 au Filetype ruby setlocal ts=2 sts=2 sw=2
+au Filetype mkd setlocal ts=2 sts=2 sw=2  " for Markdown
 au BufNewFile,BufRead *.wiki set sw=2
 au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
 au FileType javascript set makeprg=jshint\ %
@@ -323,7 +324,8 @@ let g:indent_guides_enable_on_vim_startup = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=010
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
-"
+" markdown
+let g:vim_markdown_initial_foldlevel=3
 
 if has("gui_running")
 

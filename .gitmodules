@@ -55,3 +55,6 @@
 [submodule "bundle/syntastic"]
 	path = bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/vim-markdown-plasticboy"]
+	path = bundle/vim-markdown-plasticboy
+	url = https://github.com/plasticboy/vim-markdown.git
