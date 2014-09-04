@@ -260,14 +260,17 @@ nnoremap <Up> gk
 
 " Unite / quick fix
 nnoremap <leader>j :Unite jump<CR>
+let g:unite_data_directory = "~/tmp/"
 
 " CtrlP support
 let g:ctrlp_map = '<S_F8>'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_max_files = 5000
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/node_modules/*   
-set wildignore+=*.o,*.obj,*.pyc
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$\|.DS_Store$\|.swp$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll|pyc)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
 let g:ctrlp_extensions = ['funky']
 
 nnoremap <leader>q :CtrlPQuickfix<CR>
