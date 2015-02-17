@@ -330,6 +330,13 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 " markdown
 let g:vim_markdown_initial_foldlevel=3
 
+
+" rainbow parentheses
+au BufEnter *.clj RainbowParenthesesToggle
+au Syntax clojure RainbowParenthesesLoadRound
+au Syntax clojure RainbowParenthesesLoadSquare
+au Syntax clojure RainbowParenthesesLoadBraces
+
 if has("gui_running")
 
     " GUI only config
