@@ -259,8 +259,13 @@ nnoremap <Up> gk
 
 
 " Unite / quick fix
+let g:unite_source_history_yank_enable = 1
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>j :Unite jump<CR>
 let g:unite_data_directory = "~/tmp/"
+nnoremap <leader>n :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+
+
 
 " CtrlP support
 let g:ctrlp_map = '<S_F8>'
