@@ -276,7 +276,7 @@ let g:ctrlp_extensions = ['funky']
 nnoremap <leader>q :CtrlPQuickfix<CR>
 nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
-nnoremap <Leader>b :CtrlPBuffer<Cr>
+nnoremap <C-B> :CtrlPBuffer<Cr>
 set noequalalways
 
 " NerdTree
