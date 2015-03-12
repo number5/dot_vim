@@ -130,9 +130,6 @@ nnoremap <silent> <C-l> :TagbarToggle<CR>
 nnoremap <leader>r  :Yanks<CR>
 set macmeta
 
-" bufExplorer
-let g:bufExplorerShowRelativePath=1  " Show relative paths.
-nmap <script> <silent><C-b> :BufExplorer<CR>
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
@@ -259,15 +256,16 @@ nnoremap <Up> gk
 
 
 " Unite / quick fix
-let g:unite_source_history_yank_enable = 1
+let g:unite_source_history_yank_enable = 0
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
 nnoremap <leader>j :Unite jump<CR>
-let g:unite_data_directory = "~/tmp/"
-nnoremap <leader>n :<C-u>Unite -no-split -buffer-name=yank    history/yank<cr>
+let g:unite_data_directory = "~/.cache/unite/"
 
 
 
 " CtrlP support
+
+call ctrlp_bdelete#init()
 let g:ctrlp_map = '<S_F8>'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_max_files = 5000

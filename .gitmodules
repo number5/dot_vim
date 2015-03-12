@@ -70,3 +70,6 @@
 [submodule "bundle/ctrlp-funky"]
 	path = bundle/ctrlp-funky
 	url = https://github.com/tacahiroy/ctrlp-funky.git
+[submodule "bundle/ctrlp_bdelete.vim"]
+	path = bundle/ctrlp_bdelete.vim
+	url = https://github.com/d11wtq/ctrlp_bdelete.vim.git
