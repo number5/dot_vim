@@ -340,6 +340,10 @@ au Syntax clojure RainbowParenthesesLoadRound
 au Syntax clojure RainbowParenthesesLoadSquare
 au Syntax clojure RainbowParenthesesLoadBraces
 
+
+" no auto folding
+set nofoldenable
+
 if has("gui_running")
 
     " GUI only config
