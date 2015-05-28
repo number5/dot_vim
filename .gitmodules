@@ -76,3 +76,6 @@
 [submodule "bundle/yajs.vim"]
 	path = bundle/yajs.vim
 	url = https://github.com/othree/yajs.vim.git
+[submodule "bundle/vim-pencil"]
+	path = bundle/vim-pencil
+	url = https://github.com/reedes/vim-pencil.git
