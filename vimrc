@@ -103,8 +103,6 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-let g:ackprg="ag --nocolor --nogroup --column"
-
 " Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
 if executable('ag')
   " Use Ag over Grep
@@ -160,9 +158,6 @@ noremap <silent> <leader>p i<C-r>+
 
 nmap <silent><leader>/ :nohlsearch<CR>
 
-" Run Ack fast (mind the trailing space here, wouldya?)
-nnoremap <leader>a :LAck 
-
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 
@@ -180,12 +175,6 @@ let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-    \ 'default' : '',
-    \ 'vimshell' : $HOME.'/.vimshell_hist',
-    \ 'scheme' : $HOME.'/.gosh_completions'
-        \ }
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -340,11 +329,14 @@ au Syntax clojure RainbowParenthesesLoadRound
 au Syntax clojure RainbowParenthesesLoadSquare
 au Syntax clojure RainbowParenthesesLoadBraces
 
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-  autocmd FileType text         call pencil#init()
-augroup END
+" for weird osx crontab issue
+autocmd filetype crontab setlocal nobackup nowritebackup
+
+"augroup pencil
+"  autocmd!
+  "autocmd FileType markdown,mkd call pencil#init()
+  "autocmd FileType text         call pencil#init()
+"augroup END
 
 " no auto folding
 set nofoldenable

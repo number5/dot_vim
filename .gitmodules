@@ -79,3 +79,6 @@
 [submodule "bundle/vim-pencil"]
 	path = bundle/vim-pencil
 	url = https://github.com/reedes/vim-pencil.git
+[submodule "bundle/ferrit"]
+	path = bundle/ferrit
+	url = https://github.com/wincent/ferret.git
