@@ -82,3 +82,6 @@
 [submodule "bundle/ferrit"]
 	path = bundle/ferrit
 	url = https://github.com/wincent/ferret.git
+[submodule "bundle/elm.vim"]
+	path = bundle/elm.vim
+	url = https://github.com/lambdatoast/elm.vim.git
