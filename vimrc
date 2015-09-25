@@ -12,7 +12,7 @@ syntax on
 compiler ruby
 
 set bg=dark
-colorscheme jellybeans
+colorscheme base16-default
 let g:solarized_termcolors=256
 
 set autoindent
@@ -47,6 +47,9 @@ set smarttab
 set splitbelow
 set splitright
 
+" set wrap by default
+set wrap
+
 " status line settings, stole from
 " https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
 "set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
@@ -76,7 +79,6 @@ set virtualedit=all
 set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=list:full " show a list when pressing tab and complete
                        " first full match
-set nowrap
 set cpo&vim " for neocomplcache
 set secure
 
