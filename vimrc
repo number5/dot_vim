@@ -362,9 +362,10 @@ if has("gui_running")
     set guioptions-=r
     set guioptions-=R
 
-    set bg=light
+    set bg=dark
     "colorscheme solarized
-    colorscheme jellybeans
+    "colorscheme jellybeans
+    colorscheme base16-default
     let g:solarized_termcolors=256
     let g:solarized_bold = 1
     let g:solarized_underline = 1
