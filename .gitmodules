@@ -1,6 +1,3 @@
-[submodule "bundle/seoul256.vim"]
-	path = bundle/seoul256.vim
-	url = https://github.com/junegunn/seoul256.vim.git
 [submodule "bundle/vim-ruby"]
 	path = bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git

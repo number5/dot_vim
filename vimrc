@@ -167,16 +167,14 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 vmap <A-]> >gv
 vmap <A-[> <gv
 
-" neocomplete.vim
-let g:acp_enableAtStartup = 0
-" Use neocomplete.
+
+let g:neocomplete#force_overwrite_completefunc = 1                              " fixes vim-clojure-static  
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
 let g:neocomplete#enable_smart_case = 1
 " Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#sources#syntax#min_keyword_length = 2
 let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
 
 " Define keyword.
 if !exists('g:neocomplete#keyword_patterns')
@@ -295,24 +293,6 @@ set pastetoggle=<F5>
 " Edit the vimrc file
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" CoffeeScript
-autocmd BufWritePost *.coffee silent CoffeeMake! | cwindow
-let g:coffee_make_options = ""
-
-let g:tagbar_type_coffee = {
-  \ 'kinds' : [
-  \   'f:functions',
-  \   'o:object'
-  \ ],
-  \ 'kind2scope' : {
-  \  'f' : 'object',
-  \   'o' : 'object'
-  \},
-  \ 'sro' : ".",
-  \ 'ctagsbin' : 'coffeetags',
-  \ 'ctagsargs' : '--include-vars --f -',
-  \}
-
 " indent guides
 let g:indent_guides_auto_colors = 1
 let g:indent_guides_guide_size = 1
@@ -326,10 +306,11 @@ let g:vim_markdown_initial_foldlevel=3
 
 
 " rainbow parentheses
-au BufEnter *.clj RainbowParenthesesToggle
+au VimEnter *.clj RainbowParenthesesToggle
 au Syntax clojure RainbowParenthesesLoadRound
 au Syntax clojure RainbowParenthesesLoadSquare
 au Syntax clojure RainbowParenthesesLoadBraces
+
 
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
@@ -339,6 +320,8 @@ autocmd filetype crontab setlocal nobackup nowritebackup
   "autocmd FileType markdown,mkd call pencil#init()
   "autocmd FileType text         call pencil#init()
 "augroup END
+
+nnoremap <Leader>fu :CtrlPFunky<Cr>  " ctrlp-funky
 
 " no auto folding
 set nofoldenable
