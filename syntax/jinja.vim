@@ -1,1 +1,0 @@
-/home/bruce/src/git/jinja2/ext/Vim/jinja.vim

@@ -66,7 +66,7 @@ syntax on
 compiler ruby
 
 set bg=dark
-colorscheme base16-default
+colorscheme base16-tomorrow
 let g:solarized_termcolors=256
 
 set autoindent
