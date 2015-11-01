@@ -270,7 +270,7 @@ nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 nnoremap <C-B> :CtrlPBuffer<Cr>
 set noequalalways
-
+set wildignore+=*.pyc
 " NerdTree
 nnoremap <leader>[ :NERDTree<CR>
 let g:NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
