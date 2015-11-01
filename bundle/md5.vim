@@ -1,1 +1,0 @@
-/Users/bruce/src/git/md5.vim

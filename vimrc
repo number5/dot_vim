@@ -1,9 +1,63 @@
 set nocompatible
 
-filetype off
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect() 
-call pathogen#helptags()
+call plug#begin('~/.vim/plugged')
+" Colour Scheme
+Plug 'https://github.com/chriskempson/base16-vim.git'
+"Plug 'https://github.com/altercation/solarized.git'
+Plug 'https://github.com/goatslacker/mango.vim.git'
+
+" CtrlP
+Plug 'https://github.com/tacahiroy/ctrlp-funky.git'
+Plug 'https://github.com/ctrlpvim/ctrlp.vim.git'
+Plug 'https://github.com/d11wtq/ctrlp_bdelete.vim.git'
+
+
+Plug 'https://github.com/lambdatoast/elm.vim.git'
+Plug 'https://github.com/wincent/ferret.git'
+Plug 'https://github.com/othree/html5.vim.git'
+Plug 'https://github.com/walm/jshint.vim.git'
+Plug 'https://github.com/vim-scripts/md5.vim.git'
+Plug 'https://github.com/Shougo/neocomplete.vim.git'
+Plug 'https://github.com/Shougo/neosnippet-snippets.git'
+Plug 'https://github.com/Shougo/neosnippet.git'
+Plug 'https://github.com/scrooloose/nerdtree.git'
+Plug 'https://github.com/jbnicolai/rainbow_parentheses.vim.git'
+Plug 'https://github.com/saltstack/salt-vim.git'
+Plug 'https://github.com/scrooloose/syntastic.git'
+Plug 'https://github.com/godlygeek/tabular'
+Plug 'https://github.com/majutsushi/tagbar.git'
+Plug 'https://github.com/tpope/timl.git'
+Plug 'https://github.com/h1mesuke/unite-outline.git'
+Plug 'https://github.com/Shougo/unite.vim.git'
+Plug 'https://github.com/tpope/vim-abolish.git'
+Plug 'https://github.com/tpope/vim-classpath.git'
+Plug 'https://github.com/guns/vim-clojure-static.git'
+Plug 'https://github.com/kchmck/vim-coffee-script.git'
+Plug 'https://github.com/tpope/vim-commentary.git'
+Plug 'https://github.com/tpope/vim-dispatch.git'
+Plug 'https://github.com/tpope/vim-fireplace.git'
+Plug 'https://github.com/tpope/vim-fugitive.git'
+Plug 'https://github.com/nathanaelkane/vim-indent-guides.git'
+Plug 'https://github.com/tpope/vim-jdaddy.git'
+Plug 'https://github.com/mitsuhiko/vim-jinja.git'
+Plug 'https://github.com/plasticboy/vim-markdown.git'
+Plug 'https://github.com/terryma/vim-multiple-cursors.git'
+"Plug 'https://github.com/reedes/vim-pencil.git'
+Plug 'https://github.com/tpope/vim-ragtag.git'
+Plug 'https://github.com/nvie/vim-rst-tables.git'
+Plug 'https://github.com/vim-ruby/vim-ruby.git'
+Plug 'https://github.com/tpope/vim-sexp-mappings-for-regular-people.git'
+Plug 'https://github.com/guns/vim-sexp.git'
+Plug 'https://github.com/honza/vim-snippets.git'
+Plug 'https://github.com/tpope/vim-surround.git'
+Plug 'https://github.com/bps/vim-textobj-python.git'
+Plug 'https://github.com/nelstrom/vim-textobj-rubyblock.git'
+Plug 'https://github.com/kana/vim-textobj-user.git'
+Plug 'https://github.com/avakhov/vim-yaml.git'
+Plug 'https://github.com/maxbrunsfeld/vim-yankstack.git'
+Plug 'https://github.com/Shougo/vimproc.vim.git'
+Plug 'https://github.com/othree/yajs.vim.git'
+call plug#end()
 
 filetype on
 filetype plugin on
