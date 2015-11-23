@@ -3,13 +3,11 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 " Colour Scheme
 Plug 'chriskempson/base16-vim'
-Plug 'altercation/solarized', {'rtp': 'vim-colors-solarized'}
+Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
 
-" Ctrl
-Plug 'tacahiroy/ctrlp-funky'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'd11wtq/ctrlp_bdelete.vim'
+" CtrlP
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim'
 
 
 Plug 'lambdatoast/elm.vim'
@@ -17,46 +15,53 @@ Plug 'wincent/ferret'
 Plug 'othree/html5.vim'
 Plug 'walm/jshint.vim'
 Plug 'vim-scripts/md5.vim'
+
+" Neocomplete
 Plug 'Shougo/neocomplete.vim'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdtree'
-Plug 'jbnicolai/rainbow_parentheses.vim'
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
 Plug 'tpope/timl'
-Plug 'h1mesuke/unite-outline'
-Plug 'Shougo/unite.vim'
+Plug 'hynek/vim-python-pep8-indent'
+
+
+" Unite
+Plug 'Shougo/unite.vim' | Plug 'h1mesuke/unite-outline'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-classpath'
 Plug 'guns/vim-clojure-static'
 Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-fireplace'
+Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+Plug 'jbnicolai/rainbow_parentheses.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-jdaddy'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'plasticboy/vim-markdown'
 Plug 'terryma/vim-multiple-cursors'
-"Plug /reedes/vim-pencil'
+"Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-ragtag'
 Plug 'nvie/vim-rst-tables'
 Plug 'vim-ruby/vim-ruby'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-surround'
 Plug 'bps/vim-textobj-python'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user'
 Plug 'avakhov/vim-yaml'
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'Shougo/vimproc.vim', {'do': 'make'}
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'othree/yajs.vim'
+
+Plug 'b4b4r07/vim-hcl'
+
+Plug 'junegunn/vim-emoji'
 call plug#end()
 
 filetype on
@@ -66,7 +71,7 @@ syntax on
 compiler ruby
 
 set bg=dark
-colorscheme base16-tomorrow
+colorscheme base16-default
 let g:solarized_termcolors=256
 
 set autoindent
@@ -142,6 +147,53 @@ set cf   " confirm
 " for textobject-rubyblock
 runtime macros/matchit.vim 
 
+silent! if emoji#available()
+  let s:ft_emoji = map({
+    \ 'c':          'baby_chick',
+    \ 'clojure':    'lollipop',
+    \ 'coffee':     'coffee',
+    \ 'cpp':        'chicken',
+    \ 'css':        'art',
+    \ 'eruby':      'ring',
+    \ 'gitcommit':  'soon',
+    \ 'haml':       'hammer',
+    \ 'help':       'angel',
+    \ 'html':       'herb',
+    \ 'java':       'older_man',
+    \ 'javascript': 'monkey',
+    \ 'make':       'seedling',
+    \ 'markdown':   'book',
+    \ 'perl':       'camel',
+    \ 'python':     'snake',
+    \ 'ruby':       'gem',
+    \ 'scala':      'barber',
+    \ 'sh':         'shell',
+    \ 'slim':       'dancer',
+    \ 'text':       'books',
+    \ 'vim':        'poop',
+    \ 'vim-plug':   'electric_plug',
+    \ 'yaml':       'yum',
+    \ 'yaml.jinja': 'yum'
+  \ }, 'emoji#for(v:val)')
+
+  function! S_filetype()
+    if empty(&filetype)
+      return emoji#for('grey_question')
+    else
+      return get(s:ft_emoji, &filetype, '['.&filetype.']')
+    endif
+  endfunction
+
+  function! S_modified()
+    if &modified
+      return emoji#for('kiss').' '
+    elseif !&modifiable
+      return emoji#for('construction').' '
+    else
+      return ''
+    endif
+  endfunction
+endif
 
 let mapleader = ','
 let localmapleader = ',' 
