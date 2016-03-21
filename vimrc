@@ -62,6 +62,9 @@ Plug 'othree/yajs.vim'
 Plug 'b4b4r07/vim-hcl'
 
 Plug 'junegunn/vim-emoji'
+
+Plug 'elixir-lang/vim-elixir'
+
 call plug#end()
 
 filetype on
@@ -71,7 +74,7 @@ syntax on
 compiler ruby
 
 set bg=dark
-colorscheme base16-default
+colorscheme base16-twilight
 let g:solarized_termcolors=256
 
 set autoindent
@@ -454,7 +457,7 @@ if has("gui_running")
     set bg=dark
     "colorscheme solarized
     "colorscheme jellybeans
-    colorscheme base16-default
+    colorscheme base16-twilight
     let g:solarized_termcolors=256
     let g:solarized_bold = 1
     let g:solarized_underline = 1
