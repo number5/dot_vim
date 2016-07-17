@@ -7,7 +7,7 @@ Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
 
 " CtrlP
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 
 
 Plug 'lambdatoast/elm.vim'
@@ -225,6 +225,7 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Tagbar
 let g:tagbar_left = 1
