@@ -15,11 +15,13 @@ Plug 'wincent/ferret'
 Plug 'othree/html5.vim'
 Plug 'walm/jshint.vim'
 Plug 'vim-scripts/md5.vim'
+Plug 'mattn/emmet-vim'
 
 " Neocomplete
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
-Plug 'scrooloose/nerdtree'
+
+
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/syntastic'
 Plug 'godlygeek/tabular'
@@ -38,7 +40,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jbnicolai/rainbow_parentheses.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-jdaddy'
 Plug 'mitsuhiko/vim-jinja'
@@ -64,6 +65,8 @@ Plug 'b4b4r07/vim-hcl'
 Plug 'junegunn/vim-emoji'
 
 Plug 'elixir-lang/vim-elixir'
+
+Plug 'tpope/vim-sensible'
 
 call plug#end()
 
@@ -214,17 +217,23 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-" Use The Silver Searcher https://github.com/ggreer/the_silver_searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
+" CtrlP
+" Set delay to prevent extra search
+let g:ctrlp_lazy_update = 350
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" Do not clear filenames cache, to improve CtrlP startup
+" You can manualy clear it by <F5>
+let g:ctrlp_clear_cache_on_exit = 0
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+" Set no file limit, we are building a big project
+let g:ctrlp_max_files = 0
+
+" If ag is available use it as filename list generator instead of 'find'
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor
+    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
 endif
+
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Tagbar
@@ -421,6 +430,8 @@ au Syntax clojure RainbowParenthesesLoadRound
 au Syntax clojure RainbowParenthesesLoadSquare
 au Syntax clojure RainbowParenthesesLoadBraces
 
+" auto wrap in diff mode
+au VimEnter * if &diff | execute 'windo set wrap' | endif
 
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
