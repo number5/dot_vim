@@ -20,7 +20,7 @@ Plug 'mattn/emmet-vim'
 " Neocomplete
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
-
+Plug 'Konfekt/FastFold'
 
 Plug 'saltstack/salt-vim'
 Plug 'scrooloose/syntastic'
@@ -44,6 +44,7 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-jdaddy'
 Plug 'mitsuhiko/vim-jinja'
 Plug 'plasticboy/vim-markdown'
+Plug 'moorereason/vim-markdownfmt'
 Plug 'terryma/vim-multiple-cursors'
 "Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-ragtag'
@@ -446,6 +447,8 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>  " ctrlp-funky
 
 " no auto folding
 set nofoldenable
+set foldmethod=indent
+set foldminlines=2
 
 if has("gui_running")
 
