@@ -10,63 +10,66 @@ Plug 'goatslacker/mango.vim'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 
 
-Plug 'lambdatoast/elm.vim'
 Plug 'wincent/ferret'
-Plug 'othree/html5.vim'
-Plug 'walm/jshint.vim'
-Plug 'vim-scripts/md5.vim'
-Plug 'mattn/emmet-vim'
 
 " Neocomplete
+Plug 'Konfekt/FastFold'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
-Plug 'Konfekt/FastFold'
 
+" Languages
+"Plug 'vim-scripts/md5.vim'
+"Plug 'othree/html5.vim'
+Plug 'tpope/vim-ragtag'
+Plug 'walm/jshint.vim'
+Plug 'othree/yajs.vim'
+Plug 'mattn/emmet-vim'
+ 
 Plug 'saltstack/salt-vim'
-Plug 'scrooloose/syntastic'
-Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
-Plug 'tpope/timl'
+"Plug 'tpope/timl'
 Plug 'hynek/vim-python-pep8-indent'
 
+"Plug 'mitsuhiko/vim-jinja'
+"Plug 'plasticboy/vim-markdown'
+"Plug 'vim-ruby/vim-ruby'
+"Plug 'avakhov/vim-yaml'
+
+Plug 'b4b4r07/vim-hcl'
+"Plug 'elixir-lang/vim-elixir'
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 
 " Unite
 Plug 'Shougo/unite.vim' | Plug 'h1mesuke/unite-outline'
+
 Plug 'tpope/vim-abolish'
+
+" clojure
 Plug 'tpope/vim-classpath'
 Plug 'guns/vim-clojure-static'
-Plug 'kchmck/vim-coffee-script'
+"Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jbnicolai/rainbow_parentheses.vim'
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'tpope/vim-jdaddy'
-Plug 'mitsuhiko/vim-jinja'
-Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-jdaddy' "Json quick movements
 Plug 'terryma/vim-multiple-cursors'
-"Plug 'reedes/vim-pencil'
-Plug 'tpope/vim-ragtag'
 Plug 'nvie/vim-rst-tables'
-Plug 'vim-ruby/vim-ruby'
+Plug 'godlygeek/tabular'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-surround'
 Plug 'bps/vim-textobj-python'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user'
-Plug 'avakhov/vim-yaml'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-Plug 'othree/yajs.vim'
-
-Plug 'b4b4r07/vim-hcl'
 
 Plug 'junegunn/vim-emoji'
-
-Plug 'elixir-lang/vim-elixir'
-
 Plug 'tpope/vim-sensible'
+
+Plug 'terryma/vim-expand-region'
 
 call plug#end()
 
@@ -449,13 +452,19 @@ set nofoldenable
 set foldmethod=indent
 set foldminlines=2
 
+
+" vim expand region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+
+
 if has("gui_running")
 
     " GUI only config
     set completeopt-=preview
-    "set guifont=Droid\ Sans\ Mono\ Slashed\ 13
+    set guifont=Roboto\ Mono:h15
     "set guifont=Inconsolata\ Medium\ 15
-    set guifont=Source\ Code\ Pro\ Semibold:h15
+    "set guifont=Source\ Code\ Pro\ Semibold:h15
     set lines=40 columns=85
 
     set langmenu=en_US.utf-8
