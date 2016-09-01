@@ -6,6 +6,8 @@ Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
 
+Plug 'vim-scripts/gitignore'
+
 " CtrlP
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 
@@ -18,6 +20,7 @@ Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
 
 " Languages
+Plug 'https://github.com/sheerun/vim-polyglot.git'
 "Plug 'vim-scripts/md5.vim'
 "Plug 'othree/html5.vim'
 Plug 'tpope/vim-ragtag'
@@ -33,11 +36,10 @@ Plug 'hynek/vim-python-pep8-indent'
 "Plug 'mitsuhiko/vim-jinja'
 "Plug 'plasticboy/vim-markdown'
 "Plug 'vim-ruby/vim-ruby'
-"Plug 'avakhov/vim-yaml'
+Plug 'avakhov/vim-yaml'
 
 Plug 'b4b4r07/vim-hcl'
 "Plug 'elixir-lang/vim-elixir'
-Plug 'https://github.com/sheerun/vim-polyglot.git'
 
 " Unite
 Plug 'Shougo/unite.vim' | Plug 'h1mesuke/unite-outline'
@@ -47,14 +49,14 @@ Plug 'tpope/vim-abolish'
 " clojure
 Plug 'tpope/vim-classpath'
 Plug 'guns/vim-clojure-static'
-"Plug 'kchmck/vim-coffee-script'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jbnicolai/rainbow_parentheses.vim'
+
+
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'tpope/vim-jdaddy' "Json quick movements
-Plug 'terryma/vim-multiple-cursors'
 Plug 'nvie/vim-rst-tables'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
@@ -66,12 +68,62 @@ Plug 'kana/vim-textobj-user'
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
-Plug 'junegunn/vim-emoji'
 Plug 'tpope/vim-sensible'
 
 Plug 'terryma/vim-expand-region'
 
+" {{{ searching
+Plug 'justinmk/vim-sneak' " {{{
+  let g:sneak#prompt = '(sneak)» '
+  map <silent> f <Plug>Sneak_f
+  map <silent> F <Plug>Sneak_F
+  map <silent> t <Plug>Sneak_t
+  map <silent> T <Plug>Sneak_T
+  map <silent> ; <Plug>SneakNext
+  map <silent> , <Plug>SneakPrevious
+  augroup SneakPlugincolors
+    autocmd!
+    autocmd ColorScheme * hi SneakPluginTarget
+    \ guifg=black guibg=red ctermfg=black ctermbg=red
+    autocmd ColorScheme * hi SneakPluginScope
+    \ guifg=black guibg=yellow ctermfg=black ctermbg=yellow
+  augroup END
+" }}}
+
+Plug 'osyo-manga/vim-over' " {{{
+  let g:over_command_line_prompt = ':'
+  let g:over_enable_cmd_window = 1
+  let g:over#command_line#search#enable_incsearch = 1
+  let g:over#command_line#search#enable_move_cursor = 1
+  nnoremap <silent> <Leader>s <Esc>:OverCommandLine %s///g<CR><Left><Left>
+  xnoremap <silent> <Leader>s <Esc>:OverCommandLine '<,'>s///g<CR><Left><Left>
+" }}}
+
+Plug 'terryma/vim-multiple-cursors' " {{{
+  function! Multiple_cursors_before()
+    if exists(':NeoCompleteLock') == 2
+      NeoCompleteLock
+    endif
+    if exists('*SwoopFreezeContext') != 0
+        call SwoopFreezeContext()
+    endif
+  endfunction
+  function! Multiple_cursors_after()
+    if exists(':NeoCompleteUnlock') == 2
+      NeoCompleteUnlock
+    endif
+    if exists('*SwoopUnFreezeContext') != 0
+        call SwoopUnFreezeContext()
+    endif
+  endfunction
+" }}}
+
+
 call plug#end()
+
+" polyglot
+let g:jsx_ext_required = 1
+let g:polyglot_disabled = ['javascript', 'yaml']
 
 filetype on
 filetype plugin on
@@ -139,16 +191,18 @@ set statusline +=%5*%3c\ %*         "column number
 set statusline +=%4*(%p%%)\ %*          "percentage 
 
 
+set autoread
 set switchbuf=useopen
 set t_Co=256
 set title
 set ttyfast
 set virtualedit=all
 set wildmenu         " make tab completion for files/buffers act like bash
-set wildmode=list:full " show a list when pressing tab and complete
+set wildmode=longest,full " show a list when pressing tab and complete
                        " first full match
 set cpo&vim " for neocomplcache
 set secure
+"set noshowmode
 
 " for ruby
 set cf   " confirm
@@ -156,59 +210,14 @@ set cf   " confirm
 " for textobject-rubyblock
 runtime macros/matchit.vim 
 
-silent! if emoji#available()
-  let s:ft_emoji = map({
-    \ 'c':          'baby_chick',
-    \ 'clojure':    'lollipop',
-    \ 'coffee':     'coffee',
-    \ 'cpp':        'chicken',
-    \ 'css':        'art',
-    \ 'eruby':      'ring',
-    \ 'gitcommit':  'soon',
-    \ 'haml':       'hammer',
-    \ 'help':       'angel',
-    \ 'html':       'herb',
-    \ 'java':       'older_man',
-    \ 'javascript': 'monkey',
-    \ 'make':       'seedling',
-    \ 'markdown':   'book',
-    \ 'perl':       'camel',
-    \ 'python':     'snake',
-    \ 'ruby':       'gem',
-    \ 'scala':      'barber',
-    \ 'sh':         'shell',
-    \ 'slim':       'dancer',
-    \ 'text':       'books',
-    \ 'vim':        'poop',
-    \ 'vim-plug':   'electric_plug',
-    \ 'yaml':       'yum',
-    \ 'yaml.jinja': 'yum'
-  \ }, 'emoji#for(v:val)')
 
-  function! S_filetype()
-    if empty(&filetype)
-      return emoji#for('grey_question')
-    else
-      return get(s:ft_emoji, &filetype, '['.&filetype.']')
-    endif
-  endfunction
-
-  function! S_modified()
-    if &modified
-      return emoji#for('kiss').' '
-    elseif !&modifiable
-      return emoji#for('construction').' '
-    else
-      return ''
-    endif
-  endfunction
-endif
-
-let mapleader = ','
-let localmapleader = ',' 
+let mapleader = "\<Space>"
+let localmapleader = '\<Space>' 
 
 " map ; to :
 nnoremap ; :
+
+nnoremap <Leader>w :w<CR>
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
@@ -224,13 +233,9 @@ set listchars=tab:▸\ ,eol:¬
 " Set delay to prevent extra search
 let g:ctrlp_lazy_update = 350
 
-" Do not clear filenames cache, to improve CtrlP startup
-" You can manualy clear it by <F5>
-let g:ctrlp_clear_cache_on_exit = 0
-
 " Set no file limit, we are building a big project
 let g:ctrlp_max_files = 0
-
+let g:ctrlp_use_caching = 0
 " If ag is available use it as filename list generator instead of 'find'
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor
@@ -457,6 +462,7 @@ set foldminlines=2
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+set cursorline
 
 if has("gui_running")
 
