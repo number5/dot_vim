@@ -1,6 +1,5 @@
-set nocompatible
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 " Colour Scheme
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
@@ -16,7 +15,7 @@ Plug 'wincent/ferret'
 
 " Neocomplete
 Plug 'Konfekt/FastFold'
-Plug 'Shougo/neocomplete.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
 
 " Languages
@@ -151,7 +150,6 @@ set backspace=indent,eol,start
 set cmdheight=2 " Statusbar
 set completeopt-=preview
 set colorcolumn=80
-set enc=utf-8
 set expandtab
 set gdefault
 set hidden
@@ -163,7 +161,6 @@ set laststatus=2
 set linebreak
 set lz " do not redraw while running macros (much faster) 
 set nobackup " Disable Generation of Backup Files
-set noballooneval
 set noswapfile
 set novisualbell
 set number
@@ -266,8 +263,6 @@ nnoremap <silent> <C-l> :TagbarToggle<CR>
 
 " yankstack config
 nnoremap <leader>r  :Yanks<CR>
-set macmeta
-
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
