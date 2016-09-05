@@ -1,3 +1,5 @@
+let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python3.5'
+let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
 " Colour Scheme
@@ -29,6 +31,7 @@ Plug 'saltstack/salt-vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'avakhov/vim-yaml'
 Plug 'b4b4r07/vim-hcl'
+Plug 'slashmili/alchemist.vim'
 
 Plug 'scrooloose/syntastic'
 
@@ -127,7 +130,18 @@ Plug 'terryma/vim-multiple-cursors' " {{{
     endif
   endfunction
 " }}}
+Plug 'itchyny/lightline.vim' " {{{
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+" }}}
+set rtp+=/usr/local/opt/fzf
+Plug 'junegunn/fzf.vim'
+" {{{
+  let g:fzf_layout = { 'left': '~40%' } 
+" }}}
 
+Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
@@ -203,7 +217,6 @@ set autoread
 set switchbuf=useopen
 set t_Co=256
 set title
-set ttyfast
 set virtualedit=all
 set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=longest,full " show a list when pressing tab and complete
@@ -300,69 +313,14 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 vmap <A-]> >gv
 vmap <A-[> <gv
 
-
-let g:neocomplete#force_overwrite_completefunc = 1                              " fixes vim-clojure-static  
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#sources#syntax#min_keyword_length = 2
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings.
-inoremap <expr><C-g>     neocomplete#undo_completion()
-inoremap <expr><C-l>     neocomplete#complete_common_string()
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  "return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion. (Used neosnippet's version instead)
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" end of neocomplete.vim settings
 
 " quicker window switching
 nnoremap <M-h> <C-w>h
@@ -450,12 +408,6 @@ au VimEnter * if &diff | execute 'windo set wrap' | endif
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-"augroup pencil
-"  autocmd!
-  "autocmd FileType markdown,mkd call pencil#init()
-  "autocmd FileType text         call pencil#init()
-"augroup END
-
 nnoremap <Leader>fu :CtrlPFunky<Cr>  " ctrlp-funky
 
 " no auto folding
@@ -469,35 +421,5 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 set cursorline
-
-if has("gui_running")
-
-    " GUI only config
-    set completeopt-=preview
-    set guifont=Roboto\ Mono:h15
-    "set guifont=Inconsolata\ Medium\ 15
-    "set guifont=Source\ Code\ Pro\ Semibold:h15
-    set lines=40 columns=85
-
-    set langmenu=en_US.utf-8
-    language mes en_US.UTF-8
-    set guioptions+=c
-    set guioptions-=e
-    set guioptions-=T
-    set guioptions-=l
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=R
-
-    set bg=dark
-    "colorscheme solarized
-    "colorscheme jellybeans
-    colorscheme base16-twilight
-    let g:solarized_termcolors=256
-    let g:solarized_bold = 1
-    let g:solarized_underline = 1
-    let g:solarized_italic = 1
-    "let g:solarized_contrast = "high"
-endif
-
-" EOF
+set bg=dark
+colorscheme base16-tomorrow-night
