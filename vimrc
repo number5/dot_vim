@@ -21,30 +21,23 @@ Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-s
 
 " Languages
 Plug 'https://github.com/sheerun/vim-polyglot.git'
-"Plug 'vim-scripts/md5.vim'
-"Plug 'othree/html5.vim'
 Plug 'tpope/vim-ragtag'
 Plug 'walm/jshint.vim'
 Plug 'othree/yajs.vim'
 Plug 'mattn/emmet-vim'
  
 Plug 'saltstack/salt-vim'
-Plug 'majutsushi/tagbar'
-"Plug 'tpope/timl'
 Plug 'hynek/vim-python-pep8-indent'
-
-"Plug 'mitsuhiko/vim-jinja'
-"Plug 'plasticboy/vim-markdown'
-"Plug 'vim-ruby/vim-ruby'
 Plug 'avakhov/vim-yaml'
-
 Plug 'b4b4r07/vim-hcl'
-"Plug 'elixir-lang/vim-elixir'
+
+Plug 'scrooloose/syntastic'
 
 " Unite
 Plug 'Shougo/unite.vim' | Plug 'h1mesuke/unite-outline'
 
 Plug 'tpope/vim-abolish'
+Plug 'majutsushi/tagbar'
 
 " clojure
 Plug 'tpope/vim-classpath'
@@ -62,15 +55,18 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-surround'
+
+Plug 'wellle/targets.vim'
 Plug 'bps/vim-textobj-python'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user'
+Plug 'terryma/vim-expand-region'
+
 Plug 'maxbrunsfeld/vim-yankstack'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'tpope/vim-sensible'
 
-Plug 'terryma/vim-expand-region'
 
 " {{{ searching
 Plug 'justinmk/vim-sneak' " {{{
@@ -88,6 +84,21 @@ Plug 'justinmk/vim-sneak' " {{{
     autocmd ColorScheme * hi SneakPluginScope
     \ guifg=black guibg=yellow ctermfg=black ctermbg=yellow
   augroup END
+" }}}
+
+Plug 'haya14busa/incsearch.vim' " {{{
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+  map n  <Plug>(incsearch-nohl-n)
+  map N  <Plug>(incsearch-nohl-N)
+  map *  <Plug>(incsearch-nohl-*)
+  map #  <Plug>(incsearch-nohl-#)
+  map g* <Plug>(incsearch-nohl-g*)
+  map g# <Plug>(incsearch-nohl-g#)
+  let g:incsearch#consistent_n_direction = 1
+  let g:incsearch#auto_nohlsearch = 1
+  let g:incsearch#magic = '\v'
 " }}}
 
 Plug 'osyo-manga/vim-over' " {{{
