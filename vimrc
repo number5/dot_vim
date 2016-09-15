@@ -32,7 +32,6 @@ Plug 'hynek/vim-python-pep8-indent'
 Plug 'avakhov/vim-yaml'
 Plug 'b4b4r07/vim-hcl'
 Plug 'slashmili/alchemist.vim'
-
 Plug 'scrooloose/syntastic'
 
 Plug 'tpope/vim-abolish'
