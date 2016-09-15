@@ -14,6 +14,7 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bd
 
 Plug 'wincent/ferret'
 
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Neocomplete
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/neocomplete.vim'
@@ -21,30 +22,21 @@ Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-s
 
 " Languages
 Plug 'https://github.com/sheerun/vim-polyglot.git'
-"Plug 'vim-scripts/md5.vim'
-"Plug 'othree/html5.vim'
 Plug 'tpope/vim-ragtag'
 Plug 'walm/jshint.vim'
 Plug 'othree/yajs.vim'
 Plug 'mattn/emmet-vim'
  
 Plug 'saltstack/salt-vim'
-Plug 'majutsushi/tagbar'
-"Plug 'tpope/timl'
 Plug 'hynek/vim-python-pep8-indent'
-
-"Plug 'mitsuhiko/vim-jinja'
-"Plug 'plasticboy/vim-markdown'
-"Plug 'vim-ruby/vim-ruby'
 Plug 'avakhov/vim-yaml'
-
 Plug 'b4b4r07/vim-hcl'
-"Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
 
-" Unite
-Plug 'Shougo/unite.vim' | Plug 'h1mesuke/unite-outline'
+Plug 'scrooloose/syntastic'
 
 Plug 'tpope/vim-abolish'
+Plug 'majutsushi/tagbar'
 
 " clojure
 Plug 'tpope/vim-classpath'
@@ -62,15 +54,21 @@ Plug 'godlygeek/tabular'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-surround'
+
+Plug 'wellle/targets.vim'
 Plug 'bps/vim-textobj-python'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user'
+Plug 'terryma/vim-expand-region' " {{{
+" vim expand region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" }}} 
+
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'tpope/vim-sensible'
 
-Plug 'terryma/vim-expand-region'
 
 " {{{ searching
 Plug 'justinmk/vim-sneak' " {{{
@@ -88,6 +86,21 @@ Plug 'justinmk/vim-sneak' " {{{
     autocmd ColorScheme * hi SneakPluginScope
     \ guifg=black guibg=yellow ctermfg=black ctermbg=yellow
   augroup END
+" }}}
+
+Plug 'haya14busa/incsearch.vim' " {{{
+  map /  <Plug>(incsearch-forward)
+  map ?  <Plug>(incsearch-backward)
+  map g/ <Plug>(incsearch-stay)
+  map n  <Plug>(incsearch-nohl-n)
+  map N  <Plug>(incsearch-nohl-N)
+  map *  <Plug>(incsearch-nohl-*)
+  map #  <Plug>(incsearch-nohl-#)
+  map g* <Plug>(incsearch-nohl-g*)
+  map g# <Plug>(incsearch-nohl-g#)
+  let g:incsearch#consistent_n_direction = 1
+  let g:incsearch#auto_nohlsearch = 1
+  let g:incsearch#magic = '\v'
 " }}}
 
 Plug 'osyo-manga/vim-over' " {{{
@@ -117,7 +130,12 @@ Plug 'terryma/vim-multiple-cursors' " {{{
     endif
   endfunction
 " }}}
-
+Plug 'itchyny/lightline.vim' " {{{
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
+" }}}
+Plug 'daviesjamie/vim-base16-lightline'
 
 call plug#end()
 
@@ -170,26 +188,6 @@ set splitright
 " set wrap by default
 set wrap
 
-" status line settings, stole from
-" https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
-"set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
-hi link User1 Title
-hi link User2 DiffChange
-hi link User3 Comment
-hi link User4 Keyword
-hi link User5 Type
-hi link User6 WarningMsg
-set statusline=
-set statusline +=%2*\ %y%*              "file type
-set statusline +=%1*\ %<%f\ %*          "full path
-set statusline +=%6*%{&paste?'PASTE':''}%*
-set statusline +=%2*%m%r%h%*            "modified/readonly/help flag
-set statusline +=%3*%=%{&ff}/%{&fenc}%*  "file format
-set statusline +=%5*\ %5l%*             "current line
-set statusline +=%4*/%L,%*            "total lines
-set statusline +=%5*%3c\ %*         "column number
-set statusline +=%4*(%p%%)\ %*          "percentage 
-
 
 set autoread
 set switchbuf=useopen
@@ -221,7 +219,6 @@ nnoremap <Leader>w :w<CR>
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
-
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -256,7 +253,6 @@ nnoremap <silent> <C-l> :TagbarToggle<CR>
 " yankstack config
 nnoremap <leader>r  :Yanks<CR>
 set macmeta
-
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
@@ -294,6 +290,7 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 vmap <A-]> >gv
 vmap <A-[> <gv
 
+" {{{ Neocomplete
 
 let g:neocomplete#force_overwrite_completefunc = 1                              " fixes vim-clojure-static  
 let g:neocomplete#enable_at_startup = 1
@@ -313,23 +310,6 @@ let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 inoremap <expr><C-g>     neocomplete#undo_completion()
 inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  "return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion. (Used neosnippet's version instead)
-"inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" Close popup by <Space>.
-"inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -343,20 +323,13 @@ imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
 xmap <C-k>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
 
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-" end of neocomplete.vim settings
+" }}} end of neocomplete.vim settings
 
 " quicker window switching
 nnoremap <M-h> <C-w>h
@@ -369,14 +342,6 @@ nnoremap j gj
 nnoremap <Down> gj
 nnoremap k gk
 nnoremap <Up> gk
-
-
-" Unite / quick fix
-let g:unite_source_history_yank_enable = 0
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>j :Unite jump<CR>
-let g:unite_data_directory = "~/.cache/unite/"
-
 
 
 " CtrlP support
@@ -398,10 +363,6 @@ nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 nnoremap <C-B> :CtrlPBuffer<Cr>
 set noequalalways
 set wildignore+=*.pyc
-" NerdTree
-nnoremap <leader>[ :NERDTree<CR>
-let g:NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
-let g:NERDTreeHijackNetrw=1
 
 
 " super powerful spells here
@@ -444,12 +405,6 @@ au VimEnter * if &diff | execute 'windo set wrap' | endif
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-"augroup pencil
-"  autocmd!
-  "autocmd FileType markdown,mkd call pencil#init()
-  "autocmd FileType text         call pencil#init()
-"augroup END
-
 nnoremap <Leader>fu :CtrlPFunky<Cr>  " ctrlp-funky
 
 " no auto folding
@@ -458,17 +413,15 @@ set foldmethod=indent
 set foldminlines=2
 
 
-" vim expand region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
+set termguicolors   
 set cursorline
 
 if has("gui_running")
 
     " GUI only config
     set completeopt-=preview
-    set guifont=Roboto\ Mono:h15
+    set guifont=Sauce\ Code\ Powerline\ Light:h15
+
     "set guifont=Inconsolata\ Medium\ 15
     "set guifont=Source\ Code\ Pro\ Semibold:h15
     set lines=40 columns=85
@@ -486,7 +439,7 @@ if has("gui_running")
     set bg=dark
     "colorscheme solarized
     "colorscheme jellybeans
-    colorscheme base16-twilight
+    colorscheme base16-tomorrow-night
     let g:solarized_termcolors=256
     let g:solarized_bold = 1
     let g:solarized_underline = 1
