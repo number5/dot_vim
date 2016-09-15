@@ -1,5 +1,5 @@
 let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python3.5'
-let g:loaded_python_provider = 1 
+"let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
 " Colour Scheme
@@ -15,10 +15,18 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bd
 
 Plug 'wincent/ferret'
 
-" Neocomplete
+" Deoplete.
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
+Plug 'zchee/deoplete-jedi'
+" {{{
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
+inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+" }}}
 
 " Languages
 Plug 'https://github.com/sheerun/vim-polyglot.git'
@@ -34,9 +42,6 @@ Plug 'b4b4r07/vim-hcl'
 Plug 'slashmili/alchemist.vim'
 
 Plug 'scrooloose/syntastic'
-
-" Unite
-Plug 'Shougo/unite.vim' | Plug 'h1mesuke/unite-outline'
 
 Plug 'tpope/vim-abolish'
 Plug 'majutsushi/tagbar'
@@ -62,10 +67,13 @@ Plug 'wellle/targets.vim'
 Plug 'bps/vim-textobj-python'
 Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'kana/vim-textobj-user'
-Plug 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region' " {{{
+" vim expand region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" }}} 
 
 Plug 'maxbrunsfeld/vim-yankstack'
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 Plug 'tpope/vim-sensible'
 
@@ -135,13 +143,14 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ }
 " }}}
+Plug 'daviesjamie/vim-base16-lightline'
 set rtp+=/usr/local/opt/fzf
 Plug 'junegunn/fzf.vim'
 " {{{
+  let  g:fzf_nvim_statusline = 0
   let g:fzf_layout = { 'left': '~40%' } 
 " }}}
 
-Plug 'zchee/deoplete-jedi'
 
 call plug#end()
 
@@ -192,26 +201,6 @@ set splitright
 " set wrap by default
 set wrap
 
-" status line settings, stole from
-" https://github.com/millermedeiros/vim-statline/blob/master/plugin/statline.vim 
-"set statusline=%F%m%r%h%w\ [%Y\ %{&ff}]%=[%l/%L,\ col\ %c\ (%p%%)]
-hi link User1 Title
-hi link User2 DiffChange
-hi link User3 Comment
-hi link User4 Keyword
-hi link User5 Type
-hi link User6 WarningMsg
-set statusline=
-set statusline +=%2*\ %y%*              "file type
-set statusline +=%1*\ %<%f\ %*          "full path
-set statusline +=%6*%{&paste?'PASTE':''}%*
-set statusline +=%2*%m%r%h%*            "modified/readonly/help flag
-set statusline +=%3*%=%{&ff}/%{&fenc}%*  "file format
-set statusline +=%5*\ %5l%*             "current line
-set statusline +=%4*/%L,%*            "total lines
-set statusline +=%5*%3c\ %*         "column number
-set statusline +=%4*(%p%%)\ %*          "percentage 
-
 
 set autoread
 set switchbuf=useopen
@@ -242,7 +231,6 @@ nnoremap <Leader>w :w<CR>
 
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
-
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
@@ -313,8 +301,6 @@ match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
 vmap <A-]> >gv
 vmap <A-[> <gv
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
 
 " For snippet_complete marker.
 if has('conceal')
@@ -333,14 +319,6 @@ nnoremap j gj
 nnoremap <Down> gj
 nnoremap k gk
 nnoremap <Up> gk
-
-
-" Unite / quick fix
-let g:unite_source_history_yank_enable = 0
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-nnoremap <leader>j :Unite jump<CR>
-let g:unite_data_directory = "~/.cache/unite/"
-
 
 
 " CtrlP support
@@ -362,10 +340,6 @@ nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 nnoremap <C-B> :CtrlPBuffer<Cr>
 set noequalalways
 set wildignore+=*.pyc
-" NerdTree
-nnoremap <leader>[ :NERDTree<CR>
-let g:NERDTreeIgnore=['\~$', '\.pyc$', '\.pyo$', '\.class$', 'pip-log\.txt$', '\.o$']
-let g:NERDTreeHijackNetrw=1
 
 
 " super powerful spells here
@@ -416,10 +390,7 @@ set foldmethod=indent
 set foldminlines=2
 
 
-" vim expand region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-
+set termguicolors   
 set cursorline
 set bg=dark
 colorscheme base16-tomorrow-night
