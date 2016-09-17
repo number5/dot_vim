@@ -1,10 +1,59 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
+
+Plug 'felixjung/vim-base16-lightline'
+Plug 'itchyny/lightline.vim' " {{{
+let g:lightline = {
+      \ 'colorscheme': 'base16_tomorrow',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo', 'syntastic' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+      \ },
+      \ 'component_function': {
+      \   'readonly': 'MyReadonly',
+      \   'modified': 'MyModified',
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'separator': { 'right': '', 'left': '' },
+      \ 'subseparator': { 'right': '', 'left': '' }
+      \ }
+
+function! MyReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return " "
+  else
+    return ""
+  endif
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+       \ ('' != expand('%') ? expand('%') : '[NoName]')
+endfunction
+
+function! MyModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+" }}}
 " Colour Scheme
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
+
 
 Plug 'vim-scripts/gitignore'
 
@@ -129,12 +178,6 @@ Plug 'terryma/vim-multiple-cursors' " {{{
     endif
   endfunction
 " }}}
-Plug 'itchyny/lightline.vim' " {{{
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-" }}}
-Plug 'daviesjamie/vim-base16-lightline'
 
 call plug#end()
 
