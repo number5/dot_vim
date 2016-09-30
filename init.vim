@@ -2,10 +2,59 @@ let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python3.5'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
-" Colour Scheme
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'felixjung/vim-base16-lightline'
+
+Plug 'itchyny/lightline.vim' " {{{
+let g:lightline = {
+      \ 'colorscheme': 'base16_tomorrow',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo', 'syntastic' ],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
+      \ },
+      \ 'component_function': {
+      \   'readonly': 'MyReadonly',
+      \   'modified': 'MyModified',
+      \   'syntastic': 'SyntasticStatuslineFlag',
+      \ },
+      \ 'separator': { 'right': '', 'left': '' },
+      \ 'subseparator': { 'right': '', 'left': '' }
+      \ }
+
+function! MyReadonly()
+  if &filetype == "help"
+    return ""
+  elseif &readonly
+    return " "
+  else
+    return ""
+  endif
+endfunction
+
+function! MyFilename()
+  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
+       \ ('' != expand('%') ? expand('%') : '[NoName]')
+endfunction
+
+function! MyModified()
+  if &filetype == "help"
+    return ""
+  elseif &modified
+    return "+"
+  elseif &modifiable
+    return ""
+  else
+    return ""
+  endif
+endfunction
+" }}}
+" Colour Scheme
 
 Plug 'vim-scripts/gitignore'
 
@@ -13,7 +62,9 @@ Plug 'vim-scripts/gitignore'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 
 
-Plug 'wincent/ferret'
+Plug 'wincent/ferret' " {{{
+    nmap <leader>z <Plug>(FerretAckWord)
+" }}}
 
 " Deoplete.
 Plug 'Konfekt/FastFold'
@@ -39,7 +90,10 @@ Plug 'saltstack/salt-vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'avakhov/vim-yaml'
 Plug 'b4b4r07/vim-hcl'
+" {{{ Elixir
+Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'slashmili/alchemist.vim'
+"}}}
 
 Plug 'scrooloose/syntastic'
 
@@ -54,8 +108,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jbnicolai/rainbow_parentheses.vim'
 
-
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-jdaddy' "Json quick movements
 Plug 'nvie/vim-rst-tables'
 Plug 'godlygeek/tabular'
@@ -116,8 +169,14 @@ Plug 'osyo-manga/vim-over' " {{{
   let g:over_enable_cmd_window = 1
   let g:over#command_line#search#enable_incsearch = 1
   let g:over#command_line#search#enable_move_cursor = 1
-  nnoremap <silent> <Leader>s <Esc>:OverCommandLine %s///g<CR><Left><Left>
-  xnoremap <silent> <Leader>s <Esc>:OverCommandLine '<,'>s///g<CR><Left><Left>
+  " Use vim-over instead of builtin substitution
+  " http://leafcage.hateblo.jp/entry/2013/11/23/212838
+  cnoreabbrev <silent><expr>s getcmdtype() ==# ':' && getcmdline() =~# '^s'
+      \ ? "OverCommandLine<CR><C-u>%s/<C-r>=get([], getchar(0), '')<CR>"
+      \ : 's'
+  cnoreabbrev <silent><expr>'<,'>s getcmdtype() ==# ':' && getcmdline() =~# "^'<,'>s"
+      \ ? "'<,'>OverCommandLine<CR>s/<C-r>=get([], getchar(0), '')<CR>"
+      \ : "'<,'>s"
 " }}}
 
 Plug 'terryma/vim-multiple-cursors' " {{{
@@ -138,20 +197,17 @@ Plug 'terryma/vim-multiple-cursors' " {{{
     endif
   endfunction
 " }}}
-Plug 'itchyny/lightline.vim' " {{{
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-" }}}
-Plug 'daviesjamie/vim-base16-lightline'
+
 set rtp+=/usr/local/opt/fzf
 Plug 'junegunn/fzf.vim'
 " {{{
   let  g:fzf_nvim_statusline = 0
   let g:fzf_layout = { 'left': '~40%' } 
+
+  nnoremap <C-B> :Buffers<Cr>
 " }}}
 
-
+Plug 'hecal3/vim-leader-guide'
 call plug#end()
 
 " polyglot
@@ -164,8 +220,9 @@ filetype indent on
 syntax on
 compiler ruby
 
+colorscheme OceanicNext
+"colorscheme base16-twilight
 set bg=dark
-colorscheme base16-twilight
 let g:solarized_termcolors=256
 
 set autoindent
@@ -337,7 +394,6 @@ let g:ctrlp_extensions = ['funky']
 nnoremap <leader>q :CtrlPQuickfix<CR>
 nnoremap <leader>o :CtrlPMixed<CR>
 nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
-nnoremap <C-B> :CtrlPBuffer<Cr>
 set noequalalways
 set wildignore+=*.pyc
 
@@ -358,13 +414,6 @@ set pastetoggle=<F5>
 " Edit the vimrc file
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" indent guides
-let g:indent_guides_auto_colors = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=010
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 " markdown
 let g:vim_markdown_initial_foldlevel=3
@@ -392,5 +441,3 @@ set foldminlines=2
 
 set termguicolors   
 set cursorline
-set bg=dark
-colorscheme base16-tomorrow-night
