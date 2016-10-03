@@ -1,6 +1,9 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
+Plug 'chriskempson/base16-vim'
+Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
+Plug 'goatslacker/mango.vim'
 
 Plug 'felixjung/vim-base16-lightline'
 Plug 'itchyny/lightline.vim' " {{{
@@ -49,10 +52,6 @@ function! MyModified()
   endif
 endfunction
 " }}}
-" Colour Scheme
-Plug 'chriskempson/base16-vim'
-Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
-Plug 'goatslacker/mango.vim'
 
 
 Plug 'vim-scripts/gitignore'
@@ -61,7 +60,9 @@ Plug 'vim-scripts/gitignore'
 Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim' | Plug 'FelikZ/ctrlp-py-matcher'
 
 
-Plug 'wincent/ferret'
+Plug 'wincent/ferret' " {{{
+    nmap <leader>z <Plug>(FerretAckWord)
+" }}}
 
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " Neocomplete
@@ -80,7 +81,11 @@ Plug 'saltstack/salt-vim'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'avakhov/vim-yaml'
 Plug 'b4b4r07/vim-hcl'
+" {{{ Elixir
+Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'slashmili/alchemist.vim'
+"}}}
+
 Plug 'scrooloose/syntastic'
 
 Plug 'tpope/vim-abolish'
@@ -95,7 +100,7 @@ Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jbnicolai/rainbow_parentheses.vim'
 
 
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-jdaddy' "Json quick movements
 Plug 'nvie/vim-rst-tables'
 Plug 'godlygeek/tabular'
@@ -156,8 +161,14 @@ Plug 'osyo-manga/vim-over' " {{{
   let g:over_enable_cmd_window = 1
   let g:over#command_line#search#enable_incsearch = 1
   let g:over#command_line#search#enable_move_cursor = 1
-  nnoremap <silent> <Leader>s <Esc>:OverCommandLine %s///g<CR><Left><Left>
-  xnoremap <silent> <Leader>s <Esc>:OverCommandLine '<,'>s///g<CR><Left><Left>
+  " Use vim-over instead of builtin substitution
+  " http://leafcage.hateblo.jp/entry/2013/11/23/212838
+  cnoreabbrev <silent><expr>s getcmdtype() ==# ':' && getcmdline() =~# '^s'
+      \ ? "OverCommandLine<CR><C-u>%s/<C-r>=get([], getchar(0), '')<CR>"
+      \ : 's'
+  cnoreabbrev <silent><expr>'<,'>s getcmdtype() ==# ':' && getcmdline() =~# "^'<,'>s"
+      \ ? "'<,'>OverCommandLine<CR>s/<C-r>=get([], getchar(0), '')<CR>"
+      \ : "'<,'>s"
 " }}}
 
 Plug 'terryma/vim-multiple-cursors' " {{{
@@ -179,6 +190,8 @@ Plug 'terryma/vim-multiple-cursors' " {{{
   endfunction
 " }}}
 
+
+Plug 'hecal3/vim-leader-guide'
 call plug#end()
 
 " polyglot
@@ -274,7 +287,7 @@ let g:ctrlp_lazy_update = 350
 
 " Set no file limit, we are building a big project
 let g:ctrlp_max_files = 0
-let g:ctrlp_use_caching = 0
+let g:ctrlp_clear_cache_on_exit = 0
 " If ag is available use it as filename list generator instead of 'find'
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor
@@ -423,13 +436,6 @@ set pastetoggle=<F5>
 " Edit the vimrc file
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" indent guides
-let g:indent_guides_auto_colors = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-let g:indent_guides_enable_on_vim_startup = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  ctermbg=010
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=darkgrey
 
 " markdown
 let g:vim_markdown_initial_foldlevel=3
