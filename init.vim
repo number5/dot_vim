@@ -54,12 +54,11 @@ function! MyModified()
   endif
 endfunction
 " }}}
-" Colour Scheme
 
 Plug 'vim-scripts/gitignore'
 
 " CtrlP
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'd11wtq/ctrlp_bdelete.vim' | Plug 'FelikZ/ctrlp-py-matcher'
+Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'FelikZ/ctrlp-py-matcher'
 
 
 Plug 'wincent/ferret' " {{{
@@ -205,6 +204,7 @@ Plug 'junegunn/fzf.vim'
   let g:fzf_layout = { 'left': '~40%' } 
 
   nnoremap <C-B> :Buffers<Cr>
+  nnoremap <leader>e :Files<Cr>
 " }}}
 
 Plug 'hecal3/vim-leader-guide'
@@ -301,7 +301,7 @@ let g:ctrlp_lazy_update = 350
 
 " Set no file limit, we are building a big project
 let g:ctrlp_max_files = 0
-let g:ctrlp_use_caching = 0
+let g:ctrlp_clear_cache_on_exit = 0
 " If ag is available use it as filename list generator instead of 'find'
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor
@@ -380,7 +380,6 @@ nnoremap <Up> gk
 
 " CtrlP support
 
-call ctrlp_bdelete#init()
 let g:ctrlp_map = '<S_F8>'
 let g:ctrlp_match_window_bottom = 0
 let g:ctrlp_max_files = 5000
@@ -393,7 +392,7 @@ let g:ctrlp_extensions = ['funky']
 
 nnoremap <leader>q :CtrlPQuickfix<CR>
 nnoremap <leader>o :CtrlPMixed<CR>
-nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
+" nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 set noequalalways
 set wildignore+=*.pyc
 
