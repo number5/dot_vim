@@ -192,6 +192,7 @@ Plug 'terryma/vim-multiple-cursors' " {{{
 
 
 Plug 'hecal3/vim-leader-guide'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " polyglot
