@@ -62,7 +62,6 @@ Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'FelikZ/ctrlp-py
 
 
 Plug 'wincent/ferret' " {{{
-    nmap <leader>z <Plug>(FerretAckWord)
 " }}}
 
 " Deoplete.
@@ -202,12 +201,10 @@ Plug 'junegunn/fzf.vim'
 " {{{
   let  g:fzf_nvim_statusline = 0
   let g:fzf_layout = { 'left': '~40%' } 
-
-  nnoremap <C-B> :Buffers<Cr>
-  nnoremap <leader>e :Files<Cr>
 " }}}
 
 Plug 'hecal3/vim-leader-guide'
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 " polyglot
@@ -392,7 +389,6 @@ let g:ctrlp_extensions = ['funky']
 
 nnoremap <leader>q :CtrlPQuickfix<CR>
 nnoremap <leader>o :CtrlPMixed<CR>
-" nnoremap <leader>e :CtrlP <C-R>=expand("%:p:h") . "/"<CR>
 set noequalalways
 set wildignore+=*.pyc
 
@@ -430,7 +426,14 @@ au VimEnter * if &diff | execute 'windo set wrap' | endif
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-nnoremap <Leader>fu :CtrlPFunky<Cr>  " ctrlp-funky
+nnoremap <silent> <Leader>fu :CtrlPFunky<Cr>  " ctrlp-funky
+
+" mappings for fzf 
+nnoremap <silent> <C-B> :Buffers<Cr>
+nnoremap <silent> <leader>e :Files<Cr>
+
+" ferret 
+nmap <leader>z <Plug>(FerretAckWord)
 
 " no auto folding
 set nofoldenable
