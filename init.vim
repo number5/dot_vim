@@ -67,7 +67,8 @@ Plug 'wincent/ferret' " {{{
 " Deoplete.
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
+"Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
+Plug 'fishbullet/deoplete-ruby'
 Plug 'zchee/deoplete-jedi'
 " {{{
 let g:deoplete#enable_at_startup = 1
@@ -125,9 +126,6 @@ vmap <C-v> <Plug>(expand_region_shrink)
 " }}} 
 
 Plug 'maxbrunsfeld/vim-yankstack'
-
-Plug 'tpope/vim-sensible'
-
 
 " {{{ searching
 Plug 'justinmk/vim-sneak' " {{{
