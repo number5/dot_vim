@@ -7,6 +7,7 @@ Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
 Plug 'mhartington/oceanic-next'
 Plug 'felixjung/vim-base16-lightline'
+Plug 'dracula/vim'
 
 Plug 'itchyny/lightline.vim' " {{{
 let g:lightline = {
@@ -79,7 +80,7 @@ inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 " }}}
 
 " Languages
-Plug 'https://github.com/sheerun/vim-polyglot.git'
+Plug 'sheerun/vim-polyglot'
 Plug 'tpope/vim-ragtag'
 Plug 'walm/jshint.vim'
 Plug 'othree/yajs.vim'
@@ -145,20 +146,9 @@ Plug 'justinmk/vim-sneak' " {{{
   augroup END
 " }}}
 
-Plug 'haya14busa/incsearch.vim' " {{{
-  map /  <Plug>(incsearch-forward)
-  map ?  <Plug>(incsearch-backward)
-  map g/ <Plug>(incsearch-stay)
-  map n  <Plug>(incsearch-nohl-n)
-  map N  <Plug>(incsearch-nohl-N)
-  map *  <Plug>(incsearch-nohl-*)
-  map #  <Plug>(incsearch-nohl-#)
-  map g* <Plug>(incsearch-nohl-g*)
-  map g# <Plug>(incsearch-nohl-g#)
-  let g:incsearch#consistent_n_direction = 1
-  let g:incsearch#auto_nohlsearch = 1
-  let g:incsearch#magic = '\v'
-" }}}
+Plug 'junegunn/vim-slash' " {{{
+noremap <plug>(slash-after) zz
+"}}}
 
 Plug 'osyo-manga/vim-over' " {{{
   let g:over_command_line_prompt = ':'
@@ -215,7 +205,8 @@ filetype indent on
 syntax on
 compiler ruby
 
-colorscheme OceanicNext
+colorscheme dracula
+"colorscheme OceanicNext
 "colorscheme base16-twilight
 set bg=dark
 let g:solarized_termcolors=256
