@@ -68,16 +68,24 @@ Plug 'wincent/ferret' " {{{
 " Deoplete.
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets' | Plug 'honza/vim-snippets'
+Plug 'ervandew/supertab'
 Plug 'fishbullet/deoplete-ruby'
 Plug 'zchee/deoplete-jedi'
 " {{{
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
-imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
 imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
 inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
 " }}}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Languages
 Plug 'sheerun/vim-polyglot'
@@ -193,6 +201,13 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'hecal3/vim-leader-guide'
 Plug 'mhinz/vim-startify'
+
+" NV {{
+Plug 'Alok/notational-fzf-vim'
+let g:nv_directories = [ '~/learn/knowledge/', '~/learn/blog/contents']
+let g:nv_default_extension = '.md'
+
+"}}
 call plug#end()
 
 " polyglot
