@@ -163,14 +163,7 @@ Plug 'osyo-manga/vim-over' " {{{
   let g:over_enable_cmd_window = 1
   let g:over#command_line#search#enable_incsearch = 1
   let g:over#command_line#search#enable_move_cursor = 1
-  " Use vim-over instead of builtin substitution
-  " http://leafcage.hateblo.jp/entry/2013/11/23/212838
-  cnoreabbrev <silent><expr>s getcmdtype() ==# ':' && getcmdline() =~# '^s'
-      \ ? "OverCommandLine<CR><C-u>%s/<C-r>=get([], getchar(0), '')<CR>"
-      \ : 's'
-  cnoreabbrev <silent><expr>'<,'>s getcmdtype() ==# ':' && getcmdline() =~# "^'<,'>s"
-      \ ? "'<,'>OverCommandLine<CR>s/<C-r>=get([], getchar(0), '')<CR>"
-      \ : "'<,'>s"
+
 " }}}
 
 Plug 'terryma/vim-multiple-cursors' " {{{
@@ -237,7 +230,8 @@ set hidden
 set history=1000
 set hlsearch
 set ignorecase
-set incsearch
+"set incsearch
+set inccommand=nosplit
 set laststatus=2
 set linebreak
 set lz " do not redraw while running macros (much faster) 
@@ -304,9 +298,8 @@ let g:ctrlp_lazy_update = 350
 let g:ctrlp_max_files = 0
 let g:ctrlp_clear_cache_on_exit = 0
 " If ag is available use it as filename list generator instead of 'find'
-if executable("ag")
-    set grepprg=ag\ --nogroup\ --nocolor
-    let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
+set grepprg=rg\ --vimgrep
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
 endif
 
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
