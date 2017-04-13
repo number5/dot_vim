@@ -58,9 +58,6 @@ endfunction
 
 Plug 'vim-scripts/gitignore'
 
-" CtrlP
-Plug 'ctrlpvim/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'FelikZ/ctrlp-py-matcher'
-
 
 Plug 'wincent/ferret' " {{{
 " }}}
@@ -290,19 +287,9 @@ nmap <leader>l :set list!<CR>
 " Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
 
-" CtrlP
-" Set delay to prevent extra search
-let g:ctrlp_lazy_update = 350
-
-" Set no file limit, we are building a big project
-let g:ctrlp_max_files = 0
-let g:ctrlp_clear_cache_on_exit = 0
-" If ag is available use it as filename list generator instead of 'find'
+" If rg is available use it as filename list generator instead of 'find'
 set grepprg=rg\ --vimgrep
-let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --ignore ''.git'' --ignore ''.DS_Store'' --ignore ''node_modules'' --hidden -g ""'
-endif
 
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Tagbar
 let g:tagbar_left = 1
@@ -372,20 +359,6 @@ nnoremap k gk
 nnoremap <Up> gk
 
 
-" CtrlP support
-
-let g:ctrlp_map = '<S_F8>'
-let g:ctrlp_match_window_bottom = 0
-let g:ctrlp_max_files = 5000
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll|pyc)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
-let g:ctrlp_extensions = ['funky']
-
-nnoremap <leader>q :CtrlPQuickfix<CR>
-nnoremap <leader>o :CtrlPMixed<CR>
 set noequalalways
 set wildignore+=*.pyc
 
@@ -422,8 +395,6 @@ au VimEnter * if &diff | execute 'windo set wrap' | endif
 
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
-
-nnoremap <silent> <Leader>fu :CtrlPFunky<Cr>  " ctrlp-funky
 
 " mappings for fzf 
 nnoremap <silent> <C-B> :Buffers<Cr>
