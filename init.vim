@@ -1,4 +1,4 @@
-let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python3.5'
+let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
