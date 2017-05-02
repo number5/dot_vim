@@ -2,6 +2,7 @@ let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
+Plug 'ervandew/supertab'
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
@@ -65,7 +66,6 @@ Plug 'wincent/ferret' " {{{
 " Deoplete.
 Plug 'Konfekt/FastFold'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ervandew/supertab'
 Plug 'fishbullet/deoplete-ruby'
 Plug 'zchee/deoplete-jedi'
 " {{{
