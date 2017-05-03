@@ -2,7 +2,7 @@ let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'ervandew/supertab'
+"Plug 'ervandew/supertab'
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
@@ -80,9 +80,6 @@ Plug 'honza/vim-snippets'
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Languages
 Plug 'sheerun/vim-polyglot'
