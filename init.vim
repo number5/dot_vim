@@ -1,4 +1,4 @@
-let g:python3_host_prog = '/Users/bruce/miniconda3/envs/neovim3/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
@@ -63,22 +63,13 @@ Plug 'vim-scripts/gitignore'
 Plug 'wincent/ferret' " {{{
 " }}}
 
-" Deoplete.
-Plug 'Konfekt/FastFold'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'fishbullet/deoplete-ruby'
-Plug 'zchee/deoplete-jedi'
-" {{{
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
+Plug 'autozimu/LanguageClient-neovim'
+Plug 'roxma/nvim-completion-manager'
+Plug 'Shougo/echodoc.vim'
 
-imap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<S-TAB>"
-inoremap <expr><CR> pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
-" }}}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Languages
@@ -192,7 +183,7 @@ Plug 'mhinz/vim-startify'
 
 " NV {{
 Plug 'Alok/notational-fzf-vim'
-let g:nv_directories = [ '~/learn/knowledge/', '~/learn/blog/contents']
+let g:nv_search_paths = [ '~/learn/knowledge/', '~/learn/blog/contents']
 let g:nv_default_extension = '.md'
 
 "}}
