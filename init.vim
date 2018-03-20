@@ -1,14 +1,12 @@
-let g:python3_host_prog = '/usr/local/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
-"Plug 'ervandew/supertab'
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
-Plug 'goatslacker/mango.vim'
-Plug 'mhartington/oceanic-next'
 Plug 'felixjung/vim-base16-lightline'
 Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
 
 Plug 'itchyny/lightline.vim' " {{{
 let g:lightline = {
@@ -62,10 +60,22 @@ Plug 'vim-scripts/gitignore'
 
 Plug 'wincent/ferret' " {{{
 " }}}
-
-Plug 'autozimu/LanguageClient-neovim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 Plug 'roxma/nvim-completion-manager'
 Plug 'Shougo/echodoc.vim'
+" {{ LanguageClient configs 
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'python': [],
+    \ 'elixir': ['/Users/bruce/src/git/elixir-ls/language_server.sh'],
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ }
+" }}
+
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -86,7 +96,6 @@ Plug 'avakhov/vim-yaml'
 Plug 'hashivim/vim-hashicorp-tools'
 " {{{ Elixir
 Plug 'powerman/vim-plugin-AnsiEsc'
-Plug 'slashmili/alchemist.vim'
 "}}}
 
 Plug 'scrooloose/syntastic'
@@ -199,8 +208,9 @@ filetype indent on
 syntax on
 compiler ruby
 
-colorscheme dracula
-"colorscheme OceanicNext
+colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
+"colorscheme dracula
 "colorscheme base16-twilight
 set bg=dark
 let g:solarized_termcolors=256
