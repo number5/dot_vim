@@ -3,7 +3,6 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'chriskempson/base16-vim'
-Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'felixjung/vim-base16-lightline'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
@@ -76,6 +75,7 @@ let g:LanguageClient_serverCommands = {
     \ }
 " }}
 
+Plug 'w0rp/ale'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -98,7 +98,8 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'powerman/vim-plugin-AnsiEsc'
 "}}}
 
-Plug 'scrooloose/syntastic'
+" Syntastic conflict with ALE 
+"Plug 'scrooloose/syntastic'
 
 Plug 'tpope/vim-abolish'
 Plug 'majutsushi/tagbar'
@@ -110,8 +111,13 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jbnicolai/rainbow_parentheses.vim'
+Plug 'eraserhd/parinfer-rust', {'do':
+        \  'cargo build --manifest-path=cparinfer/Cargo.toml --release'}
 
 Plug 'Yggdroot/indentLine'
+"{{
+let g:indentLine_char = '┆'
+"}}
 Plug 'tpope/vim-jdaddy' "Json quick movements
 Plug 'nvie/vim-rst-tables'
 Plug 'godlygeek/tabular'
@@ -406,7 +412,6 @@ nmap <leader>z <Plug>(FerretAckWord)
 set nofoldenable
 set foldmethod=indent
 set foldminlines=2
-
 
 set termguicolors   
 set cursorline
