@@ -1,4 +1,4 @@
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/Users/bruce/miniconda3/bin/python'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
@@ -84,6 +84,9 @@ Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Languages
 Plug 'sheerun/vim-polyglot'
+" {{
+let g:polyglot_disabled = ['nginx']
+" }}
 Plug 'tpope/vim-ragtag'
 Plug 'walm/jshint.vim'
 Plug 'othree/yajs.vim'
@@ -97,9 +100,7 @@ Plug 'hashivim/vim-hashicorp-tools'
 " {{{ Elixir
 Plug 'powerman/vim-plugin-AnsiEsc'
 "}}}
-
-" Syntastic conflict with ALE 
-"Plug 'scrooloose/syntastic'
+"
 
 Plug 'tpope/vim-abolish'
 Plug 'majutsushi/tagbar'
@@ -325,8 +326,16 @@ au Filetype html setlocal ts=2 sts=2 sw=2
 au Filetype ruby setlocal ts=2 sts=2 sw=2
 au Filetype mkd setlocal ts=2 sts=2 sw=2  " for Markdown
 au BufNewFile,BufRead *.wiki set sw=2
-au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
+"au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
 au FileType javascript set makeprg=jshint\ %
+augroup filetypedetect
+  " nginx, from nginx.vim in chr4/nginx.vim
+au BufRead,BufNewFile *.nginx set ft=nginx
+au BufRead,BufNewFile nginx*.conf set ft=nginx
+au BufRead,BufNewFile *nginx.conf set ft=nginx
+au BufRead,BufNewFile */etc/nginx/*.conf set ft=nginx
+au BufRead,BufNewFile */usr/local/nginx/conf/*.conf set ft=nginx
+augroup end 
 
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
