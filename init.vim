@@ -1,4 +1,4 @@
-let g:python3_host_prog = '/Users/bruce/miniconda3/bin/python'
+let g:python3_host_prog = '/usr/local/bin/python3'
 "let g:loaded_python_provider = 1 
 
 call plug#begin('~/.config/nvim/plugged')
@@ -63,7 +63,13 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'roxma/nvim-completion-manager'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+" {{ ncm2 config
+autocmd BufEnter * call ncm2#enable_for_buffer()
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+" }}
 Plug 'Shougo/echodoc.vim'
 " {{ LanguageClient configs 
 let g:LanguageClient_serverCommands = {
@@ -225,7 +231,6 @@ let g:solarized_termcolors=256
 set autoindent
 set backspace=indent,eol,start
 set cmdheight=2 " Statusbar
-set completeopt-=preview
 set colorcolumn=80
 set expandtab
 set gdefault
@@ -325,6 +330,7 @@ au BufNewFile,BufRead *.hosts set ft=dns
 au Filetype html setlocal ts=2 sts=2 sw=2
 au Filetype ruby setlocal ts=2 sts=2 sw=2
 au Filetype mkd setlocal ts=2 sts=2 sw=2  " for Markdown
+au Filetype lua setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
 "au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
 au FileType javascript set makeprg=jshint\ %
