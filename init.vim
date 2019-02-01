@@ -73,7 +73,7 @@ set completeopt=noinsert,menuone,noselect
 Plug 'Shougo/echodoc.vim'
 " {{ LanguageClient configs 
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['rls'],
     \ 'python': ['pyls', '-v', '--log-file', '/tmp/pyls.log'],
     \ 'elixir': ['/Users/bruce/src/git/elixir-ls/build/language_server.sh'],
     \ 'javascript': ['javascript-typescript-stdio'],
