@@ -6,10 +6,11 @@ Plug 'chriskempson/base16-vim'
 Plug 'felixjung/vim-base16-lightline'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 Plug 'itchyny/lightline.vim' " {{{
 let g:lightline = {
-      \ 'colorscheme': 'base16_tomorrow',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
@@ -221,7 +222,8 @@ filetype indent on
 syntax on
 compiler ruby
 
-colorscheme gruvbox
+colorscheme onedark
+"colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
 "colorscheme dracula
 "colorscheme base16-twilight
