@@ -1,6 +1,9 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
+Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 Plug 'chriskempson/base16-vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized'}
 Plug 'goatslacker/mango.vim'
@@ -8,7 +11,7 @@ Plug 'goatslacker/mango.vim'
 Plug 'felixjung/vim-base16-lightline'
 Plug 'itchyny/lightline.vim' " {{{
 let g:lightline = {
-      \ 'colorscheme': 'base16_tomorrow',
+      \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified' ] ],
@@ -206,7 +209,7 @@ syntax on
 compiler ruby
 
 set bg=dark
-colorscheme base16-twilight
+colorscheme onedark
 let g:solarized_termcolors=256
 
 set autoindent
@@ -488,7 +491,7 @@ if has("gui_running")
     set bg=dark
     "colorscheme solarized
     "colorscheme jellybeans
-    colorscheme base16-tomorrow-night
+    colorscheme onedark
     let g:solarized_termcolors=256
     let g:solarized_bold = 1
     let g:solarized_underline = 1
