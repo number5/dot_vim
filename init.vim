@@ -57,7 +57,6 @@ endfunction
 
 Plug 'vim-scripts/gitignore'
 
-
 Plug 'wincent/ferret' " {{{
 " }}}
 Plug 'autozimu/LanguageClient-neovim', {
@@ -208,8 +207,10 @@ Plug 'mhinz/vim-startify'
 Plug 'Alok/notational-fzf-vim'
 let g:nv_search_paths = [ '~/learn/knowledge/', '~/learn/blog/contents']
 let g:nv_default_extension = '.md'
-
 "}}
+
+Plug 'chrisbra/unicode.vim'
+
 call plug#end()
 
 " polyglot
