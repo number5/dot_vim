@@ -13,19 +13,25 @@ let g:lightline = {
       \ 'colorscheme': 'one',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'currentfunction'],
       \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo', 'syntastic' ],
+      \   'right': [ [ 'lineinfo'],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
       \ },
       \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction',
       \   'readonly': 'MyReadonly',
       \   'modified': 'MyModified',
-      \   'syntastic': 'SyntasticStatuslineFlag',
       \ },
       \ 'separator': { 'right': '', 'left': '' },
       \ 'subseparator': { 'right': '', 'left': '' }
       \ }
+
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
 function! MyReadonly()
   if &filetype == "help"
@@ -59,34 +65,24 @@ Plug 'vim-scripts/gitignore'
 
 Plug 'wincent/ferret' " {{{
 " }}}
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-" {{ ncm2 config
-autocmd BufEnter * call ncm2#enable_for_buffer()
-" IMPORTANTE: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-" }}
+
+
 Plug 'Shougo/echodoc.vim'
-" {{ LanguageClient configs 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rls'],
-    \ 'python': ['pyls', '-v', '--log-file', '/tmp/pyls.log'],
-    \ 'elixir': ['/Users/bruce/src/git/elixir-ls/build/language_server.sh'],
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ }
-" }}
+
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'} 
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} 
+Plug 'liuchengxu/vista.vim'
 
 Plug 'w0rp/ale'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+"Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
+"Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
 
 " Languages
 Plug 'sheerun/vim-polyglot'

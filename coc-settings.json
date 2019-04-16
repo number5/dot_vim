@@ -1,0 +1,33 @@
+{
+        "suggest.triggerAfterInsertEnter": true,
+        "suggest.timeout": 500,
+        "suggest.noselect": true,
+        "suggest.minTriggerInputLength": 2,
+        "suggest.snippetIndicator": "^",
+        "suggest.enablePreview": true,
+        "suggest.detailMaxLength": 88,
+        "snippets.loadFromExtensions": true,
+        "snippets.ultisnips.enable": true,
+        "snippets.ultisnips.directories": ["Ultisnips"], 
+        "snippets.snipmate.enable": false,
+        "diagnostic.refreshOnInsertMode": true,
+        "diagnostic.enableSign": true,
+        "signature.enable": true,
+        "signature.target": "echo",
+        "list.maxHeight": 20,
+        "list.maxPreviewHeight": 20,
+        "coc.preferences.hoverTarget": "float",
+        "coc.preferences.jumpCommand": "split",
+        "coc.preferences.colorSupport": true,
+        "python.jediEnabled": false,
+        "python.formatting.provider": "black",
+        "python.formatting.blackPath": "/usr/local/bin/black",
+        "python.linting.enabled": true,
+        "python.pythonPath": "/usr/local/bin/python3",
+        "languageserver": {
+            "elixirLS": {
+                "command": "/Users/bruce/src/git/elixir-ls/build/language_server.sh",
+                "filetypes": ["elixir", "eelixir"]
+            }
+        }
+}
