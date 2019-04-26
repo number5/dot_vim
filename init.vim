@@ -69,8 +69,10 @@ Plug 'wincent/ferret' " {{{
 
 Plug 'Shougo/echodoc.vim'
 
+" Languages
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'} 
@@ -83,20 +85,21 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 "Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
 "Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
+"Plug 'walm/jshint.vim'
+"Plug 'othree/yajs.vim'
 
-" Languages
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 " {{
-let g:polyglot_disabled = ['nginx']
+let g:jsx_ext_required = 1
+let g:polyglot_disabled = ['javascript', 'yaml', 'nginx']
 " }}
 Plug 'tpope/vim-ragtag'
-Plug 'walm/jshint.vim'
-Plug 'othree/yajs.vim'
 Plug 'mattn/emmet-vim'
  
 Plug 'saltstack/salt-vim'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'avakhov/vim-yaml'
+
+"Plug 'hynek/vim-python-pep8-indent'
+"Plug 'avakhov/vim-yaml'
 "Plug 'b4b4r07/vim-hcl'
 Plug 'hashivim/vim-hashicorp-tools'
 " {{{ Elixir
@@ -210,8 +213,6 @@ Plug 'chrisbra/unicode.vim'
 call plug#end()
 
 " polyglot
-let g:jsx_ext_required = 1
-let g:polyglot_disabled = ['javascript', 'yaml']
 
 filetype on
 filetype plugin on
@@ -316,6 +317,10 @@ nnoremap <leader>r  :Yanks<CR>
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
 au FileType python  set tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 
+" add yaml stuffs
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
 au BufNewFile,BufRead *.jinja set syntax=jinja
 au BufNewFile,BufRead *.xhtml set syntax=jinja
 au BufNewFile,BufRead *.html set syntax=jinja
@@ -332,7 +337,6 @@ au Filetype mkd setlocal ts=2 sts=2 sw=2  " for Markdown
 au Filetype lua setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
 "au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
-au FileType javascript set makeprg=jshint\ %
 augroup filetypedetect
   " nginx, from nginx.vim in chr4/nginx.vim
 au BufRead,BufNewFile *.nginx set ft=nginx
