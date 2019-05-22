@@ -1,46 +1,46 @@
 {
-        "coc.preferences.colorSupport": true,
-        "coc.preferences.hoverTarget": "float",
-        "coc.preferences.jumpCommand": "split",
-        "diagnostic.enableSign": true,
-        "diagnostic.refreshOnInsertMode": true,
-        "list.maxHeight": 20,
-        "list.maxPreviewHeight": 20,
-        "python.formatting.blackPath": "/usr/local/bin/black",
-        "python.formatting.provider": "black",
-        "python.jediEnabled": false,
-        "python.linting.enabled": true,
-        "python.pythonPath": "/usr/local/bin/python3",
-        "signature.enable": true,
-        "signature.target": "echo",
-        "snippets.loadFromExtensions": true,
-        "snippets.snipmate.enable": false,
-        "snippets.ultisnips.directories": ["Ultisnips"], 
-        "snippets.ultisnips.enable": true,
-        "suggest.detailMaxLength": 88,
-        "suggest.enablePreview": true,
-        "suggest.minTriggerInputLength": 2,
-        "suggest.noselect": true,
-        "suggest.snippetIndicator": "^",
-        "suggest.timeout": 500,
-        "suggest.triggerAfterInsertEnter": true,
-        "languageserver": {
-            "elixirLS": {
-                "command": "/Users/bruce/src/git/elixir-ls/build/language_server.sh",
-                "filetypes": ["elixir", "eelixir"]
-            },
-            "efm": {
-                "command": "efm-langserver",
-                "args": [],
-                // custom config path
-                // "args": ["-c", "/path/to/your/config.yaml"],
-                "filetypes": ["vim", "eruby", "markdown"]
-            }
+    "coc.preferences.colorSupport": true,
+    "coc.preferences.hoverTarget": "float",
+    "coc.preferences.jumpCommand": "split",
+    "diagnostic.enableSign": true,
+    "diagnostic.refreshOnInsertMode": true,
+    "list.maxHeight": 20,
+    "list.maxPreviewHeight": 20,
+    "python.formatting.blackPath": "/usr/local/bin/black",
+    "python.formatting.provider": "black",
+    "python.jediEnabled": false,
+    "python.linting.enabled": true,
+    "python.pythonPath": "/usr/local/bin/python3",
+    "signature.enable": true,
+    "signature.target": "echo",
+    "snippets.loadFromExtensions": true,
+    "snippets.snipmate.enable": false,
+    "snippets.ultisnips.directories": ["Ultisnips"], 
+    "snippets.ultisnips.enable": true,
+    "suggest.detailMaxLength": 88,
+    "suggest.enablePreview": true,
+    "suggest.minTriggerInputLength": 2,
+    "suggest.noselect": true,
+    "suggest.snippetIndicator": "^",
+    "suggest.timeout": 500,
+    "suggest.triggerAfterInsertEnter": true,
+    "languageserver": {
+        "elixirLS": {
+            "command": "/Users/bruce/src/git/elixir-ls/build/language_server.sh",
+            "filetypes": ["elixir", "eelixir"]
         },
-        "yaml.format.enable": true,
-        "yaml.hover": true,
-        "yaml.schemas": {
-            // "kubernetes": "/*.yaml",
-            "http://json.schemastore.org/circleciconfig": "/.circleci/config.yml"
+        "efm": {
+            "command": "efm-langserver",
+            "args": [],
+            // custom config path
+            // "args": ["-c", "/path/to/your/config.yaml"],
+            "filetypes": ["vim", "eruby", "markdown"]
         }
+    },
+    "yaml.format.enable": true,
+    "yaml.hover": true,
+    "yaml.schemas": {
+        // "kubernetes": "/*.yaml",
+        "http://json.schemastore.org/circleciconfig": "/.circleci/config.yml"
+    }
 }

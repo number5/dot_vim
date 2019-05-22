@@ -70,10 +70,9 @@ Plug 'wincent/ferret' " {{{
 Plug 'Shougo/echodoc.vim'
 
 " Languages
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'} 
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} 
@@ -106,7 +105,7 @@ Plug 'hashivim/vim-hashicorp-tools'
 Plug 'powerman/vim-plugin-AnsiEsc'
 "}}}
 "
-
+Plug 'chr4/nginx.vim'
 Plug 'tpope/vim-abolish'
 Plug 'majutsushi/tagbar'
 
@@ -209,6 +208,12 @@ let g:nv_default_extension = '.md'
 "}}
 
 Plug 'chrisbra/unicode.vim'
+
+" mergetool {{
+Plug 'samoshkin/vim-mergetool'
+let g:mergetool_layout = 'mr'
+let g:mergetool_prefer_revision = 'local'
+" }}
 
 call plug#end()
 
