@@ -70,7 +70,7 @@ Plug 'wincent/ferret' " {{{
 Plug 'Shougo/echodoc.vim'
 
 " Languages
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'} 
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
@@ -82,25 +82,15 @@ Plug 'w0rp/ale'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-"Plug 'ternjs/tern_for_vim', { 'for': ['javascript', 'javascript.jsx'] }
-"Plug 'othree/jspc.vim', { 'for': ['javascript', 'javascript.jsx'] }
-"Plug 'walm/jshint.vim'
-"Plug 'othree/yajs.vim'
 
-"Plug 'sheerun/vim-polyglot'
-" {{
-let g:jsx_ext_required = 1
-let g:polyglot_disabled = ['javascript', 'yaml', 'nginx']
-" }}
 Plug 'tpope/vim-ragtag'
 Plug 'mattn/emmet-vim'
  
 Plug 'saltstack/salt-vim'
 
-"Plug 'hynek/vim-python-pep8-indent'
-"Plug 'avakhov/vim-yaml'
-"Plug 'b4b4r07/vim-hcl'
-Plug 'hashivim/vim-hashicorp-tools'
+
+"Plug 'hashivim/vim-hashicorp-tools'
+Plug '$HOME/src/git/vim-hashicorp-tools'
 " {{{ Elixir
 Plug 'powerman/vim-plugin-AnsiEsc'
 "}}}
