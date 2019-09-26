@@ -78,7 +78,7 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} 
 Plug 'liuchengxu/vista.vim'
 
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -87,7 +87,7 @@ Plug 'tpope/vim-ragtag'
 Plug 'mattn/emmet-vim'
  
 Plug 'saltstack/salt-vim'
-
+Plug 'towolf/vim-helm'
 
 "Plug 'hashivim/vim-hashicorp-tools'
 Plug '$HOME/src/git/vim-hashicorp-tools'
