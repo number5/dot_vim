@@ -78,7 +78,17 @@ Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} 
 Plug 'liuchengxu/vista.vim'
 
-Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale' "{{
+  let g:ale_fixers = {
+  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+  \}
+  let g:ale_linters = {
+  \   'terraform': ['terraform'],
+  \}
+  let g:ale_close_preview_on_insert = 1
+  let g:ale_fix_on_save = 1
+  let g:ale_lint_on_text_changed = "Always"
+"}}
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -237,6 +247,7 @@ set ignorecase
 set inccommand=nosplit
 set laststatus=2
 set linebreak
+set breakindent
 set lz " do not redraw while running macros (much faster) 
 set nobackup " Disable Generation of Backup Files
 set noswapfile
@@ -266,6 +277,7 @@ set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=longest,full " show a list when pressing tab and complete
                        " first full match
 set cpo&vim " for neocomplcache
+set cpo+=n " line numbers for wrapped lines
 set secure
 "set noshowmode
 
@@ -391,8 +403,7 @@ imap <F3> <C-R>=strftime("%x %r")<CR>
 
 
 " paste
-nnoremap <silent> <F5> :set paste!<bar>set paste?<CR>
-set pastetoggle=<F5>
+set pastetoggle=<C-P>
 
 " Edit the vimrc file
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
