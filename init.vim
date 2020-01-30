@@ -1,5 +1,5 @@
 let g:python3_host_prog = '/usr/local/bin/python3'
-"let g:loaded_python_provider = 1 
+"let g:loaded_python_provider = 1
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'chriskempson/base16-vim'
@@ -70,12 +70,12 @@ Plug 'wincent/ferret' " {{{
 Plug 'Shougo/echodoc.vim'
 
 " Languages
-Plug 'neoclide/coc.nvim', {'branch': 'release'} 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'} 
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'} 
+Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'liuchengxu/vista.vim'
 
 Plug 'dense-analysis/ale' "{{
@@ -95,7 +95,7 @@ Plug 'honza/vim-snippets'
 
 Plug 'tpope/vim-ragtag'
 Plug 'mattn/emmet-vim'
- 
+
 Plug 'saltstack/salt-vim'
 Plug 'towolf/vim-helm'
 
@@ -106,6 +106,7 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 "}}}
 "
 Plug 'chr4/nginx.vim'
+Plug 'LokiChaos/vim-tintin'
 Plug 'tpope/vim-abolish'
 Plug 'majutsushi/tagbar'
 
@@ -138,7 +139,7 @@ Plug 'terryma/vim-expand-region' " {{{
 " vim expand region
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
-" }}} 
+" }}}
 
 Plug 'maxbrunsfeld/vim-yankstack'
 
@@ -195,7 +196,7 @@ set rtp+=/usr/local/opt/fzf
 Plug 'junegunn/fzf.vim'
 " {{{
   let  g:fzf_nvim_statusline = 0
-  let g:fzf_layout = { 'left': '~40%' } 
+  let g:fzf_layout = { 'left': '~40%' }
 " }}}
 
 Plug 'hecal3/vim-leader-guide'
@@ -248,7 +249,7 @@ set inccommand=nosplit
 set laststatus=2
 set linebreak
 set breakindent
-set lz " do not redraw while running macros (much faster) 
+set lz " do not redraw while running macros (much faster)
 set nobackup " Disable Generation of Backup Files
 set noswapfile
 set novisualbell
@@ -256,7 +257,7 @@ set number
 set ruler
 set scrolloff=7
 set shiftwidth=4  " set default to 4, need set to 2 for ruby type
-set showbreak=↪\ \  
+set showbreak=↪\ \
 set showcmd
 set showmatch
 set smartindent " Set Better Indention
@@ -285,11 +286,11 @@ set secure
 set cf   " confirm
 
 " for textobject-rubyblock
-runtime macros/matchit.vim 
+runtime macros/matchit.vim
 
 
 let mapleader = "\<Space>"
-let localmapleader = '\<Space>' 
+let localmapleader = '\<Space>'
 
 " map ; to :
 nnoremap ; :
@@ -351,7 +352,7 @@ au BufRead,BufNewFile nginx*.conf set ft=nginx
 au BufRead,BufNewFile *nginx.conf set ft=nginx
 au BufRead,BufNewFile */etc/nginx/*.conf set ft=nginx
 au BufRead,BufNewFile */usr/local/nginx/conf/*.conf set ft=nginx
-augroup end 
+augroup end
 
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
@@ -425,11 +426,11 @@ au VimEnter * if &diff | execute 'windo set wrap' | endif
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-" mappings for fzf 
+" mappings for fzf
 nnoremap <silent> <C-B> :Buffers<Cr>
 nnoremap <silent> <leader>e :Files<Cr>
 
-" ferret 
+" ferret
 nmap <leader>z <Plug>(FerretAckWord)
 
 " no auto folding
@@ -437,5 +438,5 @@ set nofoldenable
 set foldmethod=indent
 set foldminlines=2
 
-set termguicolors   
+set termguicolors
 set cursorline
