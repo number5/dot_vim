@@ -85,9 +85,14 @@ Plug 'dense-analysis/ale' "{{
   let g:ale_linters = {
   \   'terraform': ['terraform'],
   \}
+
+  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+  let g:ale_sign_error = '✘'
+  let g:ale_sign_warning = '⚠'
+  let g:ale_lint_on_text_changed = 'never'
   let g:ale_close_preview_on_insert = 1
   let g:ale_fix_on_save = 1
-  let g:ale_lint_on_text_changed = "Always"
+  "let g:ale_lint_on_text_changed = "Always"
 "}}
 
 Plug 'SirVer/ultisnips'
@@ -165,11 +170,11 @@ Plug 'junegunn/vim-slash' " {{{
 noremap <plug>(slash-after) zz
 "}}}
 
-Plug 'osyo-manga/vim-over' " {{{
-  let g:over_command_line_prompt = ':'
-  let g:over_enable_cmd_window = 1
-  let g:over#command_line#search#enable_incsearch = 1
-  let g:over#command_line#search#enable_move_cursor = 1
+"Plug 'osyo-manga/vim-over' " {{{
+"  let g:over_command_line_prompt = ':'
+"  let g:over_enable_cmd_window = 1
+"  let g:over#command_line#search#enable_incsearch = 1
+"  let g:over#command_line#search#enable_move_cursor = 1
 
 " }}}
 
@@ -215,7 +220,7 @@ Plug 'samoshkin/vim-mergetool'
 let g:mergetool_layout = 'mr'
 let g:mergetool_prefer_revision = 'local'
 " }}
-
+Plug 'Olical/conjure', {'tag': 'v3.2.0'}
 call plug#end()
 
 " polyglot
@@ -433,6 +438,11 @@ nnoremap <silent> <leader>e :Files<Cr>
 " ferret
 nmap <leader>z <Plug>(FerretAckWord)
 
+"yaml
+
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+set foldlevelstart=20
+
 " no auto folding
 set nofoldenable
 set foldmethod=indent
@@ -440,3 +450,11 @@ set foldminlines=2
 
 set termguicolors
 set cursorline
+
+" GUI only config
+set completeopt-=preview
+set guifont=Sauce\ Code\ Powerline\ Light:h15
+
+"set guifont=Inconsolata\ Medium\ 15
+"set guifont=Source\ Code\ Pro\ Semibold:h15
+set lines=40 columns=85

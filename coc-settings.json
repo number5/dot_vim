@@ -40,7 +40,6 @@
     "yaml.format.enable": true,
     "yaml.hover": true,
     "yaml.schemas": {
-        // "kubernetes": "/*.yaml",
         "http://json.schemastore.org/circleciconfig": "/.circleci/config.yml"
     }
 }
