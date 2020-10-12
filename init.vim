@@ -214,6 +214,7 @@ let g:nv_default_extension = '.md'
 "}}
 
 Plug 'chrisbra/unicode.vim'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " mergetool {{
 Plug 'samoshkin/vim-mergetool'
