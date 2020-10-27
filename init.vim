@@ -7,31 +7,25 @@ Plug 'felixjung/vim-base16-lightline'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
+Plug 'bluz71/vim-nightfly-guicolors'
 
 Plug 'itchyny/lightline.vim' " {{{
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'nightfly',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction'],
       \             [ 'readonly', 'filename', 'modified' ] ],
       \   'right': [ [ 'lineinfo'],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
       \ },
       \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction',
       \   'readonly': 'MyReadonly',
       \   'modified': 'MyModified',
       \ },
       \ 'separator': { 'right': '', 'left': '' },
       \ 'subseparator': { 'right': '', 'left': '' }
       \ }
-
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
 
 function! MyReadonly()
   if &filetype == "help"
@@ -70,12 +64,25 @@ Plug 'wincent/ferret' " {{{
 Plug 'Shougo/echodoc.vim'
 
 " Languages
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-sources', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yaml', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+
+Plug 'nvim-treesitter/nvim-treesitter'
+
+" Collection of common configurations for the Nvim LSP client
+Plug 'neovim/nvim-lspconfig'
+
+" Extensions to built-in LSP, for example, providing type inlay hints
+"Plug 'tjdevries/lsp_extensions.nvim'
+
+" Autocompletion framework for built-in LSP
+"Plug 'nvim-lua/completion-nvim'
+
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+let g:deoplete#enable_at_startup = 1
+Plug 'Shougo/deoplete-lsp'
+
+" Diagnostic navigation and settings for built-in LSP
+Plug 'nvim-lua/diagnostic-nvim'
+
 Plug 'liuchengxu/vista.vim'
 
 Plug 'dense-analysis/ale' "{{
@@ -123,7 +130,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'jbnicolai/rainbow_parentheses.vim'
 Plug 'eraserhd/parinfer-rust', {'do':
-        \  'cargo build --manifest-path=cparinfer/Cargo.toml --release'}
+        \  'cargo build --release'}
 
 Plug 'Yggdroot/indentLine'
 "{{
@@ -170,13 +177,6 @@ Plug 'junegunn/vim-slash' " {{{
 noremap <plug>(slash-after) zz
 "}}}
 
-"Plug 'osyo-manga/vim-over' " {{{
-"  let g:over_command_line_prompt = ':'
-"  let g:over_enable_cmd_window = 1
-"  let g:over#command_line#search#enable_incsearch = 1
-"  let g:over#command_line#search#enable_move_cursor = 1
-
-" }}}
 
 Plug 'terryma/vim-multiple-cursors' " {{{
   function! Multiple_cursors_before()
@@ -206,6 +206,7 @@ Plug 'junegunn/fzf.vim'
 
 Plug 'hecal3/vim-leader-guide'
 Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-signify'
 
 " NV {{
 Plug 'Alok/notational-fzf-vim'
@@ -221,10 +222,8 @@ Plug 'samoshkin/vim-mergetool'
 let g:mergetool_layout = 'mr'
 let g:mergetool_prefer_revision = 'local'
 " }}
-Plug 'Olical/conjure', {'tag': 'v3.2.0'}
+Plug 'Olical/conjure', {'tag': 'v4.7.0'}
 call plug#end()
-
-" polyglot
 
 filetype on
 filetype plugin on
@@ -232,13 +231,95 @@ filetype indent on
 syntax on
 compiler ruby
 
-colorscheme onedark
-"colorscheme gruvbox
-let g:gruvbox_contrast_dark='hard'
-"colorscheme dracula
-"colorscheme base16-twilight
-set bg=dark
-let g:solarized_termcolors=256
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect
+
+" Avoid showing extra messages when using completion
+set shortmess+=c
+
+
+" Configure lsp
+" https://github.com/neovim/nvim-lspconfig#rust_analyzer
+lua <<EOF
+
+-- nvim_lsp object
+local nvim_lsp = require'nvim_lsp'
+
+-- function to attach completion and diagnostics
+-- when setting up lsp
+local on_attach = function(client)
+    -- require'completion'.on_attach(client)
+    require'diagnostic'.on_attach(client)
+end
+
+-- Enable rust_analyzer
+nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
+nvim_lsp.jedi_language_server.setup({on_attach=on_attach})
+nvim_lsp.sumneko_lua.setup({on_attach=on_attach})
+nvim_lsp.terraformls.setup({
+                on_attach=on_attach,
+                cmd = {'terraform-ls', 'serve'}
+                })
+
+EOF
+
+" Code navigation shortcuts
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+
+" Code navigation shortcuts
+nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
+nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
+nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+
+" Trigger completion with <tab>
+" found in :help completion
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? "\<C-n>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ completion#trigger_completion()
+
+" Visualize diagnostics
+let g:diagnostic_enable_virtual_text = 1
+let g:diagnostic_trimmed_virtual_text = '40'
+" Don't show diagnostics while in insert mode
+let g:diagnostic_insert_delay = 1
+
+" have a fixed column for the diagnostics to appear in
+" this removes the jitter when warnings/errors flow in
+set signcolumn=yes
+
+" Set updatetime for CursorHold
+" 300ms of no cursor movement to trigger CursorHold
+set updatetime=3200
+" Show diagnostic popup on cursor hover
+autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+
+" Goto previous/next diagnostic warning/error
+nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
+nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
+
+" Enable type inlay hints
+"autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
+"\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
 set autoindent
 set backspace=indent,eol,start
@@ -360,6 +441,9 @@ au BufRead,BufNewFile */etc/nginx/*.conf set ft=nginx
 au BufRead,BufNewFile */usr/local/nginx/conf/*.conf set ft=nginx
 augroup end
 
+
+
+
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
 vmap <leader>c :s/\<\(.\)\(\k*\)\>/\u\1\L\2/g<CR>
@@ -453,9 +537,17 @@ set termguicolors
 set cursorline
 
 " GUI only config
-set completeopt-=preview
 set guifont=Sauce\ Code\ Powerline\ Light:h15
 
-"set guifont=Inconsolata\ Medium\ 15
 "set guifont=Source\ Code\ Pro\ Semibold:h15
 set lines=40 columns=85
+
+" colorscheme
+colorscheme nightfly
+"colorscheme onedark
+"colorscheme gruvbox
+let g:gruvbox_contrast_dark='hard'
+"colorscheme dracula
+"colorscheme base16-twilight
+set bg=dark
+let g:solarized_termcolors=256
