@@ -1,4 +1,4 @@
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = '/usr/local/bin/python3.8'
 "let g:loaded_python_provider = 1
 
 call plug#begin('~/.config/nvim/plugged')
@@ -134,7 +134,10 @@ Plug 'eraserhd/parinfer-rust', {'do':
 
 Plug 'Yggdroot/indentLine'
 "{{
-let g:indentLine_char = '┆'
+let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
+let g:indentLine_setColors = 0
+let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
+let g:indentLine_fileTypeExclude = ['startify']
 "}}
 Plug 'tpope/vim-jdaddy' "Json quick movements
 Plug 'nvie/vim-rst-tables'
@@ -197,7 +200,7 @@ Plug 'terryma/vim-multiple-cursors' " {{{
   endfunction
 " }}}
 
-set rtp+=/usr/local/opt/fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
 Plug 'junegunn/fzf.vim'
 " {{{
   let  g:fzf_nvim_statusline = 0
@@ -215,7 +218,7 @@ let g:nv_default_extension = '.md'
 "}}
 
 Plug 'chrisbra/unicode.vim'
-Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 
 " mergetool {{
 Plug 'samoshkin/vim-mergetool'
@@ -223,6 +226,11 @@ let g:mergetool_layout = 'mr'
 let g:mergetool_prefer_revision = 'local'
 " }}
 Plug 'Olical/conjure', {'tag': 'v4.7.0'}
+
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "{{
+let g:semshi#error_sign	= v:false
+" }}
+
 call plug#end()
 
 filetype on
@@ -527,6 +535,30 @@ nmap <leader>z <Plug>(FerretAckWord)
 
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 set foldlevelstart=20
+
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
+let g:fzf_tags_command = 'ctags -R'
+
+let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!build/**' --glob '!.dart_tool/**' --glob '!.idea'"
+
+" files in fzf
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
+
+" advanced grep
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
+
+
+
+" advanced grep(faster with preview)
+function! RipgrepFzf(query, fullscreen)
+    let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+    let initial_command = printf(command_fmt, shellescape(a:query))
+    let reload_command = printf(command_fmt, '{q}')
+    let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+    call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+endfunction
 
 " no auto folding
 set nofoldenable
