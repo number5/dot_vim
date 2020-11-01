@@ -2,8 +2,8 @@ let g:python3_host_prog = '/usr/local/bin/python3.8'
 "let g:loaded_python_provider = 1
 
 call plug#begin('~/.config/nvim/plugged')
-Plug 'chriskempson/base16-vim'
-Plug 'felixjung/vim-base16-lightline'
+"Plug 'chriskempson/base16-vim'
+"Plug 'felixjung/vim-base16-lightline'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
@@ -79,6 +79,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/deoplete-lsp'
+Plug 'Shougo/neco-syntax'
 
 " Diagnostic navigation and settings for built-in LSP
 Plug 'nvim-lua/diagnostic-nvim'
@@ -101,6 +102,8 @@ Plug 'dense-analysis/ale' "{{
   let g:ale_fix_on_save = 1
   "let g:ale_lint_on_text_changed = "Always"
 "}}
+
+Plug 'maximbaz/lightline-ale'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -281,18 +284,6 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-
-" Code navigation shortcuts
-nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <silent> <c-k> <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
-nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
-nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-
 " Trigger completion with <tab>
 " found in :help completion
 function! s:check_back_space() abort
@@ -362,7 +353,6 @@ set splitright
 
 " set wrap by default
 set wrap
-
 
 set autoread
 set switchbuf=useopen
@@ -500,13 +490,11 @@ cmap w!! w !sudo tee % >/dev/null
 
 imap <F3> <C-R>=strftime("%x %r")<CR>
 
-
 " paste
 set pastetoggle=<C-P>
 
 " Edit the vimrc file
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
 
 " markdown
 let g:vim_markdown_initial_foldlevel=3
@@ -523,10 +511,6 @@ au VimEnter * if &diff | execute 'windo set wrap' | endif
 
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
-
-" mappings for fzf
-nnoremap <silent> <C-B> :Buffers<Cr>
-nnoremap <silent> <leader>e :Files<Cr>
 
 " ferret
 nmap <leader>z <Plug>(FerretAckWord)
@@ -549,8 +533,6 @@ command! -bang -nargs=? -complete=dir Files
 " advanced grep
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
-
-
 " advanced grep(faster with preview)
 function! RipgrepFzf(query, fullscreen)
     let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
@@ -559,6 +541,10 @@ function! RipgrepFzf(query, fullscreen)
     let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
     call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
+
+" mappings for fzf
+nnoremap <silent> <C-B> :Buffers<Cr>
+nnoremap <silent> <leader>e :Files<Cr>
 
 " no auto folding
 set nofoldenable
