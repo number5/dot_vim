@@ -1,10 +1,10 @@
 let g:python3_host_prog = '/usr/local/bin/python3.8'
-"let g:loaded_python_provider = 1
+let g:loaded_python_provider = 0
 
 call plug#begin('~/.config/nvim/plugged')
 "Plug 'chriskempson/base16-vim'
 "Plug 'felixjung/vim-base16-lightline'
-Plug 'dracula/vim'
+Plug 'dracula/vim', { 'as': 'dracula-theme' }
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'bluz71/vim-nightfly-guicolors'
@@ -54,24 +54,20 @@ function! MyModified()
   endif
 endfunction
 " }}}
+"
 
 Plug 'vim-scripts/gitignore'
-
-Plug 'wincent/ferret' " {{{
-" }}}
-
-
+Plug 'wincent/ferret'
 Plug 'Shougo/echodoc.vim'
 
 " Languages
-
 Plug 'nvim-treesitter/nvim-treesitter'
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
 
 " Extensions to built-in LSP, for example, providing type inlay hints
-"Plug 'tjdevries/lsp_extensions.nvim'
+Plug 'tjdevries/lsp_extensions.nvim'
 
 " Autocompletion framework for built-in LSP
 "Plug 'nvim-lua/completion-nvim'
@@ -81,8 +77,6 @@ let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/deoplete-lsp'
 Plug 'Shougo/neco-syntax'
 
-" Diagnostic navigation and settings for built-in LSP
-Plug 'nvim-lua/diagnostic-nvim'
 
 Plug 'liuchengxu/vista.vim'
 
@@ -114,11 +108,7 @@ Plug 'mattn/emmet-vim'
 Plug 'saltstack/salt-vim'
 Plug 'towolf/vim-helm'
 
-"Plug 'hashivim/vim-hashicorp-tools'
 Plug '$HOME/src/git/vim-hashicorp-tools'
-" {{{ Elixir
-Plug 'powerman/vim-plugin-AnsiEsc'
-"}}}
 "
 Plug 'chr4/nginx.vim'
 Plug 'LokiChaos/vim-tintin'
@@ -203,10 +193,11 @@ Plug 'terryma/vim-multiple-cursors' " {{{
   endfunction
 " }}}
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " fzf itself
+" Plugin outside ~/.vim/plugged with post-update hook
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " {{{
-  let  g:fzf_nvim_statusline = 0
+"  let  g:fzf_nvim_statusline = 0
   let g:fzf_layout = { 'left': '~40%' }
 " }}}
 
@@ -234,6 +225,8 @@ Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "{{
 let g:semshi#error_sign	= v:false
 " }}
 
+Plug 'conradirwin/vim-bracketed-paste'
+
 call plug#end()
 
 filetype on
@@ -243,35 +236,28 @@ syntax on
 compiler ruby
 
 " Set completeopt to have a better completion experience
-set completeopt=menuone,noinsert,noselect
+" set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
+" tell neovim to highlight embed languages (aka Lua) in vim config files
+let g:vimsyn_embed= 'l'
 
 " Configure lsp
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
 lua <<EOF
 
--- nvim_lsp object
-local nvim_lsp = require'nvim_lsp'
-
--- function to attach completion and diagnostics
--- when setting up lsp
-local on_attach = function(client)
-    -- require'completion'.on_attach(client)
-    require'diagnostic'.on_attach(client)
-end
+-- lspconfig object
+local lspconfig = require'lspconfig'
 
 -- Enable rust_analyzer
-nvim_lsp.rust_analyzer.setup({ on_attach=on_attach })
-nvim_lsp.jedi_language_server.setup({on_attach=on_attach})
-nvim_lsp.sumneko_lua.setup({on_attach=on_attach})
-nvim_lsp.terraformls.setup({
-                on_attach=on_attach,
+lspconfig.rust_analyzer.setup{}
+lspconfig.jedi_language_server.setup{}
+lspconfig.sumneko_lua.setup{}
+lspconfig.terraformls.setup{
                 cmd = {'terraform-ls', 'serve'}
-                })
-
+                }
 EOF
 
 " Code navigation shortcuts
@@ -310,7 +296,7 @@ set signcolumn=yes
 " 300ms of no cursor movement to trigger CursorHold
 set updatetime=3200
 " Show diagnostic popup on cursor hover
-autocmd CursorHold * lua vim.lsp.util.show_line_diagnostics()
+autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
 
 " Goto previous/next diagnostic warning/error
 nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
@@ -326,7 +312,7 @@ set cmdheight=2 " Statusbar
 set colorcolumn=80
 set expandtab
 set gdefault
-set hidden
+"set hidden
 set history=1000
 set hlsearch
 set ignorecase
@@ -348,11 +334,8 @@ set showcmd
 set showmatch
 set smartindent " Set Better Indention
 set smarttab
-set splitbelow
 set splitright
 
-" set wrap by default
-set wrap
 
 set autoread
 set switchbuf=useopen
@@ -438,9 +421,6 @@ au BufRead,BufNewFile *nginx.conf set ft=nginx
 au BufRead,BufNewFile */etc/nginx/*.conf set ft=nginx
 au BufRead,BufNewFile */usr/local/nginx/conf/*.conf set ft=nginx
 augroup end
-
-
-
 
 " key mapping
 " Titlise Visually Selected Text (map for .vimrc)
@@ -552,7 +532,7 @@ set foldmethod=indent
 set foldminlines=2
 
 set termguicolors
-set cursorline
+" set cursorline
 
 " GUI only config
 set guifont=Sauce\ Code\ Powerline\ Light:h15
