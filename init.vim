@@ -65,6 +65,9 @@ Plug 'nvim-treesitter/nvim-treesitter'
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
+Plug 'ojroques/nvim-lspfuzzy', {'branch': 'main'}
+
+Plug 'junegunn/fzf.vim'
 
 " Extensions to built-in LSP, for example, providing type inlay hints
 Plug 'tjdevries/lsp_extensions.nvim'
@@ -76,7 +79,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
 Plug 'Shougo/deoplete-lsp'
 Plug 'Shougo/neco-syntax'
-
+Plug 'martinda/Jenkinsfile-vim-syntax'
 
 Plug 'liuchengxu/vista.vim'
 
@@ -129,7 +132,7 @@ Plug 'Yggdroot/indentLine'
 "{{
 let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
-let g:indentLine_setConceal = 0                         " actually fix the annoying markdown links conversion
+let g:indentLine_setConceal = 0  " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
 "}}
 Plug 'tpope/vim-jdaddy' "Json quick movements
@@ -193,14 +196,6 @@ Plug 'terryma/vim-multiple-cursors' " {{{
   endfunction
 " }}}
 
-" Plugin outside ~/.vim/plugged with post-update hook
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-" {{{
-"  let  g:fzf_nvim_statusline = 0
-  let g:fzf_layout = { 'left': '~40%' }
-" }}}
-
 Plug 'hecal3/vim-leader-guide'
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
@@ -228,6 +223,7 @@ let g:semshi#error_sign	= v:false
 Plug 'conradirwin/vim-bracketed-paste'
 
 call plug#end()
+
 
 filetype on
 filetype plugin on
@@ -500,6 +496,9 @@ nmap <leader>z <Plug>(FerretAckWord)
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 set foldlevelstart=20
 
+" FZF
+set rtp+=/usr/local/opt/fzf
+
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
 let g:fzf_tags_command = 'ctags -R'
 
@@ -510,9 +509,6 @@ let $FZF_DEFAULT_COMMAND = "rg --files --hidden --glob '!.git/**' --glob '!build
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--inline-info']}), <bang>0)
 
-" advanced grep
-command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
-
 " advanced grep(faster with preview)
 function! RipgrepFzf(query, fullscreen)
     let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
@@ -521,6 +517,8 @@ function! RipgrepFzf(query, fullscreen)
     let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
     call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 endfunction
+
+command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 " mappings for fzf
 nnoremap <silent> <C-B> :Buffers<Cr>
