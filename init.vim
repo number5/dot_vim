@@ -54,14 +54,14 @@ function! MyModified()
   endif
 endfunction
 " }}}
-"
+
 
 Plug 'vim-scripts/gitignore'
 Plug 'wincent/ferret'
 Plug 'Shougo/echodoc.vim'
 
 " Languages
-Plug 'nvim-treesitter/nvim-treesitter'
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
@@ -74,6 +74,7 @@ Plug 'tjdevries/lsp_extensions.nvim'
 
 " Autocompletion framework for built-in LSP
 "Plug 'nvim-lua/completion-nvim'
+
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 let g:deoplete#enable_at_startup = 1
@@ -98,9 +99,9 @@ Plug 'dense-analysis/ale' "{{
   let g:ale_close_preview_on_insert = 1
   let g:ale_fix_on_save = 1
   "let g:ale_lint_on_text_changed = "Always"
-"}}
+""}}
 
-Plug 'maximbaz/lightline-ale'
+"Plug 'maximbaz/lightline-ale'
 
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -242,15 +243,15 @@ let g:vimsyn_embed= 'l'
 
 " Configure lsp
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
-lua <<EOF
 
+lua <<EOF
 -- lspconfig object
 local lspconfig = require'lspconfig'
 
 -- Enable rust_analyzer
 lspconfig.rust_analyzer.setup{}
 lspconfig.jedi_language_server.setup{}
-lspconfig.sumneko_lua.setup{}
+-- lspconfig.sumneko_lua.setup{}
 lspconfig.terraformls.setup{
                 cmd = {'terraform-ls', 'serve'}
                 }
@@ -317,13 +318,13 @@ set inccommand=nosplit
 set laststatus=2
 set linebreak
 set breakindent
-set lz " do not redraw while running macros (much faster)
+set nolz " do not redraw while running macros (much faster)
 set nobackup " Disable Generation of Backup Files
 set noswapfile
 set novisualbell
 set number
 set ruler
-set scrolloff=7
+set scrolloff=10
 set shiftwidth=4  " set default to 4, need set to 2 for ruby type
 set showbreak=↪\ \
 set showcmd
@@ -468,6 +469,7 @@ imap <F3> <C-R>=strftime("%x %r")<CR>
 
 " paste
 set pastetoggle=<C-P>
+
 
 " Edit the vimrc file
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
