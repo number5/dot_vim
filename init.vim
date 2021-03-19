@@ -61,7 +61,7 @@ Plug 'wincent/ferret'
 Plug 'Shougo/echodoc.vim'
 
 " Languages
-"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
@@ -215,7 +215,7 @@ Plug 'samoshkin/vim-mergetool'
 let g:mergetool_layout = 'mr'
 let g:mergetool_prefer_revision = 'local'
 " }}
-Plug 'Olical/conjure', {'tag': 'v4.7.0'}
+Plug 'Olical/conjure', {'tag': 'v4.16.0'}
 
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "{{
 let g:semshi#error_sign	= v:false
