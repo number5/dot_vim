@@ -8,52 +8,10 @@ Plug 'dracula/vim', { 'as': 'dracula-theme' }
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'bluz71/vim-nightfly-guicolors'
+Plug 'mhartington/oceanic-next'
 
-Plug 'itchyny/lightline.vim' " {{{
-let g:lightline = {
-      \ 'colorscheme': 'nightfly',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo'],
-      \              [ 'percent' ],
-      \              [ 'fileformat', 'fileencoding', 'filetype' ] ],
-      \ },
-      \ 'component_function': {
-      \   'readonly': 'MyReadonly',
-      \   'modified': 'MyModified',
-      \ },
-      \ 'separator': { 'right': '', 'left': '' },
-      \ 'subseparator': { 'right': '', 'left': '' }
-      \ }
-
-function! MyReadonly()
-  if &filetype == "help"
-    return ""
-  elseif &readonly
-    return " "
-  else
-    return ""
-  endif
-endfunction
-
-function! MyFilename()
-  return ('' != MyReadonly() ? MyReadonly() . ' ' : '') .
-       \ ('' != expand('%') ? expand('%') : '[NoName]')
-endfunction
-
-function! MyModified()
-  if &filetype == "help"
-    return ""
-  elseif &modified
-    return "+"
-  elseif &modifiable
-    return ""
-  else
-    return ""
-  endif
-endfunction
-" }}}
+Plug 'kyazdani42/nvim-web-devicons' " lua
+Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
 
 Plug 'vim-scripts/gitignore'
@@ -101,8 +59,6 @@ Plug 'dense-analysis/ale' "{{
   "let g:ale_lint_on_text_changed = "Always"
 ""}}
 
-"Plug 'maximbaz/lightline-ale'
-
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
@@ -130,7 +86,9 @@ Plug 'eraserhd/parinfer-rust', {'do':
         \  'cargo build --release'}
 
 Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 "{{
+
 let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0  " actually fix the annoying markdown links conversion
@@ -197,7 +155,7 @@ Plug 'terryma/vim-multiple-cursors' " {{{
   endfunction
 " }}}
 
-Plug 'hecal3/vim-leader-guide'
+Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
 
@@ -243,6 +201,8 @@ let g:vimsyn_embed= 'l'
 
 " Configure lsp
 " https://github.com/neovim/nvim-lspconfig#rust_analyzer
+
+lua require 'init'
 
 lua <<EOF
 -- lspconfig object
@@ -436,12 +396,6 @@ vmap <A-]> >gv
 vmap <A-[> <gv
 
 
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-
 " quicker window switching
 nnoremap <M-h> <C-w>h
 nnoremap <M-j> <C-w>j
@@ -541,7 +495,8 @@ set guifont=Sauce\ Code\ Powerline\ Light:h15
 set lines=40 columns=85
 
 " colorscheme
-colorscheme nightfly
+colorscheme OceanicNext
+"colorscheme nightfly
 "colorscheme onedark
 "colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
