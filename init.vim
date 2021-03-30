@@ -2,42 +2,32 @@ let g:python3_host_prog = '/usr/local/bin/python3.8'
 let g:loaded_python_provider = 0
 
 call plug#begin('~/.config/nvim/plugged')
-"Plug 'chriskempson/base16-vim'
-"Plug 'felixjung/vim-base16-lightline'
+" ColorSchemes
 Plug 'dracula/vim', { 'as': 'dracula-theme' }
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 
+
 Plug 'kyazdani42/nvim-web-devicons' " lua
 Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
 
 Plug 'vim-scripts/gitignore'
-Plug 'wincent/ferret'
-Plug 'Shougo/echodoc.vim'
 
 " Languages
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
-Plug 'ojroques/nvim-lspfuzzy', {'branch': 'main'}
 
 Plug 'junegunn/fzf.vim'
 
 " Extensions to built-in LSP, for example, providing type inlay hints
 Plug 'tjdevries/lsp_extensions.nvim'
 
-" Autocompletion framework for built-in LSP
-"Plug 'nvim-lua/completion-nvim'
 
-
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-let g:deoplete#enable_at_startup = 1
-Plug 'Shougo/deoplete-lsp'
-Plug 'Shougo/neco-syntax'
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
 Plug 'liuchengxu/vista.vim'
@@ -59,20 +49,12 @@ Plug 'dense-analysis/ale' "{{
   "let g:ale_lint_on_text_changed = "Always"
 ""}}
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-Plug 'tpope/vim-ragtag'
-Plug 'mattn/emmet-vim'
-
 Plug 'saltstack/salt-vim'
 Plug 'towolf/vim-helm'
-
 Plug '$HOME/src/git/vim-hashicorp-tools'
-"
 Plug 'chr4/nginx.vim'
 Plug 'LokiChaos/vim-tintin'
-Plug 'tpope/vim-abolish'
+
 Plug 'majutsushi/tagbar'
 
 " clojure
@@ -81,35 +63,17 @@ Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-Plug 'jbnicolai/rainbow_parentheses.vim'
-Plug 'eraserhd/parinfer-rust', {'do':
-        \  'cargo build --release'}
+Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
+Plug 'p00f/nvim-ts-rainbow'
+Plug 'Olical/conjure', {'tag': 'v4.16.0'}
 
-Plug 'Yggdroot/indentLine'
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 "{{
-
 let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_setConceal = 0  " actually fix the annoying markdown links conversion
 let g:indentLine_fileTypeExclude = ['startify']
 "}}
-Plug 'tpope/vim-jdaddy' "Json quick movements
-Plug 'nvie/vim-rst-tables'
-Plug 'godlygeek/tabular'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-surround'
-
-Plug 'wellle/targets.vim'
-Plug 'bps/vim-textobj-python'
-Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'kana/vim-textobj-user'
-Plug 'terryma/vim-expand-region' " {{{
-" vim expand region
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-" }}}
 
 Plug 'maxbrunsfeld/vim-yankstack'
 
@@ -135,46 +99,11 @@ Plug 'junegunn/vim-slash' " {{{
 noremap <plug>(slash-after) zz
 "}}}
 
-
-Plug 'terryma/vim-multiple-cursors' " {{{
-  function! Multiple_cursors_before()
-    if exists(':NeoCompleteLock') == 2
-      NeoCompleteLock
-    endif
-    if exists('*SwoopFreezeContext') != 0
-        call SwoopFreezeContext()
-    endif
-  endfunction
-  function! Multiple_cursors_after()
-    if exists(':NeoCompleteUnlock') == 2
-      NeoCompleteUnlock
-    endif
-    if exists('*SwoopUnFreezeContext') != 0
-        call SwoopUnFreezeContext()
-    endif
-  endfunction
-" }}}
-
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
 
-" NV {{
-Plug 'Alok/notational-fzf-vim'
-let g:nv_search_paths = [ '~/learn/knowledge/', '~/learn/blog/contents']
-let g:nv_default_extension = '.md'
-"}}
-
-Plug 'chrisbra/unicode.vim'
-"Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-
-" mergetool {{
-Plug 'samoshkin/vim-mergetool'
-let g:mergetool_layout = 'mr'
-let g:mergetool_prefer_revision = 'local'
-" }}
-Plug 'Olical/conjure', {'tag': 'v4.16.0'}
-
+" Python syntax highlighting
 Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "{{
 let g:semshi#error_sign	= v:false
 " }}
@@ -188,19 +117,12 @@ filetype on
 filetype plugin on
 filetype indent on
 syntax on
-compiler ruby
-
-" Set completeopt to have a better completion experience
-" set completeopt=menuone,noinsert,noselect
 
 " Avoid showing extra messages when using completion
 set shortmess+=c
 
 " tell neovim to highlight embed languages (aka Lua) in vim config files
 let g:vimsyn_embed= 'l'
-
-" Configure lsp
-" https://github.com/neovim/nvim-lspconfig#rust_analyzer
 
 lua require 'init'
 
@@ -215,6 +137,13 @@ lspconfig.jedi_language_server.setup{}
 lspconfig.terraformls.setup{
                 cmd = {'terraform-ls', 'serve'}
                 }
+
+-- rainbow
+require'nvim-treesitter.configs'.setup {
+  rainbow = {
+    enable = true
+  }
+}
 EOF
 
 " Code navigation shortcuts
@@ -227,41 +156,7 @@ nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
-" Trigger completion with <tab>
-" found in :help completion
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
 
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ completion#trigger_completion()
-
-" Visualize diagnostics
-let g:diagnostic_enable_virtual_text = 1
-let g:diagnostic_trimmed_virtual_text = '40'
-" Don't show diagnostics while in insert mode
-let g:diagnostic_insert_delay = 1
-
-" have a fixed column for the diagnostics to appear in
-" this removes the jitter when warnings/errors flow in
-set signcolumn=yes
-
-" Set updatetime for CursorHold
-" 300ms of no cursor movement to trigger CursorHold
-set updatetime=3200
-" Show diagnostic popup on cursor hover
-autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-
-" Goto previous/next diagnostic warning/error
-nnoremap <silent> g[ <cmd>PrevDiagnosticCycle<cr>
-nnoremap <silent> g] <cmd>NextDiagnosticCycle<cr>
-
-" Enable type inlay hints
-"autocmd CursorMoved,InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost *
-"\ lua require'lsp_extensions'.inlay_hints{ prefix = '', highlight = "Comment" }
 
 set autoindent
 set backspace=indent,eol,start
@@ -269,11 +164,9 @@ set cmdheight=2 " Statusbar
 set colorcolumn=80
 set expandtab
 set gdefault
-"set hidden
 set history=1000
 set hlsearch
 set ignorecase
-"set incsearch
 set inccommand=nosplit
 set laststatus=2
 set linebreak
@@ -292,8 +185,6 @@ set showmatch
 set smartindent " Set Better Indention
 set smarttab
 set splitright
-
-
 set autoread
 set switchbuf=useopen
 set t_Co=256
@@ -302,16 +193,13 @@ set virtualedit=all
 set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=longest,full " show a list when pressing tab and complete
                        " first full match
-set cpo&vim " for neocomplcache
 set cpo+=n " line numbers for wrapped lines
 set secure
-"set noshowmode
 
-" for ruby
-set cf   " confirm
-
-" for textobject-rubyblock
-runtime macros/matchit.vim
+set noequalalways
+set wildignore+=*.pyc
+" paste
+set pastetoggle=<C-P>
 
 
 let mapleader = "\<Space>"
@@ -319,12 +207,9 @@ let localmapleader = '\<Space>'
 
 " map ; to :
 nnoremap ; :
-
 nnoremap <Leader>w :w<CR>
-
 " Avoid accidental hits of <F1> while aiming for <Esc>
 map! <F1> <Esc>
-
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
 
@@ -334,7 +219,6 @@ set listchars=tab:▸\ ,eol:¬
 " If rg is available use it as filename list generator instead of 'find'
 set grepprg=rg\ --vimgrep
 
-
 " Tagbar
 let g:tagbar_left = 1
 let g:tagbar_expand = 1
@@ -343,12 +227,11 @@ let g:tagbar_autofocus = 1
 
 nnoremap <silent> <C-l> :TagbarToggle<CR>
 
-
 " yankstack config
 nnoremap <leader>r  :Yanks<CR>
 
 " make python follow PEP8 ( http://www.python.org/dev/peps/pep-0008/ )
-au FileType python  set tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
+au FileType python set tabstop=4 shiftwidth=4 softtabstop=4 textwidth=79
 
 " add yaml stuffs
 au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml foldmethod=indent
@@ -369,7 +252,6 @@ au Filetype ruby setlocal ts=2 sts=2 sw=2
 au Filetype mkd setlocal ts=2 sts=2 sw=2  " for Markdown
 au Filetype lua setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
-"au BufNewFile,BufRead /etc/nginx/* set ft=nginx " we need this because modeline is disabled for root
 augroup filetypedetect
   " nginx, from nginx.vim in chr4/nginx.vim
 au BufRead,BufNewFile *.nginx set ft=nginx
@@ -408,11 +290,6 @@ nnoremap <Down> gj
 nnoremap k gk
 nnoremap <Up> gk
 
-
-set noequalalways
-set wildignore+=*.pyc
-
-
 " super powerful spells here
 cmap >fn <c-r>=expand('%:p')<cr>
 cmap >fd <c-r>=expand('%:p:h').'/'<cr>
@@ -420,9 +297,6 @@ cmap w!! w !sudo tee % >/dev/null
 "cmap W w
 
 imap <F3> <C-R>=strftime("%x %r")<CR>
-
-" paste
-set pastetoggle=<C-P>
 
 
 " Edit the vimrc file
@@ -444,11 +318,7 @@ au VimEnter * if &diff | execute 'windo set wrap' | endif
 " for weird osx crontab issue
 autocmd filetype crontab setlocal nobackup nowritebackup
 
-" ferret
-nmap <leader>z <Plug>(FerretAckWord)
-
 "yaml
-
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 set foldlevelstart=20
 
@@ -484,9 +354,7 @@ nnoremap <silent> <leader>e :Files<Cr>
 set nofoldenable
 set foldmethod=indent
 set foldminlines=2
-
 set termguicolors
-" set cursorline
 
 " GUI only config
 set guifont=Sauce\ Code\ Powerline\ Light:h15
