@@ -1,4 +1,5 @@
-let g:python3_host_prog = '/usr/local/bin/python3.8'
+"let g:python3_host_prog = '/usr/local/bin/python3.8'
+let g:python3_host_prog = '/usr/local/miniconda3/envs/fastapi/bin/python'
 let g:loaded_python_provider = 0
 
 call plug#begin('~/.config/nvim/plugged')
@@ -25,7 +26,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'junegunn/fzf.vim'
 
 " Extensions to built-in LSP, for example, providing type inlay hints
-Plug 'tjdevries/lsp_extensions.nvim'
+"Plug 'tjdevries/lsp_extensions.nvim'
 
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -48,6 +49,7 @@ Plug 'dense-analysis/ale' "{{
   let g:ale_fix_on_save = 1
   "let g:ale_lint_on_text_changed = "Always"
 ""}}
+Plug 'nathunsmitty/nvim-ale-diagnostic'
 
 Plug 'saltstack/salt-vim'
 Plug 'towolf/vim-helm'
@@ -65,7 +67,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'p00f/nvim-ts-rainbow'
-Plug 'Olical/conjure', {'tag': 'v4.16.0'}
+Plug 'Olical/conjure', {'tag': 'v4.17.0'}
 
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 "{{
@@ -144,6 +146,48 @@ require'nvim-treesitter.configs'.setup {
     enable = true
   }
 }
+
+-- ALE diagnostics
+require("nvim-ale-diagnostic")
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = false,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+  }
+)
+ -- This will be the path towards your sumneko folder. This is subjective
+local sumneko_root_path = os.getenv("HOME") ..
+                              "/src/git/lua-language-server"
+local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
+lspconfig.sumneko_lua.setup({
+    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
+    capabilities = capabilities,
+    settings = {
+        Lua = {
+            runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
+            completion = {enable = true, callSnippet = "Both"},
+            diagnostics = {
+                enable = true,
+                globals = {'vim', 'describe'},
+                disable = {"lowercase-global"}
+            },
+            workspace = {
+                library = {
+                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+                  --  [vim.fn.expand('/usr/share/awesome/lib')] = true
+                },
+                -- adjust these two values if your performance is not optimal
+                maxPreload = 2000,
+                preloadFileSize = 1000
+            }
+        }
+    },
+    on_attach = on_attach_common
+})
 EOF
 
 " Code navigation shortcuts
