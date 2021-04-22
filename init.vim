@@ -1,5 +1,5 @@
 "let g:python3_host_prog = '/usr/local/bin/python3.8'
-let g:python3_host_prog = '/usr/local/miniconda3/envs/fastapi/bin/python'
+let g:python3_host_prog = '/usr/local/miniconda3/envs/fastapi/bin/python3'
 let g:loaded_python_provider = 0
 
 call plug#begin('~/.config/nvim/plugged')
@@ -135,7 +135,6 @@ local lspconfig = require'lspconfig'
 -- Enable rust_analyzer
 lspconfig.rust_analyzer.setup{}
 lspconfig.jedi_language_server.setup{}
--- lspconfig.sumneko_lua.setup{}
 lspconfig.terraformls.setup{
                 cmd = {'terraform-ls', 'serve'}
                 }
@@ -221,7 +220,7 @@ set noswapfile
 set novisualbell
 set number
 set ruler
-set scrolloff=10
+"set scrolloff=5
 set shiftwidth=4  " set default to 4, need set to 2 for ruby type
 set showbreak=↪\ \
 set showcmd
@@ -233,7 +232,7 @@ set autoread
 set switchbuf=useopen
 set t_Co=256
 set title
-set virtualedit=all
+set virtualedit=onemore
 set wildmenu         " make tab completion for files/buffers act like bash
 set wildmode=longest,full " show a list when pressing tab and complete
                        " first full match
@@ -399,16 +398,11 @@ set nofoldenable
 set foldmethod=indent
 set foldminlines=2
 set termguicolors
-
-" GUI only config
-set guifont=Sauce\ Code\ Powerline\ Light:h15
-
-"set guifont=Source\ Code\ Pro\ Semibold:h15
-set lines=40 columns=85
+"set lines=40
 
 " colorscheme
-colorscheme OceanicNext
-"colorscheme nightfly
+"colorscheme OceanicNext
+colorscheme nightfly
 "colorscheme onedark
 "colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
