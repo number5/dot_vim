@@ -10,9 +10,8 @@ Plug 'joshdick/onedark.vim'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 
-
+Plug 'hoob3rt/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " lua
-Plug 'glepnir/galaxyline.nvim' , {'branch': 'main'}
 
 
 Plug 'vim-scripts/gitignore'
@@ -24,6 +23,7 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 
 Plug 'junegunn/fzf.vim'
+Plug 'vijaymarupudi/nvim-fzf'
 
 " Extensions to built-in LSP, for example, providing type inlay hints
 "Plug 'tjdevries/lsp_extensions.nvim'
@@ -67,7 +67,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'p00f/nvim-ts-rainbow'
-Plug 'Olical/conjure', {'tag': 'v4.17.0'}
+Plug 'Olical/conjure', {'tag': 'v4.18.0'}
 
 Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
 "{{
@@ -129,23 +129,6 @@ let g:vimsyn_embed= 'l'
 lua require 'init'
 
 lua <<EOF
--- lspconfig object
-local lspconfig = require'lspconfig'
-
--- Enable rust_analyzer
-lspconfig.rust_analyzer.setup{}
-lspconfig.jedi_language_server.setup{}
-lspconfig.terraformls.setup{
-                cmd = {'terraform-ls', 'serve'}
-                }
-
--- rainbow
-require'nvim-treesitter.configs'.setup {
-  rainbow = {
-    enable = true
-  }
-}
-
 -- ALE diagnostics
 require("nvim-ale-diagnostic")
 
@@ -157,36 +140,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
- -- This will be the path towards your sumneko folder. This is subjective
-local sumneko_root_path = os.getenv("HOME") ..
-                              "/src/git/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
-lspconfig.sumneko_lua.setup({
-    cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
-    capabilities = capabilities,
-    settings = {
-        Lua = {
-            runtime = {version = 'LuaJIT', path = vim.split(package.path, ';')},
-            completion = {enable = true, callSnippet = "Both"},
-            diagnostics = {
-                enable = true,
-                globals = {'vim', 'describe'},
-                disable = {"lowercase-global"}
-            },
-            workspace = {
-                library = {
-                    [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-                    [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-                  --  [vim.fn.expand('/usr/share/awesome/lib')] = true
-                },
-                -- adjust these two values if your performance is not optimal
-                maxPreload = 2000,
-                preloadFileSize = 1000
-            }
-        }
-    },
-    on_attach = on_attach_common
-})
+
 EOF
 
 " Code navigation shortcuts
