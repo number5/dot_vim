@@ -115,16 +115,6 @@ Plug 'conradirwin/vim-bracketed-paste'
 call plug#end()
 
 
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
-
-" Avoid showing extra messages when using completion
-set shortmess+=c
-
-" tell neovim to highlight embed languages (aka Lua) in vim config files
-let g:vimsyn_embed= 'l'
 
 lua require 'init'
 
@@ -155,48 +145,41 @@ nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
 
 
-set autoindent
-set backspace=indent,eol,start
+set autoread
+set breakindent
 set cmdheight=2 " Statusbar
 set colorcolumn=80
+set cpo+=n " line numbers for wrapped lines
 set expandtab
+set foldmethod=indent
+set foldminlines=2
 set gdefault
-set history=1000
-set hlsearch
 set ignorecase
 set inccommand=nosplit
-set laststatus=2
 set linebreak
-set breakindent
-set nolz " do not redraw while running macros (much faster)
 set nobackup " Disable Generation of Backup Files
+set noequalalways
+set nofoldenable
+set nolz " do not redraw while running macros (much faster)
 set noswapfile
 set novisualbell
 set number
+set pastetoggle=<C-P>
 set ruler
-"set scrolloff=5
+set secure
 set shiftwidth=4  " set default to 4, need set to 2 for ruby type
+set shortmess+=c " Avoid showing extra messages when using completion
 set showbreak=↪\ \
-set showcmd
 set showmatch
 set smartindent " Set Better Indention
-set smarttab
 set splitright
-set autoread
 set switchbuf=useopen
-set t_Co=256
+set termguicolors
 set title
 set virtualedit=onemore
-set wildmenu         " make tab completion for files/buffers act like bash
-set wildmode=longest,full " show a list when pressing tab and complete
-                       " first full match
-set cpo+=n " line numbers for wrapped lines
-set secure
-
-set noequalalways
 set wildignore+=*.pyc
-" paste
-set pastetoggle=<C-P>
+set wildmenu         " make tab completion for files/buffers act like bash
+set wildmode=longest,full " show a list when pressing tab and complete first full match
 
 
 let mapleader = "\<Space>"
@@ -249,6 +232,7 @@ au Filetype ruby setlocal ts=2 sts=2 sw=2
 au Filetype mkd setlocal ts=2 sts=2 sw=2  " for Markdown
 au Filetype lua setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
+
 augroup filetypedetect
   " nginx, from nginx.vim in chr4/nginx.vim
 au BufRead,BufNewFile *.nginx set ft=nginx
@@ -347,20 +331,7 @@ command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <silent> <C-B> :Buffers<Cr>
 nnoremap <silent> <leader>e :Files<Cr>
 
-" no auto folding
-set nofoldenable
-set foldmethod=indent
-set foldminlines=2
-set termguicolors
-"set lines=40
-
 " colorscheme
-"colorscheme OceanicNext
 colorscheme nightfly
-"colorscheme onedark
-"colorscheme gruvbox
 let g:gruvbox_contrast_dark='hard'
-"colorscheme dracula
-"colorscheme base16-twilight
-set bg=dark
 let g:solarized_termcolors=256
