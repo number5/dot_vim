@@ -22,6 +22,9 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
 
+Plug 'hrsh7th/nvim-compe'
+Plug 'norcalli/snippets.nvim'
+
 Plug 'junegunn/fzf.vim'
 Plug 'vijaymarupudi/nvim-fzf'
 
@@ -62,7 +65,7 @@ Plug 'majutsushi/tagbar'
 " clojure
 Plug 'tpope/vim-classpath'
 Plug 'guns/vim-clojure-static'
-Plug 'tpope/vim-commentary'
+"Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
@@ -149,6 +152,7 @@ set autoread
 set breakindent
 set cmdheight=2 " Statusbar
 set colorcolumn=80
+set completeopt=menuone,noselect
 set cpo+=n " line numbers for wrapped lines
 set expandtab
 set foldmethod=indent
@@ -328,6 +332,7 @@ endfunction
 command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 
 " mappings for fzf
+nnoremap <silent> <leader>b :Buffers<Cr>
 nnoremap <silent> <C-B> :Buffers<Cr>
 nnoremap <silent> <leader>e :Files<Cr>
 
