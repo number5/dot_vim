@@ -1,6 +1,7 @@
-"let g:python3_host_prog = '/usr/local/bin/python3.8'
-let g:python3_host_prog = '/usr/local/miniconda3/envs/fastapi/bin/python3'
+let g:python3_host_prog = '/usr/local/Caskroom/miniforge/base/bin/python'
 let g:loaded_python_provider = 0
+let g:loaded_perl_provider = 0
+let g:ruby_host_prog = 0
 
 call plug#begin('~/.config/nvim/plugged')
 " ColorSchemes
@@ -30,7 +31,6 @@ Plug 'vijaymarupudi/nvim-fzf'
 
 " Extensions to built-in LSP, for example, providing type inlay hints
 "Plug 'tjdevries/lsp_extensions.nvim'
-
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
@@ -72,7 +72,7 @@ Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'p00f/nvim-ts-rainbow'
 Plug 'Olical/conjure', {'tag': 'v4.18.0'}
 
-Plug 'lukas-reineke/indent-blankline.nvim', { 'branch': 'lua' }
+Plug 'lukas-reineke/indent-blankline.nvim'
 "{{
 let g:indentLine_char_list = ['▏', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
