@@ -12,9 +12,8 @@ Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 
 Plug 'hoob3rt/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons' " lua
-
-
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 Plug 'vim-scripts/gitignore'
 
 " Languages
@@ -34,7 +33,7 @@ Plug 'vijaymarupudi/nvim-fzf'
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
-Plug 'liuchengxu/vista.vim'
+"Plug 'liuchengxu/vista.vim'
 
 Plug 'dense-analysis/ale' "{{
   let g:ale_fixers = {
@@ -70,7 +69,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'p00f/nvim-ts-rainbow'
-Plug 'Olical/conjure', {'tag': 'v4.18.0'}
+Plug 'Olical/conjure', {'tag': 'v4.22.0'}
 
 Plug 'lukas-reineke/indent-blankline.nvim'
 "{{
@@ -133,6 +132,11 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     update_in_insert = false,
   }
 )
+require("trouble").setup {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+}
 
 EOF
 
@@ -335,6 +339,15 @@ command! -nargs=* -bang Rg call RipgrepFzf(<q-args>, <bang>0)
 nnoremap <silent> <leader>b :Buffers<Cr>
 nnoremap <silent> <C-B> :Buffers<Cr>
 nnoremap <silent> <leader>e :Files<Cr>
+" trouble
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle lsp_workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle lsp_document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr>
+"}}
+
 
 " colorscheme
 colorscheme nightfly
