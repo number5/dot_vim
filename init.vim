@@ -33,8 +33,6 @@ Plug 'vijaymarupudi/nvim-fzf'
 
 Plug 'martinda/Jenkinsfile-vim-syntax'
 
-"Plug 'liuchengxu/vista.vim'
-
 Plug 'dense-analysis/ale' "{{
   let g:ale_fixers = {
   \   '*': ['remove_trailing_lines', 'trim_whitespace'],
