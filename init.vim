@@ -1,7 +1,10 @@
-let g:python3_host_prog = '/usr/local/Caskroom/miniforge/base/bin/python'
+let g:python3_host_prog = '/opt/homebrew/Caskroom/miniforge/base/bin/python'
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
-let g:ruby_host_prog = 0
+let g:loaded_ruby_provider = 0
+
+" set before feline
+set termguicolors
 
 call plug#begin('~/.config/nvim/plugged')
 " ColorSchemes
@@ -11,7 +14,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'bluz71/vim-nightfly-guicolors'
 Plug 'mhartington/oceanic-next'
 
-Plug 'hoob3rt/lualine.nvim'
+Plug 'famiu/feline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 Plug 'vim-scripts/gitignore'
@@ -180,7 +183,6 @@ set showmatch
 set smartindent " Set Better Indention
 set splitright
 set switchbuf=useopen
-set termguicolors
 set title
 set virtualedit=onemore
 set wildignore+=*.pyc
@@ -310,7 +312,7 @@ autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 set foldlevelstart=20
 
 " FZF
-set rtp+=/usr/local/opt/fzf
+set rtp+=/opt/homebrew/opt/fzf
 
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'border': 'sharp' } }
 let g:fzf_tags_command = 'ctags -R'

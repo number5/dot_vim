@@ -1,4 +1,4 @@
-require "configs.lualine"
+require "configs.feline"
 require "configs.sumneko"
 
 -- lspconfig object
