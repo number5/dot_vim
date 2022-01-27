@@ -5,6 +5,7 @@ require "configs.sumneko"
 local lspconfig = require'lspconfig'
 
 -- Enable rust_analyzer
+lspconfig.tsserver.setup{}
 lspconfig.rust_analyzer.setup{}
 lspconfig.jedi_language_server.setup{}
 lspconfig.terraformls.setup{

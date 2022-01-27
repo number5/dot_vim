@@ -70,7 +70,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 Plug 'eraserhd/parinfer-rust', {'do': 'cargo build --release'}
 Plug 'p00f/nvim-ts-rainbow'
-Plug 'Olical/conjure', {'tag': 'v4.22.0'}
+Plug 'Olical/conjure'
 
 Plug 'lukas-reineke/indent-blankline.nvim'
 "{{
@@ -107,11 +107,6 @@ noremap <plug>(slash-after) zz
 Plug 'liuchengxu/vim-which-key'
 Plug 'mhinz/vim-startify'
 Plug 'mhinz/vim-signify'
-
-" Python syntax highlighting
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'} "{{
-let g:semshi#error_sign	= v:false
-" }}
 
 Plug 'conradirwin/vim-bracketed-paste'
 
@@ -293,13 +288,6 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " markdown
 let g:vim_markdown_initial_foldlevel=3
-
-
-" rainbow parentheses
-au VimEnter *.clj RainbowParenthesesToggle
-au Syntax clojure RainbowParenthesesLoadRound
-au Syntax clojure RainbowParenthesesLoadSquare
-au Syntax clojure RainbowParenthesesLoadBraces
 
 " auto wrap in diff mode
 au VimEnter * if &diff | execute 'windo set wrap' | endif
