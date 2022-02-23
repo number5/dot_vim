@@ -21,9 +21,16 @@ Plug 'vim-scripts/gitignore'
 
 " Languages
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
+
 
 " Collection of common configurations for the Nvim LSP client
 Plug 'neovim/nvim-lspconfig'
+Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+
+Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+
 
 Plug 'hrsh7th/nvim-compe'
 Plug 'norcalli/snippets.nvim'
@@ -31,29 +38,14 @@ Plug 'norcalli/snippets.nvim'
 Plug 'junegunn/fzf.vim'
 Plug 'vijaymarupudi/nvim-fzf'
 
-" Extensions to built-in LSP, for example, providing type inlay hints
-"Plug 'tjdevries/lsp_extensions.nvim'
+" telescope
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+
+" syntaxs/filetypes
 Plug 'martinda/Jenkinsfile-vim-syntax'
-
-Plug 'dense-analysis/ale' "{{
-  let g:ale_fixers = {
-  \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-  \}
-  let g:ale_linters = {
-  \   'terraform': ['terraform'],
-  \}
-
-  let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-  let g:ale_sign_error = '✘'
-  let g:ale_sign_warning = '⚠'
-  let g:ale_lint_on_text_changed = 'never'
-  let g:ale_close_preview_on_insert = 1
-  let g:ale_fix_on_save = 1
-  "let g:ale_lint_on_text_changed = "Always"
-""}}
-Plug 'nathunsmitty/nvim-ale-diagnostic'
-
 Plug 'saltstack/salt-vim'
 Plug 'towolf/vim-helm'
 Plug '$HOME/src/git/vim-hashicorp-tools'
@@ -117,8 +109,6 @@ call plug#end()
 lua require 'init'
 
 lua <<EOF
--- ALE diagnostics
-require("nvim-ale-diagnostic")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -234,6 +224,8 @@ au Filetype html setlocal ts=2 sts=2 sw=2
 au Filetype ruby setlocal ts=2 sts=2 sw=2
 au Filetype mkd setlocal ts=2 sts=2 sw=2  " for Markdown
 au Filetype lua setlocal ts=2 sts=2 sw=2
+au Filetype js setlocal ts=2 sts=2 sw=2
+au Filetype *.ts setlocal ts=2 sts=2 sw=2
 au BufNewFile,BufRead *.wiki set sw=2
 
 augroup filetypedetect
