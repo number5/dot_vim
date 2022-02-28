@@ -7,3 +7,5 @@ tags
 bundle
 plugged
 *.old
+ref
+old_init.vim
