@@ -45,8 +45,8 @@ return require("packer").startup(function(use)
 			"weilbith/nvim-code-action-menu",
 		},
 		config = function()
-			require("config.lsp")
-			require("config.lsp_cmp")
+		 -- require("config.lsp")
+		 -- require("config.lsp_cmp")
 			vim.cmd([[autocmd CursorHold,CursorHoldI * lua require("nvim-lightbulb").update_lightbulb()]])
 		end,
 	})
@@ -57,27 +57,10 @@ return require("packer").startup(function(use)
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
 		config = function()
-			require("config.language")
+			-- require("configs.null-ls")
 		end,
 	})
 
-	-- File manager
-	use({
-		"kyazdani42/nvim-tree.lua",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = function()
-			vim.api.nvim_set_keymap("n", "<leader>t", "<cmd>NvimTreeToggle<cr>", {})
-			require("nvim-tree").setup({
-				auto_close = true,
-				update_focused_file = {
-					enable = true,
-				},
-				view = {
-					width = 40,
-				},
-			})
-		end,
-	})
 
 	-- Treesitter
 	use({
@@ -90,7 +73,7 @@ return require("packer").startup(function(use)
 		},
 		run = ":TSUpdate",
 		config = function()
-			require("config.treesitter")
+			-- require("config.treesitter")
 		end,
 	})
 
@@ -140,7 +123,7 @@ return require("packer").startup(function(use)
 		"glepnir/dashboard-nvim",
 		requires = "nvim-telescope/telescope.nvim",
 		config = function()
-			require("config.dashboard")
+			-- require("config.dashboard")
 		end,
 	})
 	use({
@@ -160,20 +143,7 @@ return require("packer").startup(function(use)
 		"lukas-reineke/indent-blankline.nvim",
 		requires = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
-			require("config.blankline")
-		end,
-	})
-	use({
-		-- Status line
-		"hoob3rt/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons", "nvim-lua/lsp-status.nvim" },
-		config = function()
-			require("lualine").setup({
-				options = { theme = "OceanicNext" },
-				sections = {
-					lualine_x = { require("lsp-status").status, "encoding", "fileformat", "filetype" },
-				},
-			})
+			-- require("config.blankline")
 		end,
 	})
 	use({
@@ -193,7 +163,7 @@ return require("packer").startup(function(use)
 			"kyazdani42/nvim-web-devicons",
 		},
 		config = function()
-			require("config.telescope")
+			-- require("config.telescope")
 		end,
 	})
 
