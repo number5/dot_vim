@@ -1,31 +1,10 @@
--- Bootstrap packer
-local execute = vim.api.nvim_command
-local fn = vim.fn
-
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-
-if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", install_path })
-	execute("packadd packer.nvim")
-end
-
-vim.api.nvim_exec(
-	[[
-  augroup Packer
-    autocmd!
-    autocmd BufWritePost init.lua PackerCompile
-  augroup end
-]],
-	false
-)
-
--- Plugin specification
-return require("packer").startup(function(use)
+-- Plugins
+local plugins = {
 	-- Package manager
-	use("wbthomason/packer.nvim")
+  { "wbthomason/packer.nvim" },
 
 	-- LSP
-	use({
+	{
 		-- Autocomplete
 		"hrsh7th/nvim-cmp",
 		requires = {
@@ -36,7 +15,6 @@ return require("packer").startup(function(use)
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"ray-x/lsp_signature.nvim",
-			"williamboman/nvim-lsp-installer",
 			"saadparwaiz1/cmp_luasnip",
 			"L3MON4D3/LuaSnip",
 			"rafamadriz/friendly-snippets",
@@ -49,21 +27,19 @@ return require("packer").startup(function(use)
 		 -- require("config.lsp_cmp")
 			vim.cmd([[autocmd CursorHold,CursorHoldI * lua require("nvim-lightbulb").update_lightbulb()]])
 		end,
-	})
-	-- use 'nvim-lua/lsp_extensions.nvim'
+	},
 
 	-- Linting and formatting
-	use({
+	{
 		"jose-elias-alvarez/null-ls.nvim",
 		requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
-		config = function()
+		-- config = function()
 			-- require("configs.null-ls")
-		end,
-	})
-
+		-- end,
+	},
 
 	-- Treesitter
-	use({
+	{
 		"nvim-treesitter/nvim-treesitter",
 		requires = {
 			"nvim-treesitter/nvim-treesitter-textobjects",
@@ -72,10 +48,10 @@ return require("packer").startup(function(use)
 			"RRethy/nvim-treesitter-textsubjects",
 		},
 		run = ":TSUpdate",
-		config = function()
+		-- config = function()
 			-- require("config.treesitter")
-		end,
-	})
+		-- end,
+	},
 
 	-- Debugging
 	-- use 'mfussenegger/nvim-dap'
@@ -83,22 +59,22 @@ return require("packer").startup(function(use)
 	-- use 'Pocco81/DAPInstall.nvim'
 
 	-- Quality of life enhancements
-	use({
+	{
 		-- Use 'CTRL + /' to comment line or selection
 		"b3nj5m1n/kommentary",
 		config = function()
 			vim.api.nvim_set_keymap("n", "", "<Plug>kommentary_line_default", {})
 			vim.api.nvim_set_keymap("v", "", "<Plug>kommentary_visual_default<C-c>", {})
 		end,
-	})
-	use({
+	},
+	{
 		-- Manipulate parentheses, brackets etc
 		"blackCauldron7/surround.nvim",
 		config = function()
 			require("surround").setup({ mappings_style = "surround" })
 		end,
-	})
-	use({
+	},
+	{
 		-- Auto close brackets etc (with treesitter support)
 		"windwp/nvim-autopairs",
 		after = { "nvim-cmp" },
@@ -108,25 +84,25 @@ return require("packer").startup(function(use)
 			require("nvim-autopairs").setup({ check_ts = true })
 			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done({}))
 		end,
-	})
-	use({
+	},
+	{
 		"folke/which-key.nvim",
 		config = function()
 			vim.api.nvim_set_option("timeoutlen", 300)
 			require("which-key").setup({})
 		end,
-	})
+	},
 
 	-- Looks
-	use({
+	{
 		-- Startpage
 		"glepnir/dashboard-nvim",
 		requires = "nvim-telescope/telescope.nvim",
 		config = function()
 			-- require("config.dashboard")
 		end,
-	})
-	use({
+	},
+	{
 		-- Color theme
 		"mhartington/oceanic-next",
 		config = function()
@@ -137,36 +113,38 @@ return require("packer").startup(function(use)
 			vim.cmd("hi SignColumn guibg=NONE ctermbg=NONE")
 			vim.cmd("hi EndOfBuffer guibg=NONE ctermbg=NONE")
 		end,
-	})
-	use({
+	},
+	{
 		-- Draw indentation lines (highlighting based on treesitter)
 		"lukas-reineke/indent-blankline.nvim",
 		requires = { "nvim-treesitter/nvim-treesitter" },
 		config = function()
 			-- require("config.blankline")
 		end,
-	})
-	use({
+	},
+	{
 		-- Color highlighter
 		"norcalli/nvim-colorizer.lua",
 		config = function()
 			require("colorizer").setup()
 		end,
-	})
+	},
 
 	-- Telescope (Fuzzy finding)
-	use({
+	{
 		"nvim-telescope/telescope.nvim",
 		requires = {
 			"nvim-lua/popup.nvim",
 			"nvim-lua/plenary.nvim",
 			"kyazdani42/nvim-web-devicons",
 		},
-		config = function()
+		-- config = function()
 			-- require("config.telescope")
-		end,
-	})
+		-- end,
+	},
 
 	-- Git
-	use("airblade/vim-gitgutter")
-end)
+  { "airblade/vim-gitgutter", }
+}
+
+return plugins
