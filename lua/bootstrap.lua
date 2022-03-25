@@ -68,15 +68,14 @@ function M:init(base_dir)
   self.cache_dir = join_paths(base_dir, "cache")
   self.pack_dir = join_paths(self.runtime_dir, "site", "pack")
   self.packer_install_dir = join_paths(self.runtime_dir, "site", "pack", "packer", "start", "packer.nvim")
-  self.packer_cache_path = join_paths(self.cache_dir, "plugin", "packer_compiled.lua")
+  self.packer_cache_path = join_paths(self.runtime_dir, "plugin", "packer_compiled.lua")
 
-  ---Get the full path to LunarVim's base directory
+  ---Get the full path to base directory
   ---@return string
   function _G.get_base_dir()
     return base_dir
   end
 
-  -- vim.opt.rtp:append(os.getenv "LUNARVIM_RUNTIME_DIR" .. path_sep .. "lvim")
   vim.opt.rtp:remove(join_paths(vim.fn.stdpath "data", "site"))
   vim.opt.rtp:remove(join_paths(vim.fn.stdpath "data", "site", "after"))
   vim.opt.rtp:prepend(join_paths(self.runtime_dir, "site"))

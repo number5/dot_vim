@@ -5,7 +5,7 @@ local Log = require "core.log"
 local join_paths = utils.join_paths
 
 -- we need to reuse this outside of init()
-local compile_path = join_paths(get_cache_dir(), "plugin", "packer_compiled.lua")
+local compile_path = join_paths(get_runtime_dir(), "plugin", "packer_compiled.lua")
 local snapshot_path = join_paths(get_cache_dir(), "snapshots")
 local default_snapshot = join_paths(get_base_dir(), "snapshots", "default.json")
 
@@ -94,7 +94,6 @@ function plugin_loader.load(configurations)
     packer.startup(function(use)
       for _, plugins in ipairs(configurations) do
         for _, plugin in ipairs(plugins) do
-          Log:debug(vim.inspect(plugin))
           use(plugin)
         end
       end
