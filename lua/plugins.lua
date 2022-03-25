@@ -147,4 +147,9 @@ local plugins = {
   { "airblade/vim-gitgutter", }
 }
 
+
+for _, entry in ipairs(plugins) do
+  entry["lock"] = true
+end
+
 return plugins

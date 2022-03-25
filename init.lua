@@ -12,7 +12,7 @@ require("bootstrap"):init(base_dir)
 -- require("config"):load()
 
 local plugins = require "plugins"
-require("plugins.plugin-loader").load { plugins }
+require("plugin-loader").load { plugins }
 
 local Log = require "core.log"
 Log:debug "Starting Palma Vim"
@@ -25,7 +25,7 @@ local modules = {
 for _, module in ipairs(modules) do
    local ok, err = pcall(require, module)
    if not ok then
-      error("Error loading " .. module .. "\n\n" .. err)
+      Log:error("Error loading " .. module .. "\n\n" .. err)
    end
 end
 
