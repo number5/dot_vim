@@ -38,9 +38,9 @@ function plugin_loader.init(opts)
   if in_headless then
     init_opts.display = nil
 
-    init_opts.log.level =  "info"
+    init_opts.log.level = "info"
   else
-    vim.cmd [[autocmd User PackerComplete lua require('lvim.utils.hooks').run_on_packer_complete()]]
+    vim.cmd [[autocmd User PackerComplete lua require('utils.hooks').run_on_packer_complete()]]
   end
 
   if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -108,7 +108,7 @@ end
 
 function plugin_loader.get_core_plugins()
   local list = {}
-  local plugins = require "lvim.plugins"
+  local plugins = require "plugins"
   for _, item in pairs(plugins) do
     if not item.disable then
       table.insert(list, item[1]:match "/(%S*)")

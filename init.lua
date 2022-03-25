@@ -18,17 +18,16 @@ local Log = require "core.log"
 Log:debug "Starting Palma Vim"
 
 local modules = {
-   "core.options",
-   "core.mappings",
+  "core.options",
+  "core.mappings",
 }
 
 for _, module in ipairs(modules) do
-   local ok, err = pcall(require, module)
-   if not ok then
-      Log:error("Error loading " .. module .. "\n\n" .. err)
-   end
+  local ok, err = pcall(require, module)
+  if not ok then
+    Log:error("Error loading " .. module .. "\n\n" .. err)
+  end
 end
 
 -- non plugin mappings
 -- require("core.mappings").misc()
-
