@@ -1,13 +1,24 @@
--- debug only
-vim.o.runtimepath = "/Users/bruce.wang/dotfiles/nvim/," .. vim.o.runtimepath
+local init_path = debug.getinfo(1, "S").source:sub(2)
+local base_dir = init_path:match("(.*[/\\])"):sub(1, -2)
 
-print(vim.o.runtimepath)
+if not vim.tbl_contains(vim.opt.rtp:get(), base_dir) then
+  vim.opt.rtp:append(base_dir)
+end
 
 vim.g.mapleader = " "
 
+require("bootstrap"):init(base_dir)
+
+-- require("config"):load()
+
+local plugins = require "plugins"
+require("plugins.plugin-loader").load { plugins }
+
+local Log = require "core.log"
+Log:debug "Starting Palma Vim"
+
 local modules = {
    "core.options",
-   "plugins",
    "core.mappings",
 }
 
