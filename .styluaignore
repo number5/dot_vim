@@ -1,0 +1,14 @@
+pydiction/complete-dict
+pydiction/complete-dict.last
+.netrwhist
+doc/tags
+doc/tags*
+tags
+bundle
+plugged
+*.old
+ref
+old_init.vim
+nv
+lvim
+site

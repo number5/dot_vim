@@ -38,6 +38,15 @@ local plugins = {
     end,
   },
 
+  { "jose-elias-alvarez/nvim-lsp-ts-utils" },
+
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").register_lsp_virtual_lines()
+    end,
+  },
+
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -68,6 +77,15 @@ local plugins = {
     end,
   },
   {
+    "lewis6991/gitsigns.nvim",
+    requires = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("gitsigns").setup()
+    end,
+  },
+  {
     -- Auto close brackets etc (with treesitter support)
     "windwp/nvim-autopairs",
     after = { "nvim-cmp" },
@@ -85,6 +103,7 @@ local plugins = {
       require("which-key").setup {}
     end,
   },
+  { "famiu/feline.nvim" },
   {
     -- Color theme
     "mhartington/oceanic-next",
@@ -102,7 +121,21 @@ local plugins = {
     "lukas-reineke/indent-blankline.nvim",
     requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      -- require("config.blankline")
+      vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
+      vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
+
+      require("indent_blankline").setup {
+        char = "",
+        char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        space_char_highlight_list = {
+          "IndentBlanklineIndent1",
+          "IndentBlanklineIndent2",
+        },
+        show_trailing_blankline_indent = false,
+      }
     end,
   },
   {
@@ -113,6 +146,8 @@ local plugins = {
     end,
   },
 
+  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+
   -- Telescope (Fuzzy finding)
   {
     "nvim-telescope/telescope.nvim",
@@ -120,15 +155,12 @@ local plugins = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons",
+      "nvim-telescope/telescope-fzf-native.nvim",
     },
-    -- config = function()
-    -- require("config.telescope")
-    -- end,
+    config = function()
+      require "config.telescope"
+    end,
   },
 }
-
-for _, entry in ipairs(plugins) do
-  entry["lock"] = true
-end
 
 return plugins
