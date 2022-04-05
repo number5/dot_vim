@@ -103,7 +103,11 @@ local plugins = {
       require("which-key").setup {}
     end,
   },
-  { "famiu/feline.nvim" },
+  { "famiu/feline.nvim",
+    config = function()
+    	require("feline").setup()
+    end,
+  },
   {
     -- Color theme
     "mhartington/oceanic-next",

@@ -9,7 +9,8 @@
 
 local log = { _version = "0.1.0" }
 
-log.usecolor = true
+log.usecolor = false
+log.use_console = false
 log.outfile = "/tmp/nvim.log"
 log.level = "debug"
 
@@ -59,18 +60,20 @@ for i, x in ipairs(modes) do
     local info = debug.getinfo(2, "Sl")
     local lineinfo = info.short_src .. ":" .. info.currentline
 
-    -- Output to console
-    print(
-      string.format(
-        "%s[%-6s%s]%s %s: %s",
-        log.usecolor and x.color or "",
-        nameupper,
-        os.date "%H:%M:%S",
-        log.usecolor and "\27[0m" or "",
-        lineinfo,
-        msg
+    if log.use_console then
+      -- Output to console
+      print(
+        string.format(
+          "%s[%-6s%s]%s %s: %s",
+          log.usecolor and x.color or "",
+          nameupper,
+          os.date "%H:%M:%S",
+          log.usecolor and "\27[0m" or "",
+          lineinfo,
+          msg
+        )
       )
-    )
+    end
 
     -- Output to log file
     if log.outfile then
