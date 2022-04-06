@@ -15,6 +15,7 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "ray-x/lsp_signature.nvim",
+      "williamboman/nvim-lsp-installer",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
@@ -23,8 +24,8 @@ local plugins = {
       "weilbith/nvim-code-action-menu",
     },
     config = function()
-      -- require("config.lsp")
-      -- require("config.lsp_cmp")
+      require "config.lsp"
+      require "config.lsp_cmp"
       vim.cmd [[autocmd CursorHold,CursorHoldI * lua require("nvim-lightbulb").update_lightbulb()]]
     end,
   },
@@ -103,10 +104,14 @@ local plugins = {
       require("which-key").setup {}
     end,
   },
-  { "famiu/feline.nvim",
+  {
+    "famiu/feline.nvim",
     config = function()
-    	require("feline").setup()
+      require("feline").setup()
     end,
+  },
+  {
+    "bluz71/vim-nightfly-guicolors",
   },
   {
     -- Color theme
@@ -163,6 +168,17 @@ local plugins = {
     },
     config = function()
       require "config.telescope"
+    end,
+  },
+  {
+    "folke/trouble.nvim",
+    requires = "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("trouble").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
     end,
   },
 }

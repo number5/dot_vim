@@ -61,6 +61,6 @@ for _, module in ipairs(modules) do
   end
 end
 
-vim.cmd "colorscheme OceanicNext"
+vim.cmd "colorscheme nightfly"
 -- non plugin mappings
 -- require("core.mappings").misc()
