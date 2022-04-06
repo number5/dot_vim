@@ -62,9 +62,9 @@ local plugins = {
       "RRethy/nvim-treesitter-textsubjects",
     },
     run = ":TSUpdate",
-    -- config = function()
-    -- require("config.treesitter")
-    -- end,
+    config = function()
+      require "config.treesitter"
+    end,
   },
 
   -- Debugging
