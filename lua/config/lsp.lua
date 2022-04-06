@@ -52,6 +52,10 @@ lsp_installer.on_server_ready(function(server)
     capabilities = capabilities,
   }
 
+  if server.name == "sumneko_lua" then
+    local sumneko_opts = require "config.sumneko"
+    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
+  end
   server:setup(opts)
   vim.cmd [[ do User LspAttach Buffers ]]
 end)

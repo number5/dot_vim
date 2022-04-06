@@ -35,7 +35,7 @@ local plugins = {
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
     config = function()
-      require "config.null-ls"
+      require "config.null-lsp"
     end,
   },
 
@@ -45,6 +45,10 @@ local plugins = {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
       require("lsp_lines").register_lsp_virtual_lines()
+      -- Disable virtual_text since it's redundant due to lsp_lines.
+      vim.diagnostic.config {
+        virtual_text = false,
+      }
     end,
   },
 
@@ -167,7 +171,7 @@ local plugins = {
       "nvim-telescope/telescope-fzf-native.nvim",
     },
     config = function()
-      require "config.telescope"
+      require "config.telescope_cfg"
     end,
   },
   {

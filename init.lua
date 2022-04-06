@@ -62,5 +62,3 @@ for _, module in ipairs(modules) do
 end
 
 vim.cmd "colorscheme nightfly"
--- non plugin mappings
--- require("core.mappings").misc()

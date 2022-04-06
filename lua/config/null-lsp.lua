@@ -13,4 +13,9 @@ local sources = {
   null_ls.builtins.formatting.black,
 }
 
-null_ls.setup { sources = sources }
+null_ls.setup {
+  sources = sources,
+  on_attach = function()
+    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
+  end,
+}

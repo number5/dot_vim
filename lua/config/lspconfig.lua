@@ -1,7 +1,4 @@
-require "configs.feline"
 require "configs.sumneko"
-require "configs.telescope"
-require "configs.null-ls"
 
 -- lspconfig object
 local lspconfig = require "lspconfig"
@@ -19,12 +16,4 @@ require("nvim-treesitter.configs").setup {
   rainbow = {
     enable = true,
   },
-}
-
--- lsp_lines
-require("lsp_lines").register_lsp_virtual_lines()
-
--- Disable virtual_text since it's redundant due to lsp_lines.
-vim.diagnostic.config {
-  virtual_text = false,
 }

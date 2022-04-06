@@ -1,10 +1,4 @@
-local lspconfig = require "lspconfig"
--- This will be the path towards your sumneko folder. This is subjective
-local sumneko_root_path = os.getenv "HOME" .. "/src/git/lua-language-server"
-local sumneko_binary = sumneko_root_path .. "/bin/macOS/lua-language-server"
-lspconfig.sumneko_lua.setup {
-  cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
-  capabilities = capabilities,
+return {
   settings = {
     Lua = {
       runtime = { version = "LuaJIT", path = vim.split(package.path, ";") },
@@ -26,5 +20,4 @@ lspconfig.sumneko_lua.setup {
       },
     },
   },
-  on_attach = on_attach_common,
 }
