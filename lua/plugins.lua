@@ -30,6 +30,8 @@ local plugins = {
     end,
   },
 
+  { "simrat39/symbols-outline.nvim" },
+
   -- Linting and formatting
   {
     "jose-elias-alvarez/null-ls.nvim",
@@ -41,6 +43,7 @@ local plugins = {
 
   { "jose-elias-alvarez/nvim-lsp-ts-utils" },
 
+  { "lukas-reineke/lsp-format.nvim" },
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
@@ -51,6 +54,8 @@ local plugins = {
       }
     end,
   },
+
+  { "kevinhwang91/nvim-bqf" },
 
   -- Treesitter
   {
@@ -114,9 +119,13 @@ local plugins = {
       require("feline").setup()
     end,
   },
+
+  -- colorscheme
   {
     "bluz71/vim-nightfly-guicolors",
   },
+
+  { "rebelot/kanagawa.nvim" },
   {
     -- Color theme
     "mhartington/oceanic-next",
@@ -174,6 +183,11 @@ local plugins = {
       require "config.telescope_cfg"
     end,
   },
+
+  { "ggandor/leap.nvim" },
+
+  { "maxbrunsfeld/vim-yankstack" },
+
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",

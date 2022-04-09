@@ -61,4 +61,5 @@ for _, module in ipairs(modules) do
   end
 end
 
-vim.cmd "colorscheme nightfly"
+-- vim.cmd "colorscheme nightfly"
+vim.cmd "colorscheme kanagawa"
