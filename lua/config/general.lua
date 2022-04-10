@@ -26,3 +26,7 @@ vim.api.nvim_set_option("shiftwidth", 4)
 vim.api.nvim_set_option("smartindent", true)
 vim.cmd "autocmd FileType c setlocal tabstop=2 shiftwidth=2 expandtab"
 vim.cmd "filetype indent plugin on"
+
+vim.g.symbols_outline = {
+  position = "left",
+}

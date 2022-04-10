@@ -1,7 +1,21 @@
 local remap = vim.api.nvim_set_keymap
 
 require("nvim-treesitter.configs").setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = {
+    "c",
+    "lua",
+    "rust",
+    "python",
+    "javascript",
+    "typescript",
+    "fennel",
+    "clojure",
+    "go",
+    "ruby",
+    "bash",
+    "yaml",
+    "json",
+  },
   indent = { enable = true },
   highlight = { enable = true, additional_vim_regex_highlighting = false },
   autopairs = { enable = true },

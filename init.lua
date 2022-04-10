@@ -50,6 +50,8 @@ local Log = require "core.log"
 Log:debug "Starting Palma Vim"
 
 local modules = {
+  "config.global",
+  "config.wk-mappings",
   "core.options",
   "core.mappings",
 }

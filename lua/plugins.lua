@@ -30,7 +30,9 @@ local plugins = {
     end,
   },
 
-  { "simrat39/symbols-outline.nvim" },
+  {
+    "simrat39/symbols-outline.nvim",
+  },
 
   -- Linting and formatting
   {
