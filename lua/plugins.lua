@@ -169,10 +169,14 @@ local plugins = {
       require("colorizer").setup()
     end,
   },
+{ 'ibhagwan/fzf-lua',
+  -- optional for icon support
+  requires = { 'kyazdani42/nvim-web-devicons' },
+},
 
-  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
 
   -- Telescope (Fuzzy finding)
+  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
   {
     "nvim-telescope/telescope.nvim",
     requires = {

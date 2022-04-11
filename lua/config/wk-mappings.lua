@@ -5,8 +5,6 @@ t_ext = require("telescope").extensions
 -- Normal mode, no <leader> prefix
 wk.register {
   ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition" },
-  ["gt"] = { "next tab" },
-  ["gT"] = { "previous tab" },
 }
 
 -- Normal mode, <leader> prefix
@@ -56,22 +54,7 @@ wk.register({
     r = { "<cmd>lua t.lsp_references()<CR>", "references" },
   },
 
-  -- window
-  w = {
-    name = "+window",
-    h = { "<cmd>vsplit<CR>", "split left" },
-    j = { "<cmd>split<bar>wincmd j<CR>", "split down" },
-    k = { "<cmd>split<CR>", "split up" },
-    l = { "<cmd>vsplit<bar>wincmd l<CR>", "split right" },
-    p = { "<cmd>lua require('nvim-window').pick()<CR>", "pick window" },
-    r = { "<cmd>WinResizerStartResize<CR>", "resize mode" },
-    e = { "<cmd>wincmd =<CR>", "equalize size" },
-    m = { "<cmd>WinShift<CR>", "toggle window move mode" },
-    s = { "<cmd>WinShift swap<CR>", "toggle window swap mode" },
-    z = { "<cmd>ZenMode<CR>", "toggle zen mode" },
-    t = { "<cmd>wincmd T<CR>", "breakout into new tab" },
-  },
-
+  w = { "<cmd>w<CR>"},
   -- quit
   q = {
     name = "+quit",
@@ -79,8 +62,6 @@ wk.register({
     W = { "<cmd>wincmd o<CR>", "all other windows" },
     b = { "<cmd>Bdelete<CR>", "buffer" },
     B = { "<cmd>BufOnly!<CR>", "all other buffers" },
-    t = { "<cmd>tabclose<CR>", "tab" },
-    T = { "<cmd>tabonly<CR>", "all other tabs" },
     q = { "<cmd>cclose<CR>", "quickfix list" },
   },
 
