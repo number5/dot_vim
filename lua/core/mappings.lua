@@ -18,9 +18,8 @@ remap("n", "<leader>p", '"+p', { noremap = true })
 remap("n", "<leader>P", '"+P', { noremap = true })
 remap("n", "Y", "y$", { noremap = true })
 
-remap("v", "A-]", ">gv", {noremap = true})
-remap("v", "A-[", "<gv", {noremap = true})
-
+remap("v", "A-]", ">gv", { noremap = true })
+remap("v", "A-[", "<gv", { noremap = true })
 
 remap("n", "j", "gj", { noremap = true })
 remap("n", "<Down>", "gj", { noremap = true })

@@ -12,7 +12,7 @@ cmp.setup {
       require("luasnip").lsp_expand(args.body)
     end,
   },
-  mapping = {
+  mapping = cmp.mapping.preset.insert {
     ["<C-p>"] = cmp.mapping.select_prev_item(),
     ["<C-n>"] = cmp.mapping.select_next_item(),
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
@@ -72,7 +72,7 @@ _G.tab_complete = function()
   elseif check_back_space() then
     return t "<Tab>"
   else
-    return vim.fn["compe#complete"]()
+    return vim.fn["cmp#complete"]()
   end
 end
 _G.s_tab_complete = function()

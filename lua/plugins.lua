@@ -81,14 +81,6 @@ local plugins = {
 
   -- Quality of life enhancements
   {
-    -- Use 'CTRL + /' to comment line or selection
-    "b3nj5m1n/kommentary",
-    config = function()
-      vim.api.nvim_set_keymap("n", "", "<Plug>kommentary_line_default", {})
-      vim.api.nvim_set_keymap("v", "", "<Plug>kommentary_visual_default<C-c>", {})
-    end,
-  },
-  {
     "lewis6991/gitsigns.nvim",
     requires = {
       "nvim-lua/plenary.nvim",
@@ -169,11 +161,11 @@ local plugins = {
       require("colorizer").setup()
     end,
   },
-{ 'ibhagwan/fzf-lua',
-  -- optional for icon support
-  requires = { 'kyazdani42/nvim-web-devicons' },
-},
-
+  {
+    "ibhagwan/fzf-lua",
+    -- optional for icon support
+    requires = { "kyazdani42/nvim-web-devicons" },
+  },
 
   -- Telescope (Fuzzy finding)
   { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
@@ -192,8 +184,6 @@ local plugins = {
 
   { "ggandor/leap.nvim" },
 
-  { "maxbrunsfeld/vim-yankstack" },
-
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
@@ -205,6 +195,35 @@ local plugins = {
       }
     end,
   },
+  { "stevearc/dressing.nvim" },
+  {
+    "gbprod/yanky.nvim",
+    config = function()
+      require("yanky").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end,
+  },
+  {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+  },
+  { "nathom/filetype.nvim" },
 }
 
 return plugins

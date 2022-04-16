@@ -54,7 +54,7 @@ wk.register({
     r = { "<cmd>lua t.lsp_references()<CR>", "references" },
   },
 
-  w = { "<cmd>w<CR>"},
+  w = { "<cmd>w<CR>" },
   -- quit
   q = {
     name = "+quit",
@@ -78,7 +78,6 @@ wk.register({
   s = {
     name = "+show",
     E = { "<cmd>Trouble workspace_diagnostics<CR>", "workspace errors" },
-    c = { "<cmd>lua t_ext.neoclip.default()<CR>", "clipboard" },
     d = {
       function()
         require("gitsigns.actions").diffthis()
