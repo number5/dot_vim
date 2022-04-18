@@ -64,7 +64,6 @@ function M.run_post_update()
       if package.loaded["nvim-treesitter"] then
         vim.cmd [[ TSUpdateSync ]]
       end
-      -- TODO: add a changelog
       vim.notify("Update complete", vim.log.levels.INFO)
     end)
   end

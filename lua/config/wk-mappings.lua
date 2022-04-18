@@ -1,10 +1,11 @@
 local wk = require "which-key"
 t = require "telescope.builtin"
-t_ext = require("telescope").extensions
 
 -- Normal mode, no <leader> prefix
 wk.register {
   ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition" },
+  ["gr"] = { "<cmd>Trouble lsp_references<cr>" },
+  ["<leader><space>"] = { "<cmd>Telescope buffers<CR>", "telescope buffers" },
 }
 
 -- Normal mode, <leader> prefix
@@ -25,10 +26,8 @@ wk.register({
   k = { "<cmd>wincmd k<CR>", "move up" },
   l = { "<cmd>wincmd l<CR>", "move right" },
 
-  -- c = {
-  --  name = "+create",
-  --  t = { "<cmd>bufnew<cr>", "new tab" },
-  -- },
+  b = { "<cmd>FzfLua buffers<CR>", "switch buffers" },
+  e = { "<cmd>FzfLua files<CR>", "fzf files" },
 
   -- open
   o = {
@@ -85,7 +84,6 @@ wk.register({
       end,
       "git diff",
     },
-    D = { "<cmd>Dirbuf<CR>", "directory buffer" },
     e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "line errors" },
     h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
     i = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "signature_help" },
@@ -99,8 +97,6 @@ wk.register({
   -- run
   r = {
     name = "+run",
-    R = { "<cmd>lua require('spectre').open()<CR><bar><cmd>wincmd T<CR>", "search & replace" },
-    w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR><bar><cmd>wincmd T<CR>", "replace word" },
     a = { "<cmd>lua t.lsp_code_actions(require('telescope.themes').get_cursor({}))<CR>", "code action" },
     r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
   },
@@ -108,7 +104,6 @@ wk.register({
   -- terminal
   t = {
     name = "+terminal",
-    c = { "<cmd>T clear<CR>", "clear" },
   },
 
   -- diff
@@ -134,7 +129,16 @@ wk.register({
     t = { "<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<cr>", "trouble" },
     c = { "<cmd>lua require('gitsigns.actions').prev_hunk()<CR>", "change" },
   },
-}, { prefix = "<leader>" })
+  -- Trouble
+  x = {
+    name = "Trouble",
+    x = { "<cmd>Trouble<cr>", "Trouble trouble trouble" },
+    w = { "<cmd>Trouble workspace_diagnostics<cr>", "Trouble workspace diagnostics" },
+    d = { "<cmd>Trouble document_diagnostics<cr>", "Trouble document_diagnostics" },
+    l = { "<cmd>Trouble loclist<cr>", "Trouble loclist" },
+    q = { "<cmd>Trouble quickfix<cr>", "Trouble quickfix" },
+  },
+}, { prefix = "<leader>", mode = "n" })
 
 -- visual mode, <leader> prefix
 wk.register({
@@ -144,3 +148,17 @@ wk.register({
     p = { "<cmd>'<,'>diffput<cr>", "put" },
   },
 }, { prefix = "<leader>", mode = "v" })
+
+-- copy/paste, yank-ring
+wk.register {
+  ["p"] = { "<Plug>(YankyPutAfter)", "yank: put after" },
+  ["P"] = { "<Plug>(YankyPutBefore)", "yank: put before" },
+  ["gp"] = { "<Plug>(YankyPutAfter)", "yank: put after" },
+  ["gP"] = { "<Plug>(YankyPutBefore)", "yank: put after" },
+  ["y"] = { "<Plug>(YankyYank)", "yank" },
+  ["<C-p>"] = { "<Plug>(YankyCycleForward)", "cycle to previous yank" },
+}
+
+wk.register({
+  ["y"] = { "<Plug>(YankyYank)", "yank" },
+}, { mode = "v" })

@@ -1,8 +1,6 @@
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
 local g = vim.g
-local cmd = vim.cmd
-local o, wo, bo = vim.o, vim.wo, vim.bo
 
 -- Leader/local leader
 g.mapleader = [[ ]]

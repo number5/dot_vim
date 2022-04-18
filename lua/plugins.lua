@@ -114,17 +114,15 @@ local plugins = {
     end,
   },
 
-  -- colorscheme
+  -- colorschemes
   {
     "bluz71/vim-nightfly-guicolors",
   },
 
   { "rebelot/kanagawa.nvim" },
   {
-    -- Color theme
     "mhartington/oceanic-next",
     config = function()
-      vim.cmd "colorscheme OceanicNext"
       -- Fix transparent background
       vim.cmd "hi Normal guibg=NONE ctermbg=NONE"
       vim.cmd "hi LineNr guibg=NONE ctermbg=NONE"
@@ -137,19 +135,10 @@ local plugins = {
     "lukas-reineke/indent-blankline.nvim",
     requires = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      vim.cmd [[highlight IndentBlanklineIndent1 guibg=#1f1f1f gui=nocombine]]
-      vim.cmd [[highlight IndentBlanklineIndent2 guibg=#1a1a1a gui=nocombine]]
-
       require("indent_blankline").setup {
-        char = "",
-        char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
-        space_char_highlight_list = {
-          "IndentBlanklineIndent1",
-          "IndentBlanklineIndent2",
-        },
+        char_list = { "▏", "¦", "┆", "┊" },
+        filetype_exclude = { "help", "packer" },
+        buftype_exclude = { "terminal", "nofile" },
         show_trailing_blankline_indent = false,
       }
     end,
@@ -163,7 +152,6 @@ local plugins = {
   },
   {
     "ibhagwan/fzf-lua",
-    -- optional for icon support
     requires = { "kyazdani42/nvim-web-devicons" },
   },
 
@@ -182,39 +170,32 @@ local plugins = {
     end,
   },
 
-  { "ggandor/leap.nvim" },
+  {
+    "ggandor/leap.nvim",
+    config = function()
+      require("leap").set_default_keymaps()
+    end,
+  },
 
   {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      require("trouble").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require("trouble").setup {}
     end,
   },
   { "stevearc/dressing.nvim" },
   {
     "gbprod/yanky.nvim",
     config = function()
-      require("yanky").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require("yanky").setup {}
     end,
   },
   {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("todo-comments").setup {
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      }
+      require("todo-comments").setup {}
     end,
   },
   {
