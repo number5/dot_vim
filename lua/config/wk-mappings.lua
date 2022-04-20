@@ -5,7 +5,7 @@ t = require "telescope.builtin"
 wk.register {
   ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition" },
   ["gr"] = { "<cmd>Trouble lsp_references<cr>" },
-  ["<leader><space>"] = { "<cmd>Telescope buffers<CR>", "telescope buffers" },
+  ["<leader><space>"] = { t.buffers, "telescope buffers" },
 }
 
 -- Normal mode, <leader> prefix
@@ -29,28 +29,27 @@ wk.register({
   b = { "<cmd>FzfLua buffers<CR>", "switch buffers" },
   e = { "<cmd>FzfLua files<CR>", "fzf files" },
 
-  -- open
-  o = {
+  -- telescope
+  t = {
     name = "+open",
-    f = { "<cmd>lua t.find_files()<CR>", "file" },
-    r = { "<cmd>lua t.oldfiles()<CR>", "recent" },
-    b = { "<cmd>lua t.buffers()<CR>", "buffer" },
-    gb = { "<cmd>lua t.git_branches()<CR>", "git branch" },
-    gc = { "<cmd>lua t.git_commits()<CR>", "git commit" },
+    f = { t.find_files, "file" },
+    r = { t.oldfiles, "recent" },
+    gb = { t.git_branches, "git branch" },
+    gc = { t.git_commits, "git commit" },
   },
 
   -- find
   f = {
     name = "+find",
-    f = { "<cmd>lua t.current_buffer_fuzzy_find()<CR>", "in file" },
+    f = { t.current_buffer_fuzzy_find, "in file" },
     -- for syntax documentation see https://docs.rs/regex/1.5.4/regex/#syntax
-    d = { "<cmd>lua t.live_grep()<CR>", "in directory" },
-    w = { "<cmd>lua t.grep_string()<CR>", "word" },
-    s = { "<cmd>lua t.lsp_document_symbols()<CR>", "document symbols" },
-    S = { "<cmd>lua t.lsp_workspace_symbols()<CR>", "workspace symbols" },
-    q = { "<cmd>lua t.quickfix()<CR>", "in quickfix list" },
-    h = { "<cmd>lua t.help_tags()<CR>", "in help" },
-    r = { "<cmd>lua t.lsp_references()<CR>", "references" },
+    d = { t.live_grep, "in directory" },
+    w = { t.grep_string, "word" },
+    s = { t.lsp_document_symbols, "document symbols" },
+    S = { t.lsp_workspace_symbols, "workspace symbols" },
+    q = { t.quickfix, "in quickfix list" },
+    h = { t.help_tags, "in help" },
+    r = { t.lsp_references, "references" },
   },
 
   w = { "<cmd>w<CR>" },
@@ -96,14 +95,8 @@ wk.register({
 
   -- run
   r = {
-    name = "+run",
     a = { "<cmd>lua t.lsp_code_actions(require('telescope.themes').get_cursor({}))<CR>", "code action" },
     r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-  },
-
-  -- terminal
-  t = {
-    name = "+terminal",
   },
 
   -- diff
@@ -116,10 +109,10 @@ wk.register({
   -- next
   n = {
     name = "+next",
-    e = { "<cmd>silent lua vim.lsp.diagnostic.goto_next()<cr>", "error" },
+    e = { vim.diagnostic.goto_next, "error" },
     q = { "<cmd>cnext<cr>", "quickfix item" },
     t = { "<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>", "trouble" },
-    c = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "change" },
+    c = { require("gitsigns.actions").next_hunk, "change" },
   },
   -- previous
   p = {

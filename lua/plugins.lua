@@ -15,6 +15,7 @@ local plugins = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
       "ray-x/lsp_signature.nvim",
+      "ray-x/cmp-treesitter",
       "williamboman/nvim-lsp-installer",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",

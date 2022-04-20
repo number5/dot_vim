@@ -26,9 +26,10 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "treesitter" },
     { name = "nvim_lua" },
     { name = "luasnip" },
-    { name = "buffer" },
     { name = "path" },
   },
   -- Pictograms
