@@ -48,10 +48,10 @@ local Log = require "core.log"
 Log:debug "Starting Palma Vim"
 
 local modules = {
-  "config.global",
-  "config.wk-mappings",
   "core.options",
   "core.mappings",
+  "config.settings",
+  "config.wk-mappings",
 }
 
 for _, module in ipairs(modules) do

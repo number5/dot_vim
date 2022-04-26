@@ -30,9 +30,24 @@ local plugins = {
       vim.cmd [[autocmd CursorHold,CursorHoldI * lua require("nvim-lightbulb").update_lightbulb()]]
     end,
   },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").register_lsp_virtual_lines()
+      -- Disable virtual_text since it's redundant due to lsp_lines.
+      vim.diagnostic.config {
+        virtual_text = false,
+      }
+    end,
+  },
 
   {
     "simrat39/symbols-outline.nvim",
+    config = function()
+      vim.g.symbols_outline = {
+        position = "left",
+      }
+    end,
   },
 
   -- Linting and formatting
@@ -47,16 +62,7 @@ local plugins = {
   { "jose-elias-alvarez/nvim-lsp-ts-utils" },
 
   { "lukas-reineke/lsp-format.nvim" },
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").register_lsp_virtual_lines()
-      -- Disable virtual_text since it's redundant due to lsp_lines.
-      vim.diagnostic.config {
-        virtual_text = false,
-      }
-    end,
-  },
+  { "Vimjas/vim-python-pep8-indent" },
 
   { "kevinhwang91/nvim-bqf" },
 
