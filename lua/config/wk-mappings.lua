@@ -3,7 +3,7 @@ t = require "telescope.builtin"
 
 -- Normal mode, no <leader> prefix
 wk.register {
-  ["<c-l>"] = {require'symbols-outline'.toggle_outline, "Symbols Outline"},
+  ["<c-l>"] = { require("symbols-outline").toggle_outline, "Symbols Outline" },
   ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition" },
   ["gr"] = { "<cmd>Trouble lsp_references<cr>" },
   ["<leader><space>"] = { t.buffers, "telescope buffers" },

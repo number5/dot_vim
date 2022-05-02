@@ -9,7 +9,6 @@ local plugins = {
     "hrsh7th/nvim-cmp",
     requires = {
       "neovim/nvim-lspconfig",
-      "nvim-lua/lsp-status.nvim",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
@@ -21,13 +20,22 @@ local plugins = {
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
       "onsails/lspkind-nvim",
-      "kosayoda/nvim-lightbulb",
       "weilbith/nvim-code-action-menu",
+      "kosayoda/nvim-lightbulb",
     },
     config = function()
       require "config.lsp"
       require "config.lsp_cmp"
-      vim.cmd [[autocmd CursorHold,CursorHoldI * lua require("nvim-lightbulb").update_lightbulb()]]
+    end,
+  },
+  {
+    "kosayoda/nvim-lightbulb",
+    config = function()
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        callback = function()
+          require("nvim-lightbulb").update_lightbulb { ignore = { "null-ls" } }
+        end,
+      })
     end,
   },
   {
@@ -96,6 +104,14 @@ local plugins = {
       require("gitsigns").setup()
     end,
   },
+
+  { 
+    'akinsho/git-conflict.nvim',
+    config = function()
+      require('git-conflict').setup()
+    end
+  },
+
   {
     -- Auto close brackets etc (with treesitter support)
     "windwp/nvim-autopairs",
@@ -110,8 +126,8 @@ local plugins = {
   {
     "folke/which-key.nvim",
     config = function()
-      vim.api.nvim_set_option("timeoutlen", 300)
-      require("which-key").setup {}
+      vim.api.nvim_set_option("timeoutlen", 600)
+      require("which-key").setup()
     end,
   },
   {

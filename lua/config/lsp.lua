@@ -1,11 +1,5 @@
-local lsp_status = require "lsp-status"
 local lsp_signature = require "lsp_signature"
 local lsp_installer = require "nvim-lsp-installer"
-
-lsp_status.config {
-  status_symbol = "",
-  indicator_hint = "",
-}
 
 local common_on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
@@ -31,9 +25,7 @@ local common_on_attach = function(client, bufnr)
   buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.set_loclist()<CR>", opts)
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 
-  lsp_status.on_attach(client)
   lsp_signature.on_attach {
     floating_window_above_cur_line = true,
   }
