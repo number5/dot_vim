@@ -1,5 +1,6 @@
 local lsp_signature = require "lsp_signature"
-local lsp_installer = require "nvim-lsp-installer"
+require("nvim-lsp-installer").setup {}
+local lspconfig = require("lspconfig")
 
 local common_on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
@@ -31,18 +32,18 @@ local common_on_attach = function(client, bufnr)
   }
 end
 
-lsp_installer.on_server_ready(function(server)
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-  local opts = {
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local lsp_opts = {
     on_attach = common_on_attach,
     capabilities = capabilities,
   }
 
-  if server.name == "sumneko_lua" then
-    local sumneko_opts = require "config.sumneko"
-    opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-  end
-  server:setup(opts)
-  vim.cmd [[ do User LspAttach Buffers ]]
-end)
+
+local sumneko_opts = require "config.sumneko"
+local opts = vim.tbl_deep_extend("force", sumneko_opts, lsp_opts)
+lspconfig.sumneko_lua.setup(opts)
+
+local yamlls_opts = require "config.yamlls"
+local opts = vim.tbl_deep_extend("force", yamlls_opts, lsp_opts)
+lspconfig.yamlls.setup(opts)
