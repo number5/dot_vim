@@ -44,7 +44,7 @@ local plugins = {
   {
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
     config = function()
-      require("lsp_lines").register_lsp_virtual_lines()
+      require("lsp_lines").setup()
       -- Disable virtual_text since it's redundant due to lsp_lines.
       vim.diagnostic.config {
         virtual_text = false,
@@ -55,9 +55,9 @@ local plugins = {
   {
     "simrat39/symbols-outline.nvim",
     config = function()
-      vim.g.symbols_outline = {
+      require("symbols-outline").setup({
         position = "left",
-      }
+      })
     end,
   },
 
@@ -231,7 +231,18 @@ local plugins = {
   {
     "gbprod/yanky.nvim",
     config = function()
-      require("yanky").setup {}
+      require("yanky").setup({
+  ring = {
+    history_length = 100,
+    storage = "shada",
+    sync_with_numbered_registers = true,
+    cancel_event = "update",
+  },
+  system_clipboard = {
+    sync_with_ring = true,
+  },
+}) 
+
     end,
   },
   {
