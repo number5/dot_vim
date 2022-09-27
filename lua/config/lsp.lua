@@ -1,5 +1,5 @@
 local lsp_signature = require "lsp_signature"
-require("nvim-lsp-installer").setup {}
+require("mason-lspconfig").setup {}
 local lspconfig = require("lspconfig")
 
 local common_on_attach = function(client, bufnr)

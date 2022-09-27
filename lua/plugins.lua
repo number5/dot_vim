@@ -15,7 +15,6 @@ local plugins = {
       "hrsh7th/cmp-nvim-lua",
       "ray-x/lsp_signature.nvim",
       "ray-x/cmp-treesitter",
-      "williamboman/nvim-lsp-installer",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
@@ -29,8 +28,11 @@ local plugins = {
     end,
   },
   {
-    "williamboman/nvim-lsp-installer",
+    "williamboman/mason.nvim",
   },
+
+  { "williamboman/mason-lspconfig.nvim" },
+
   {
     "kosayoda/nvim-lightbulb",
     config = function()
@@ -51,13 +53,20 @@ local plugins = {
       }
     end,
   },
-
+  {
+    "ray-x/go.nvim",
+    requires = "ray-x/guihua.lua",
+    config = function()
+      require "config.go"
+    end,
+    ft = { "go" },
+  },
   {
     "simrat39/symbols-outline.nvim",
     config = function()
-      require("symbols-outline").setup({
+      require("symbols-outline").setup {
         position = "left",
-      })
+      }
     end,
   },
 
@@ -70,7 +79,8 @@ local plugins = {
     end,
   },
 
-  { "jose-elias-alvarez/nvim-lsp-ts-utils",
+  {
+    "jose-elias-alvarez/nvim-lsp-ts-utils",
     requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
     config = function()
       require "config.ts-utils"
@@ -79,13 +89,14 @@ local plugins = {
 
   { "lukas-reineke/lsp-format.nvim" },
 
-  { "someone-stole-my-name/yaml-companion.nvim",
+  {
+    "someone-stole-my-name/yaml-companion.nvim",
     requires = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope.nvim" },
     },
     config = function()
-      require("telescope").load_extension("yaml_schema")
+      require("telescope").load_extension "yaml_schema"
       require("yaml-companion").setup()
     end,
   },
@@ -126,10 +137,10 @@ local plugins = {
   },
 
   {
-    'akinsho/git-conflict.nvim',
+    "akinsho/git-conflict.nvim",
     config = function()
-      require('git-conflict').setup()
-    end
+      require("git-conflict").setup()
+    end,
   },
 
   {
@@ -231,18 +242,17 @@ local plugins = {
   {
     "gbprod/yanky.nvim",
     config = function()
-      require("yanky").setup({
-  ring = {
-    history_length = 100,
-    storage = "shada",
-    sync_with_numbered_registers = true,
-    cancel_event = "update",
-  },
-  system_clipboard = {
-    sync_with_ring = true,
-  },
-}) 
-
+      require("yanky").setup {
+        ring = {
+          history_length = 100,
+          storage = "shada",
+          sync_with_numbered_registers = true,
+          cancel_event = "update",
+        },
+        system_clipboard = {
+          sync_with_ring = true,
+        },
+      }
     end,
   },
   {
