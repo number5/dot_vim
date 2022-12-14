@@ -271,7 +271,6 @@ local plugins = {
       require("Comment").setup()
     end,
   },
-  { "nathom/filetype.nvim" },
 }
 
 return plugins
