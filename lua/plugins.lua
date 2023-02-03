@@ -13,7 +13,7 @@ local plugins = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-nvim-lua",
-      "ray-x/lsp_signature.nvim",
+      --  "ray-x/lsp_signature.nvim",
       "ray-x/cmp-treesitter",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
@@ -60,7 +60,7 @@ local plugins = {
     "ray-x/go.nvim",
     requires = "ray-x/guihua.lua",
     config = function()
-      require "config.go"
+      require("go").setup()
     end,
     ft = { "go" },
   },
@@ -177,6 +177,7 @@ local plugins = {
   },
 
   { "rebelot/kanagawa.nvim" },
+  { "folke/tokyonight.nvim" },
   { "ellisonleao/gruvbox.nvim" },
   {
     -- Draw indentation lines (highlighting based on treesitter)

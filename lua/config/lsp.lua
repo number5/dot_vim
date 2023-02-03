@@ -1,4 +1,3 @@
-local lsp_signature = require "lsp_signature"
 require("mason-lspconfig").setup {}
 local lspconfig = require("lspconfig")
 
@@ -27,9 +26,6 @@ local common_on_attach = function(client, bufnr)
   buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.set_loclist()<CR>", opts)
 
-  lsp_signature.on_attach {
-    floating_window_above_cur_line = true,
-  }
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

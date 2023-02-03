@@ -16,6 +16,8 @@ local sources = {
 
   null_ls.builtins.formatting.shfmt,
   null_ls.builtins.formatting.yamlfmt,
+  -- Nix
+  null_ls.builtins.formatting.alejandra,
 }
 
 null_ls.setup {
