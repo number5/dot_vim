@@ -1,13 +1,11 @@
 -- Plugins
 local plugins = {
-  -- Package manager
-  { "wbthomason/packer.nvim" },
 
   -- LSP
   {
     -- Autocomplete
     "hrsh7th/nvim-cmp",
-    requires = {
+    dependencies = {
       "neovim/nvim-lspconfig",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-buffer",
@@ -58,7 +56,7 @@ local plugins = {
   },
   {
     "ray-x/go.nvim",
-    requires = "ray-x/guihua.lua",
+    dependencies = "ray-x/guihua.lua",
     config = function()
       require("go").setup()
     end,
@@ -76,7 +74,7 @@ local plugins = {
   -- Linting and formatting
   {
     "jose-elias-alvarez/null-ls.nvim",
-    requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
+    dependencies = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
     config = function()
       require "config.null-lsp"
     end,
@@ -84,7 +82,7 @@ local plugins = {
 
   {
     "jose-elias-alvarez/nvim-lsp-ts-utils",
-    requires = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
+    dependencies = { "neovim/nvim-lspconfig", "nvim-lua/plenary.nvim" },
     config = function()
       require "config.ts-utils"
     end,
@@ -94,7 +92,7 @@ local plugins = {
 
   {
     "someone-stole-my-name/yaml-companion.nvim",
-    requires = {
+    dependencies = {
       { "nvim-lua/plenary.nvim" },
       { "nvim-telescope/telescope.nvim" },
     },
@@ -111,13 +109,13 @@ local plugins = {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    requires = {
+    dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/playground",
       "p00f/nvim-ts-rainbow",
       "RRethy/nvim-treesitter-textsubjects",
     },
-    run = ":TSUpdate",
+    build = ":TSUpdate",
     config = function()
       require "config.treesitter"
     end,
@@ -131,7 +129,7 @@ local plugins = {
   -- Quality of life enhancements
   {
     "lewis6991/gitsigns.nvim",
-    requires = {
+    dependencies = {
       "nvim-lua/plenary.nvim",
     },
     config = function()
@@ -149,7 +147,6 @@ local plugins = {
   {
     -- Auto close brackets etc (with treesitter support)
     "windwp/nvim-autopairs",
-    after = { "nvim-cmp" },
     config = function()
       local cmp_autopairs = require "nvim-autopairs.completion.cmp"
       local cmp = require "cmp"
@@ -171,19 +168,10 @@ local plugins = {
     end,
   },
 
-  -- colorschemes
-  {
-    "bluz71/vim-nightfly-guicolors",
-  },
-
-  { "rebelot/kanagawa.nvim" },
-  { "folke/tokyonight.nvim" },
-  { "ellisonleao/gruvbox.nvim" },
-  { "arturgoms/moonbow.nvim" },
   {
     -- Draw indentation lines (highlighting based on treesitter)
     "lukas-reineke/indent-blankline.nvim",
-    requires = { "nvim-treesitter/nvim-treesitter" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("indent_blankline").setup {
         char_list = { "▏", "¦", "┆", "┊" },
@@ -202,14 +190,14 @@ local plugins = {
   },
   {
     "ibhagwan/fzf-lua",
-    requires = { "kyazdani42/nvim-web-devicons" },
+    dependencies = { "kyazdani42/nvim-web-devicons" },
   },
 
   -- Telescope (Fuzzy finding)
-  { "nvim-telescope/telescope-fzf-native.nvim", run = "make" },
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
   {
     "nvim-telescope/telescope.nvim",
-    requires = {
+    dependencies = {
       "nvim-lua/popup.nvim",
       "nvim-lua/plenary.nvim",
       "kyazdani42/nvim-web-devicons",
@@ -229,7 +217,7 @@ local plugins = {
 
   {
     "folke/trouble.nvim",
-    requires = "kyazdani42/nvim-web-devicons",
+    dependencies = "kyazdani42/nvim-web-devicons",
     config = function()
       require("trouble").setup {}
     end,
@@ -253,7 +241,7 @@ local plugins = {
   },
   {
     "folke/todo-comments.nvim",
-    requires = "nvim-lua/plenary.nvim",
+    dependencies = "nvim-lua/plenary.nvim",
     config = function()
       require("todo-comments").setup {}
     end,
@@ -286,7 +274,7 @@ local plugins = {
         }, -- add any options here
       }
     end,
-    requires = {
+    dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       "MunifTanjim/nui.nvim",
       -- OPTIONAL:

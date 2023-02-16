@@ -8,7 +8,7 @@ g.maplocalleader = [[,]]
 
 -- Skip some remote provider loading
 g.loaded_python_provider = 0
-g.python3_host_prog = "/opt/homebrew/Caskroom/miniforge/base/bin/python"
+g.python3_host_prog = "/Users/bruce.wang/.asdf/installs/python/3.10.10/bin/python"
 g.loaded_perl_provider = 0
 g.loaded_ruby_provider = 0
 
@@ -36,16 +36,29 @@ local base_dir = init_path:match("(.*[/\\])"):sub(1, -2)
 if not vim.tbl_contains(vim.opt.rtp:get(), base_dir) then
   vim.opt.rtp:append(base_dir)
 end
-
 require("bootstrap"):init(base_dir)
+
+-- bootstrap lazy.nvim 
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup("plugins")
+
 
 -- require("config"):load()
 
-local plugins = require "plugins"
-require("plugin-loader").load { plugins }
 
 local Log = require "core.log"
-Log:debug "Starting Palma Vim"
 
 local modules = {
   "core.options",
@@ -63,4 +76,5 @@ end
 
 -- vim.cmd "colorscheme nightfly"
 -- vim.cmd "colorscheme kanagawa"
-vim.cmd "colorscheme tokyonight-night"
+-- vim.cmd "colorscheme tokyonight-night"
+vim.cmd "colorscheme moonbow"
