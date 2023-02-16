@@ -36,7 +36,7 @@ local lsp_opts = {
 
 local sumneko_opts = require "config.sumneko"
 local opts = vim.tbl_deep_extend("force", sumneko_opts, lsp_opts)
-lspconfig.sumneko_lua.setup(opts)
+lspconfig.lua_ls.setup(opts)
 
 local yamlls_opts = require "config.yamlls"
 local opts = vim.tbl_deep_extend("force", yamlls_opts, lsp_opts)
