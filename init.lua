@@ -52,7 +52,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
 
 
 -- require("config"):load()
@@ -73,6 +72,8 @@ for _, module in ipairs(modules) do
     Log:error("Error loading " .. module .. "\n\n" .. err)
   end
 end
+
+require("lazy").setup("plugins")
 
 -- vim.cmd "colorscheme nightfly"
 -- vim.cmd "colorscheme kanagawa"

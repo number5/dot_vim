@@ -76,15 +76,7 @@ _G.tab_complete = function()
     return vim.fn["cmp#complete"]()
   end
 end
-_G.s_tab_complete = function()
-  if vim.fn.pumvisible() == 1 then
-    return t "<C-p>"
-  elseif luasnip and luasnip.jumpable(-1) then
-    return t "<Plug>luasnip-jump-prev"
-  else
-    return t "<S-Tab>"
-  end
-end
+
 
 -- Remaps
 remap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
