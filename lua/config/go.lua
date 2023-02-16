@@ -1,7 +1,7 @@
 -- NOTE: all LSP and formatting related options are disabeld.
 -- NOTE: LSP is handled by lsp.lua and formatting is handled by null-ls.lua
 -- NOTE: via `lsp_on_attach` the custom callback used by all other LSPs is called
-require("go").setup({
+require("go").setup {
   go = "go", -- go command, can be go[default] or go1.18beta1
   goimport = "gopls", -- goimport command, can be gopls[default] or goimport
   fillstruct = "gopls", -- can be nil (use fillstruct, slower) and gopls
@@ -20,7 +20,7 @@ require("go").setup({
   lsp_gofumpt = false, -- true: set default gofmt in gopls format to gofumpt
   lsp_on_attach = function(client, bufnr)
     -- require("functions").custom_lsp_attach(client, bufnr)
-    local wk = require("which-key")
+    local wk = require "which-key"
     local default_options = { silent = true }
     wk.register({
       c = {
@@ -119,4 +119,4 @@ require("go").setup({
   run_in_floaterm = false, -- set to true to run in float window.
   -- float term recommended if you use richgo/ginkgo with terminal color
   luasnip = true,
-})
+}

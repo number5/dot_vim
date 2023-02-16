@@ -179,6 +179,7 @@ local plugins = {
   { "rebelot/kanagawa.nvim" },
   { "folke/tokyonight.nvim" },
   { "ellisonleao/gruvbox.nvim" },
+  { "arturgoms/moonbow.nvim" },
   {
     -- Draw indentation lines (highlighting based on treesitter)
     "lukas-reineke/indent-blankline.nvim",

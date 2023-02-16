@@ -1,5 +1,5 @@
 require("mason-lspconfig").setup {}
-local lspconfig = require("lspconfig")
+local lspconfig = require "lspconfig"
 
 local common_on_attach = function(client, bufnr)
   local function buf_set_keymap(...)
@@ -25,16 +25,14 @@ local common_on_attach = function(client, bufnr)
   buf_set_keymap("n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
   buf_set_keymap("n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<leader>q", "<cmd>lua vim.diagnostic.set_loclist()<CR>", opts)
-
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 local lsp_opts = {
-    on_attach = common_on_attach,
-    capabilities = capabilities,
-  }
-
+  on_attach = common_on_attach,
+  capabilities = capabilities,
+}
 
 local sumneko_opts = require "config.sumneko"
 local opts = vim.tbl_deep_extend("force", sumneko_opts, lsp_opts)
