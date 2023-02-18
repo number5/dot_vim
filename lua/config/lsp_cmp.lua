@@ -77,7 +77,6 @@ _G.tab_complete = function()
   end
 end
 
-
 -- Remaps
 remap("i", "<Tab>", "v:lua.tab_complete()", { expr = true })
 remap("s", "<Tab>", "v:lua.tab_complete()", { expr = true })

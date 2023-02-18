@@ -194,7 +194,7 @@ local plugins = {
   },
 
   -- Telescope (Fuzzy finding)
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false},
+  { "nvim-telescope/telescope-fzf-native.nvim", build = "make", lazy = false },
   {
     "nvim-telescope/telescope.nvim",
     dependencies = {

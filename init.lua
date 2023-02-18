@@ -38,17 +38,17 @@ if not vim.tbl_contains(vim.opt.rtp:get(), base_dir) then
 end
 require("bootstrap"):init(base_dir)
 
--- bootstrap lazy.nvim 
-local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+-- bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
+  vim.fn.system {
     "git",
     "clone",
     "--filter=blob:none",
     "https://github.com/folke/lazy.nvim.git",
     "--branch=stable", -- latest stable release
     lazypath,
-  })
+  }
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -56,9 +56,9 @@ vim.opt.rtp:prepend(lazypath)
 
 local Log = require "core.log"
 
-require("core.options")
+require "core.options"
 
-require("lazy").setup("plugins")
+require("lazy").setup "plugins"
 
 local modules = {
   "core.mappings",
@@ -72,7 +72,6 @@ for _, module in ipairs(modules) do
     Log:error("Error loading " .. module .. "\n\n" .. err)
   end
 end
-
 
 -- vim.cmd "colorscheme nightfly"
 -- vim.cmd "colorscheme kanagawa"
