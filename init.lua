@@ -52,15 +52,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-
 -- require("config"):load()
-
 
 local Log = require "core.log"
 
+require("core.options")
+
+require("lazy").setup("plugins")
+
 local modules = {
-  "core.options",
   "core.mappings",
   "config.settings",
   "config.wk-mappings",
@@ -73,7 +73,6 @@ for _, module in ipairs(modules) do
   end
 end
 
-require("lazy").setup("plugins")
 
 -- vim.cmd "colorscheme nightfly"
 -- vim.cmd "colorscheme kanagawa"
