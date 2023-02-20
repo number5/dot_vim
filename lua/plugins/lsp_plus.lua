@@ -13,11 +13,11 @@ return {
 
   {
     "simrat39/symbols-outline.nvim",
-    config = function()
-      require("symbols-outline").setup({
-        position = "left",
-      })
-    end,
+    cmd = "SymbolsOutline",
+    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    opts = {
+      position = "left",
+    },
   },
 
   {
