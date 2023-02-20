@@ -44,7 +44,7 @@ return {
     dependencies = { "hrsh7th/cmp-emoji" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local cmp = require("cmp")
+      local cmp = require "cmp"
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
     end,
   },
@@ -79,7 +79,7 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make",
       config = function()
-        require("telescope").load_extension("fzf")
+        require("telescope").load_extension "fzf"
       end,
     },
   },
@@ -123,7 +123,7 @@ return {
       setup = {
         -- example to setup with typescript.nvim
         tsserver = function(_, opts)
-          require("typescript").setup({ server = opts })
+          require("typescript").setup { server = opts }
           return true
         end,
         -- Specify * to use this function as a fallback for any server
@@ -168,8 +168,8 @@ return {
     opts = function(_, opts)
       -- add tsx and treesitter
       vim.list_extend(opts.ensure_installed, {
-          "tsx",
-          "typescript",
+        "tsx",
+        "typescript",
       })
     end,
   },
@@ -232,11 +232,11 @@ return {
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match "%s" == nil
       end
 
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
+      local luasnip = require "luasnip"
+      local cmp = require "cmp"
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
