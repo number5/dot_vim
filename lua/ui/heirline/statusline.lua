@@ -1,7 +1,7 @@
 local M = {}
 
-local utils = require("heirline.utils")
-local conditions = require("heirline.conditions")
+local utils = require "heirline.utils"
+local conditions = require "heirline.conditions"
 local colors = require("kanagawa.colors").setup()
 
 local LeftSlantStart = {
@@ -97,7 +97,7 @@ M.VimMode = {
     end,
     on_click = {
       callback = function()
-        vim.cmd("Alpha")
+        vim.cmd "Alpha"
       end,
       name = "heirline_mode",
     },
@@ -121,9 +121,9 @@ M.GitBranch = {
   end,
   {
     condition = function(self)
-      return not conditions.buffer_matches({
+      return not conditions.buffer_matches {
         filetype = self.filetypes,
-      })
+      }
     end,
     LeftSlantStart,
     {
@@ -192,9 +192,9 @@ local FileBlock = {
     self.filename = vim.api.nvim_buf_get_name(0)
   end,
   condition = function(self)
-    return not conditions.buffer_matches({
+    return not conditions.buffer_matches {
       filetype = self.filetypes,
-    })
+    }
   end,
 }
 
@@ -208,7 +208,7 @@ local FileName = {
   end,
   on_click = {
     callback = function()
-      vim.cmd("Telescope find_files")
+      vim.cmd "Telescope find_files"
     end,
     name = "find_files",
   },
@@ -245,7 +245,7 @@ M.LspDiagnostics = {
   end,
   on_click = {
     callback = function()
-      vim.cmd("normal gf")
+      vim.cmd "normal gf"
     end,
     name = "heirline_diagnostics",
   },
@@ -327,9 +327,9 @@ M.LspDiagnostics = {
 ---Return the current line number as a % of total lines and the total lines in the file
 M.Ruler = {
   condition = function(self)
-    return not conditions.buffer_matches({
+    return not conditions.buffer_matches {
       filetype = self.filetypes,
-    })
+    }
   end,
   {
     provider = "",
@@ -346,9 +346,9 @@ M.Ruler = {
         local total_lines = vim.api.nvim_buf_line_count(0)
 
         if math.floor((line / total_lines)) > 0.5 then
-          vim.cmd("normal! gg")
+          vim.cmd "normal! gg"
         else
-          vim.cmd("normal! G")
+          vim.cmd "normal! G"
         end
       end,
       name = "heirline_ruler",
@@ -363,16 +363,16 @@ M.SearchResults = {
       return
     end
 
-    local query = vim.fn.getreg("/")
+    local query = vim.fn.getreg "/"
     if query == "" then
       return
     end
 
-    if query:find("@") then
+    if query:find "@" then
       return
     end
 
-    local search_count = vim.fn.searchcount({ recompute = 1, maxcount = -1 })
+    local search_count = vim.fn.searchcount { recompute = 1, maxcount = -1 }
     local active = false
     if vim.v.hlsearch and vim.v.hlsearch == 1 and search_count.total > 0 then
       active = true
@@ -396,13 +396,13 @@ M.SearchResults = {
   },
   {
     provider = function(self)
-      return table.concat({
+      return table.concat {
         " ",
         self.count.current,
         "/",
         self.count.total,
         " ",
-      })
+      }
     end,
     hl = function()
       return { bg = utils.get_highlight("Substitute").bg, fg = "bg" }
@@ -423,9 +423,9 @@ M.Session = {
   end,
   {
     condition = function(self)
-      return not conditions.buffer_matches({
+      return not conditions.buffer_matches {
         filetype = self.filetypes,
-      })
+      }
     end,
     RightSlantStart,
     {
@@ -439,7 +439,7 @@ M.Session = {
       hl = { fg = "gray", bg = colors.sumiInk1 },
       on_click = {
         callback = function()
-          vim.cmd("SessionToggle")
+          vim.cmd "SessionToggle"
         end,
         name = "toggle_session",
       },
@@ -468,9 +468,9 @@ M.Dap = {
 -- Show plugin updates available from lazy.nvim
 M.Lazy = {
   condition = function(self)
-    return not conditions.buffer_matches({
+    return not conditions.buffer_matches {
       filetype = self.filetypes,
-    }) and require("lazy.status").has_updates()
+    } and require("lazy.status").has_updates()
   end,
   update = { "User", pattern = "LazyUpdate" },
   provider = function()
@@ -522,9 +522,9 @@ M.FileType = utils.insert(FileBlock, RightSlantStart, FileIcon, FileType, RightS
 --- Return information on the current file's encoding
 M.FileEncoding = {
   condition = function(self)
-    return not conditions.buffer_matches({
+    return not conditions.buffer_matches {
       filetype = self.filetypes,
-    })
+    }
   end,
   RightSlantStart,
   {

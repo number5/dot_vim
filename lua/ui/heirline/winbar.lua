@@ -31,7 +31,7 @@ M.filename = {
   -- Path to file
   {
     provider = function()
-      local head = vim.fn.fnamemodify(vim.fn.expand("%:h"), modifiers.dirname or nil)
+      local head = vim.fn.fnamemodify(vim.fn.expand "%:h", modifiers.dirname or nil)
       return " " .. table.concat(vim.fn.split(head, "/"), sep)
     end,
     hl = { fg = colors.boatYellow1, italic = true },
@@ -46,7 +46,7 @@ M.filename = {
     },
     {
       provider = function()
-        return vim.fn.expand("%:t")
+        return vim.fn.expand "%:t"
       end,
       hl = { fg = colors.fujiGray },
     },

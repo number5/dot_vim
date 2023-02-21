@@ -51,18 +51,18 @@ local force_inactive_filetypes = {
 ---Load the bufferline, tabline and statusline. Extracting this to a seperate
 ---function allows us to call it from autocmds and preserve colors
 function M.load()
-  local heirline = require("heirline")
-  local conditions = require("heirline.conditions")
+  local heirline = require "heirline"
+  local conditions = require "heirline.conditions"
 
-  local statusline = require("ui.heirline.statusline")
-  local statuscolumn = require("ui.heirline.statuscolumn")
-  local winbar = require("ui.heirline.winbar")
+  local statusline = require "ui.heirline.statusline"
+  local statuscolumn = require "ui.heirline.statuscolumn"
+  local winbar = require "ui.heirline.winbar"
 
   local align = { provider = "%=" }
   local spacer = { provider = " " }
 
   heirline.load_colors(require("kanagawa.colors").setup())
-  heirline.setup({
+  heirline.setup {
     statusline = {
       static = {
         filetypes = filetypes,
@@ -70,9 +70,9 @@ function M.load()
         force_inactive_filetypes = force_inactive_filetypes,
       },
       condition = function(self)
-        return not conditions.buffer_matches({
+        return not conditions.buffer_matches {
           filetype = self.force_inactive_filetypes,
-        })
+        }
       end,
       statusline.VimMode,
       statusline.GitBranch,
@@ -88,10 +88,10 @@ function M.load()
     },
     statuscolumn = {
       condition = function()
-        return not conditions.buffer_matches({
+        return not conditions.buffer_matches {
           buftype = buftypes,
           filetype = force_inactive_filetypes,
-        })
+        }
       end,
       static = statuscolumn.static,
       init = statuscolumn.init,
@@ -105,10 +105,10 @@ function M.load()
     winbar = {
       {
         condition = function()
-          return conditions.buffer_matches({
+          return conditions.buffer_matches {
             buftype = { "nofile", "prompt", "help", "quickfix" },
             filetype = { "alpha", "oil" },
-          })
+          }
         end,
         init = function()
           vim.opt_local.winbar = nil
@@ -120,7 +120,7 @@ function M.load()
       align,
       winbar.vim_logo,
     },
-  })
+  }
 end
 
 return M
