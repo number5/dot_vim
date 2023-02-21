@@ -179,7 +179,7 @@ M.git_signs = {
     if self.has_sign then
       return self.sign.name
     end
-    return colors.sumiInk0
+    return { bg = colors.sumiInk0 }
   end,
   on_click = {
     name = "gitsigns_click",

@@ -79,8 +79,6 @@ function M.load()
       statusline.FileNameBlock,
       statusline.LspDiagnostics,
       align,
-      statusline.Overseer,
-      statusline.Dap,
       statusline.Lazy,
       statusline.FileType,
       statusline.FileEncoding,
