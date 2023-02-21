@@ -5,9 +5,9 @@ return {
     config = function()
       require("lsp_lines").setup()
       -- Disable virtual_text since it's redundant due to lsp_lines.
-      vim.diagnostic.config({
+      vim.diagnostic.config {
         virtual_text = false,
-      })
+      }
     end,
   },
 
@@ -27,7 +27,7 @@ return {
       { "nvim-telescope/telescope.nvim" },
     },
     config = function()
-      require("telescope").load_extension("yaml_schema")
+      require("telescope").load_extension "yaml_schema"
       require("yaml-companion").setup()
     end,
   },
@@ -44,7 +44,7 @@ return {
   {
     "gbprod/yanky.nvim",
     config = function()
-      require("yanky").setup({
+      require("yanky").setup {
         ring = {
           history_length = 100,
           storage = "shada",
@@ -54,7 +54,7 @@ return {
         system_clipboard = {
           sync_with_ring = true,
         },
-      })
+      }
     end,
   },
 }

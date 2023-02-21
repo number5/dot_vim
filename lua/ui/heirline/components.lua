@@ -1,5 +1,5 @@
-local conditions = require "heirline.conditions"
-local utils = require "heirline.utils"
+local conditions = require("heirline.conditions")
+local utils = require("heirline.utils")
 
 local M = {}
 
@@ -80,8 +80,8 @@ local ScrollBar = {
   provider = function(self)
     -- local curr_line = vim.api.nvim_win_get_cursor(0)[1]
     -- local lines = vim.api.nvim_buf_line_count(0)
-    local curr_line = vim.fn.line "."
-    local lines = vim.fn.line "$"
+    local curr_line = vim.fn.line(".")
+    local lines = vim.fn.line("$")
     local i = math.floor((curr_line - 1) / lines * #self.sbar) + 1
     return string.rep(self.sbar[i], 2)
   end,
@@ -99,14 +99,44 @@ M.CursorPosition = {
 -- No statusline
 M.None = {
   condition = function()
-    return conditions.buffer_matches {
+    return conditions.buffer_matches({
       buftype = { "nofile", "prompt", "help", "quickfix" },
       filetype = { "^git.*", "fugitive", "neo-tree" },
-    }
+    })
   end,
   {
     M.Align,
   },
+}
+
+M.SpecialStatusline = {
+  condition = function()
+    return conditions.buffer_matches({
+      buftype = { "nofile", "prompt", "help", "quickfix" },
+      filetype = { "^git.*", "fugitive" },
+    })
+  end,
+
+  M.FileType,
+  M.Space,
+  M.HelpFileName,
+  M.Align,
+}
+
+M.TerminalStatusline = {
+
+  condition = function()
+    return conditions.buffer_matches({ buftype = { "terminal" } })
+  end,
+
+  hl = { bg = "dark_red" },
+
+  -- Quickly add a condition to the ViMode to only show it when buffer is active!
+  { condition = conditions.is_active, M.ViMode, M.Space },
+  M.FileType,
+  M.Space,
+  M.TerminalName,
+  M.Align,
 }
 
 return M

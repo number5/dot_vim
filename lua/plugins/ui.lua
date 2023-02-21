@@ -1,13 +1,13 @@
 return {
   {
     "rebelot/heirline.nvim",
-    event = "UIEnter",
+    event = "VeryLazy",
     config = function()
       local heirline = require("heirline")
       local statuslines = require("ui.heirline.statuslines")
 
       local opts = {
-        tabline = statuslines.TopBar,
+        statusline = statuslines.StatusLines,
       }
 
       heirline.setup(opts)
