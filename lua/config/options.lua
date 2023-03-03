@@ -3,3 +3,7 @@
 -- Add any additional options here
 
 vim.o.laststatus = 3
+vim.o.wrap = true
+vim.o.showbreak = "↪ "
+
+vim.opt.whichwrap:append "<,>,[,]"

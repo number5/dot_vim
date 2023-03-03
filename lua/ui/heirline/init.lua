@@ -114,11 +114,8 @@ function M.load()
           vim.opt_local.winbar = nil
         end,
       },
-      winbar.cwd,
       winbar.filename,
       winbar.navic,
-      align,
-      winbar.vim_logo,
     },
   }
 end
