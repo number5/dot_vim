@@ -1,5 +1,5 @@
 local M = {}
-local colors = require("kanagawa.colors").setup()
+local colors = require("tokyonight.colors").setup()
 
 local sep = "  "
 local LeftSlantEnd = {

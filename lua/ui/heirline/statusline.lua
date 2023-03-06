@@ -2,7 +2,7 @@ local M = {}
 
 local utils = require "heirline.utils"
 local conditions = require "heirline.conditions"
-local colors = require("kanagawa.colors").setup()
+local colors = require("tokyonight.colors").setup()
 
 local LeftSlantStart = {
   provider = "",

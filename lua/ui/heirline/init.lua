@@ -61,7 +61,7 @@ function M.load()
   local align = { provider = "%=" }
   local spacer = { provider = " " }
 
-  heirline.load_colors(require("kanagawa.colors").setup())
+  heirline.load_colors(require("tokyonight.colors").setup())
   heirline.setup {
     statusline = {
       static = {

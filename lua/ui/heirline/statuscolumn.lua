@@ -1,7 +1,7 @@
 local M = {}
 
 local conditions = require "heirline.conditions"
-local colors = require("kanagawa.colors").setup()
+local colors = require("tokyonight.colors").setup()
 local gitsigns_avail, gitsigns = pcall(require, "gitsigns")
 
 M.static = {
