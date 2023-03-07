@@ -1,7 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    config = {
+    opts = {
       rainbow = {
         enable = true,
         -- list of languages you want to disable the plugin for
