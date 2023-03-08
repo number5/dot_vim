@@ -6,5 +6,8 @@ vim.o.laststatus = 3
 vim.o.wrap = true
 vim.o.showbreak = "↪ "
 
-vim.o.whichwrap:append "<,>,[,]"
+vim.o.whichwrap = "<,>,[,]"
 vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
