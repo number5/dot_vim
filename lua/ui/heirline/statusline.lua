@@ -4,23 +4,6 @@ local utils = require "heirline.utils"
 local conditions = require "heirline.conditions"
 local colors = require("tokyonight.colors").setup()
 
-local LeftSlantStart = {
-  provider = "",
-  hl = { fg = "bg", bg = colors.sumiInk1 },
-}
-local LeftSlantEnd = {
-  provider = "",
-  hl = { fg = colors.sumiInk1, bg = "bg" },
-}
-local RightSlantStart = {
-  provider = "",
-  hl = { fg = colors.sumiInk1, bg = "bg" },
-}
-local RightSlantEnd = {
-  provider = "",
-  hl = { fg = "bg", bg = colors.sumiInk1 },
-}
-
 ---Return the current vim mode
 M.VimMode = {
   init = function(self)
@@ -105,12 +88,6 @@ M.VimMode = {
       "ModeChanged",
     },
   },
-  {
-    provider = "",
-    hl = function(self)
-      return { fg = self.mode_color, bg = "bg" }
-    end,
-  },
 }
 
 ---Return the current git branch in the cwd
@@ -125,7 +102,6 @@ M.GitBranch = {
         filetype = self.filetypes,
       }
     end,
-    LeftSlantStart,
     {
       provider = function(self)
         return "  " .. self.status_dict.head .. " "
@@ -182,7 +158,6 @@ M.GitBranch = {
         },
       },
     },
-    LeftSlantEnd,
   },
 }
 
@@ -232,7 +207,7 @@ local FileFlags = {
   },
 }
 
-M.FileNameBlock = utils.insert(FileBlock, LeftSlantStart, utils.insert(FileName, FileFlags), LeftSlantEnd)
+M.FileNameBlock = utils.insert(FileBlock, utils.insert(FileName, FileFlags))
 
 ---Return the LspDiagnostics from the LSP servers
 M.LspDiagnostics = {
@@ -258,16 +233,9 @@ M.LspDiagnostics = {
     hl = { fg = "bg", bg = "red" },
     {
       {
-        provider = "",
-      },
-      {
         provider = function(self)
           return vim.fn.sign_getdefined("DiagnosticSignError")[1].text .. self.errors
         end,
-      },
-      {
-        provider = "",
-        hl = { bg = "bg", fg = "red" },
       },
     },
   },
@@ -279,46 +247,39 @@ M.LspDiagnostics = {
     hl = { fg = "bg", bg = "yellow" },
     {
       {
-        provider = "",
-      },
-      {
         provider = function(self)
           return vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text .. self.warnings
         end,
       },
+    },
+    -- Hints
+    {
+      condition = function(self)
+        return self.hints > 0
+      end,
+      hl = { fg = "gray", bg = "bg" },
       {
-        provider = "",
-        hl = { bg = "bg", fg = "yellow" },
+        {
+          provider = function(self)
+            local spacer = (self.errors > 0 or self.warnings > 0) and " " or ""
+            return spacer .. vim.fn.sign_getdefined("DiagnosticSignHint")[1].text .. self.hints
+          end,
+        },
       },
     },
-  },
-  -- Hints
-  {
-    condition = function(self)
-      return self.hints > 0
-    end,
-    hl = { fg = "gray", bg = "bg" },
+    -- Info
     {
+      condition = function(self)
+        return self.info > 0
+      end,
+      hl = { fg = "gray", bg = "bg" },
       {
-        provider = function(self)
-          local spacer = (self.errors > 0 or self.warnings > 0) and " " or ""
-          return spacer .. vim.fn.sign_getdefined("DiagnosticSignHint")[1].text .. self.hints
-        end,
-      },
-    },
-  },
-  -- Info
-  {
-    condition = function(self)
-      return self.info > 0
-    end,
-    hl = { fg = "gray", bg = "bg" },
-    {
-      {
-        provider = function(self)
-          local spacer = (self.errors > 0 or self.warnings > 0 or self.hints) and " " or ""
-          return spacer .. vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text .. self.info
-        end,
+        {
+          provider = function(self)
+            local spacer = (self.errors > 0 or self.warnings > 0 or self.hints) and " " or ""
+            return spacer .. vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text .. self.info
+          end,
+        },
       },
     },
   },
@@ -331,10 +292,6 @@ M.Ruler = {
       filetype = self.filetypes,
     }
   end,
-  {
-    provider = "",
-    hl = { fg = "gray", bg = "bg" },
-  },
   {
     -- %L = number of lines in the buffer
     -- %P = percentage through file of displayed window
@@ -389,12 +346,6 @@ M.SearchResults = {
     return true
   end,
   {
-    provider = "",
-    hl = function()
-      return { fg = utils.get_highlight("Substitute").bg, bg = "bg" }
-    end,
-  },
-  {
     provider = function(self)
       return table.concat {
         " ",
@@ -404,12 +355,6 @@ M.SearchResults = {
         " ",
       }
     end,
-    hl = function()
-      return { bg = utils.get_highlight("Substitute").bg, fg = "bg" }
-    end,
-  },
-  {
-    provider = "",
     hl = function()
       return { bg = utils.get_highlight("Substitute").bg, fg = "bg" }
     end,
@@ -427,7 +372,6 @@ M.Session = {
         filetype = self.filetypes,
       }
     end,
-    RightSlantStart,
     {
       provider = function(self)
         if vim.g.persisting then
@@ -444,7 +388,6 @@ M.Session = {
         name = "toggle_session",
       },
     },
-    RightSlantEnd,
   },
 }
 
@@ -517,7 +460,7 @@ local FileType = {
   hl = { fg = "gray", bg = colors.sumiInk1 },
 }
 
-M.FileType = utils.insert(FileBlock, RightSlantStart, FileIcon, FileType, RightSlantEnd)
+M.FileType = utils.insert(FileBlock, FileIcon, FileType)
 
 --- Return information on the current file's encoding
 M.FileEncoding = {
@@ -526,7 +469,6 @@ M.FileEncoding = {
       filetype = self.filetypes,
     }
   end,
-  RightSlantStart,
   {
     provider = function()
       local enc = (vim.bo.fenc ~= "" and vim.bo.fenc) or vim.o.enc -- :h 'enc'
@@ -537,7 +479,6 @@ M.FileEncoding = {
       bg = colors.sumiInk1,
     },
   },
-  RightSlantEnd,
 }
 
 return M
