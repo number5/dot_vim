@@ -6,5 +6,4 @@ return {
       require("ui.heirline.init").load()
     end,
   },
-  { "tenxsoydev/karen-yank.nvim", config = true },
 }

@@ -34,12 +34,12 @@ return {
 
   { "kevinhwang91/nvim-bqf" },
 
-  {
-    "akinsho/git-conflict.nvim",
-    config = function()
-      require("git-conflict").setup()
-    end,
-  },
+  --   {
+  --     "akinsho/git-conflict.nvim",
+  --     config = function()
+  --       require("git-conflict").setup()
+  --     end,
+  --   },
 
   {
     "gbprod/yanky.nvim",
@@ -57,4 +57,5 @@ return {
       }
     end,
   },
+  { "tenxsoydev/karen-yank.nvim", config = true },
 }
