@@ -6,7 +6,7 @@ local lsp_servers = {
   "jsonls",
   "cssls",
   "emmet_ls", -- css & html completion
-  "pyright", -- python
+  "pylsp", -- python
   "marksman", -- markdown
   "tsserver", -- ts/js
   "eslint", -- ts/js
