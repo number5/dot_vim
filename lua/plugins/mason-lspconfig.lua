@@ -12,6 +12,7 @@ local lsp_servers = {
   "eslint", -- ts/js
   "bashls", -- also used for zsh
   "taplo", -- toml
+  "stylua", -- lua
 }
 
 --------------------------------------------------------------------------------
@@ -130,6 +131,26 @@ return {
   { -- package manager
     "williamboman/mason.nvim",
     lazy = true,
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
+
+      -- Additional lua configuration. Setup defore setting up lspconfig for lua_ls.
+      "folke/neodev.nvim",
+
+      -- Hover guide for function signatures.
+      "ray-x/lsp_signature.nvim",
+    },
+    opts = {
+      diagnostics = {
+        float = {
+          source = "always",
+        },
+        virtual_text = false,
+      },
+    },
+
     config = function()
       require("mason").setup {
         ui = {
