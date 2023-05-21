@@ -7,7 +7,7 @@ return {
   },
   event = "VeryLazy",
   cmd = "Navbuddy",
-  keys = { { "<leader>sn", "<CMD>Navbuddy<CR>", desc = "Navbuddy" } },
+  keys = { { "<leader>nb", "<CMD>Navbuddy<CR>", desc = "Navbuddy" } },
   config = function()
     require("nvim-navbuddy").setup {
       use_default_mappings = true,
