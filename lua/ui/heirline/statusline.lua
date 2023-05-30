@@ -233,9 +233,16 @@ M.LspDiagnostics = {
     hl = { fg = "bg", bg = "red" },
     {
       {
+        provider = "",
+      },
+      {
         provider = function(self)
           return vim.fn.sign_getdefined("DiagnosticSignError")[1].text .. self.errors
         end,
+      },
+      {
+        provider = "",
+        hl = { bg = "bg", fg = "red" },
       },
     },
   },
