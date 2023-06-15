@@ -13,3 +13,6 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_node_provider = 0
 
 vim.g.vimsyn_embed = "lPr"
+
+-- colorscheme
+vim.cmd "colorscheme kanagawa"
