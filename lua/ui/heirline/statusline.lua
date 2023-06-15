@@ -237,7 +237,7 @@ M.LspDiagnostics = {
       },
       {
         provider = function(self)
-          return vim.fn.sign_getdefined("DiagnosticSignError")[1].text .. self.errors
+          return "diag " .. self.errors
         end,
       },
       {
