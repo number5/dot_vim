@@ -44,11 +44,13 @@ return {
     },
   },
 
+  { "Mofiqul/dracula.nvim" },
+
   -- setting colorscheme the Lazy way
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa",
+      colorscheme = "dracula",
     },
   },
 }
