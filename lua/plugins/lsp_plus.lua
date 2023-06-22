@@ -58,4 +58,5 @@ return {
     end,
   },
   { "tenxsoydev/karen-yank.nvim", config = true },
+  { "pmizio/typescript-tools.nvim", config = true },
 }

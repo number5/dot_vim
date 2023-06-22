@@ -1,10 +1,5 @@
 return {
   "RRethy/vim-illuminate",
-  -- cmd = "IlluminateToggle",
-  -- keys = {
-  --   -- { "<leader>ti", require("illuminate").toggle(), "[T]oggle [I]lluminate" }
-  --   { "<leader>ti", "<cmd>IlluminateToggle<CR>", "[T]oggle [I]lluminate" },
-  -- },
   opts = {
     filetypes_denylist = {
       "dirvish",

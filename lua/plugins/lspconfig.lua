@@ -8,7 +8,6 @@ local lsp_servers = {
   "emmet_ls", -- css & html completion
   "pylsp", -- python
   "marksman", -- markdown
-  "tsserver", -- ts/js
   "eslint", -- ts/js
   "bashls", -- also used for zsh
   "taplo", -- toml
