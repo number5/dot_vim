@@ -14,7 +14,7 @@ return {
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    keys = { { "<leader>o", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
     opts = {
       position = "left",
     },
@@ -33,13 +33,6 @@ return {
   },
 
   { "kevinhwang91/nvim-bqf" },
-
-  --   {
-  --     "akinsho/git-conflict.nvim",
-  --     config = function()
-  --       require("git-conflict").setup()
-  --     end,
-  --   },
 
   {
     "gbprod/yanky.nvim",

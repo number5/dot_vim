@@ -90,7 +90,3 @@ end
 --     group = diag_au_id,
 --     desc = "Echo cursor diagnostics",
 -- })
-
-map("n", "<leader>lq", vim.diagnostic.setqflist, { desc = "Send diagnostics to quickfix" })
-map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
-map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
