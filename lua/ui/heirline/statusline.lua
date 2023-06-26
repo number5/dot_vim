@@ -4,6 +4,19 @@ local utils = require "heirline.utils"
 local conditions = require "heirline.conditions"
 local colors = require("tokyonight.colors").setup()
 
+local lazy_diag_icons = require("lazyvim.config").icons.diagnostics
+local icons = {
+  -- ✗   󰅖 󰅘 󰅚 󰅙 󱎘 
+  close = "󰅙 ",
+  dir = "󰉋 ",
+  lsp = " ", --   
+  vim = " ",
+  debug = " ",
+  err = lazy_diag_icons.Error,
+  warn = lazy_diag_icons.Warn,
+  info = lazy_diag_icons.Info,
+  hint = lazy_diag_icons.Hint,
+}
 ---Return the current vim mode
 M.VimMode = {
   init = function(self)
@@ -212,83 +225,43 @@ M.FileNameBlock = utils.insert(FileBlock, utils.insert(FileName, FileFlags))
 ---Return the LspDiagnostics from the LSP servers
 M.LspDiagnostics = {
   condition = conditions.has_diagnostics,
+  update = { "DiagnosticChanged", "BufEnter" },
+  on_click = {
+    callback = function()
+      require("trouble").toggle { mode = "document_diagnostics" }
+    end,
+    name = "heirline_diagnostics",
+  },
+  static = {},
   init = function(self)
     self.errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
     self.warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
     self.hints = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT })
     self.info = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO })
   end,
-  on_click = {
-    callback = function()
-      vim.cmd "normal gf"
-    end,
-    name = "heirline_diagnostics",
-  },
-  update = { "DiagnosticChanged", "BufEnter" },
-  -- Errors
   {
-    condition = function(self)
-      return self.errors > 0
+    provider = function(self)
+      return self.errors > 0 and (icons.err .. self.errors .. " ")
     end,
-    hl = { fg = "bg", bg = "red" },
-    {
-      {
-        provider = "",
-      },
-      {
-        provider = function(self)
-          return "diag " .. self.errors
-        end,
-      },
-      {
-        provider = "",
-        hl = { bg = "bg", fg = "red" },
-      },
-    },
+    hl = "DiagnosticError",
   },
-  -- Warnings
   {
-    condition = function(self)
-      return self.warnings > 0
+    provider = function(self)
+      return self.warnings > 0 and (icons.warn .. self.warnings .. " ")
     end,
-    hl = { fg = "bg", bg = "yellow" },
-    {
-      {
-        provider = function(self)
-          return vim.fn.sign_getdefined("DiagnosticSignWarn")[1].text .. self.warnings
-        end,
-      },
-    },
-    -- Hints
-    {
-      condition = function(self)
-        return self.hints > 0
-      end,
-      hl = { fg = "gray", bg = "bg" },
-      {
-        {
-          provider = function(self)
-            local spacer = (self.errors > 0 or self.warnings > 0) and " " or ""
-            return spacer .. vim.fn.sign_getdefined("DiagnosticSignHint")[1].text .. self.hints
-          end,
-        },
-      },
-    },
-    -- Info
-    {
-      condition = function(self)
-        return self.info > 0
-      end,
-      hl = { fg = "gray", bg = "bg" },
-      {
-        {
-          provider = function(self)
-            local spacer = (self.errors > 0 or self.warnings > 0 or self.hints) and " " or ""
-            return spacer .. vim.fn.sign_getdefined("DiagnosticSignInfo")[1].text .. self.info
-          end,
-        },
-      },
-    },
+    hl = "DiagnosticWarn",
+  },
+  {
+    provider = function(self)
+      return self.info > 0 and (icons.info .. self.info .. " ")
+    end,
+    hl = "DiagnosticInfo",
+  },
+  {
+    provider = function(self)
+      return self.hints > 0 and (icons.hint .. self.hints)
+    end,
+    hl = "DiagnosticHint",
   },
 }
 
