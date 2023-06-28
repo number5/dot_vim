@@ -13,7 +13,7 @@ return {
     "lttr/cmp-jira",
     "lukas-reineke/cmp-rg",
     "lukas-reineke/cmp-under-comparator",
-    "octaltree/cmp-look",
+    -- "octaltree/cmp-look",
     "petertriho/cmp-git",
     "saadparwaiz1/cmp_luasnip",
   },
@@ -88,13 +88,13 @@ return {
             additional_arguments = "--smart-case --hidden",
           },
         },
-        {
-          name = "look",
-          keyword_length = 5,
-          max_item_count = 5,
-          option = { convert_case = true, loud = true },
-          priority_weight = 40,
-        },
+        -- {
+        --   name = "look",
+        --   keyword_length = 5,
+        --   max_item_count = 5,
+        --   option = { convert_case = true, loud = true },
+        --   priority_weight = 40,
+        -- },
       },
 
       formatting = {
@@ -108,12 +108,8 @@ return {
             nvim_lua = "[API]",
             path = "[Path]",
             luasnip = "[Snip]",
-            tmux = "[Tmux]",
-            look = "[Look]",
+            -- look = "[Look]",
             rg = "[RG]",
-            crates = "[Crates]",
-            orgmode = "[ORG]",
-            dap = "[DAP]",
             cmp_jira = "[JIRA]",
           }
           vim_item.menu = menu_map[entry.source.name] or string.format("[%s]", entry.source.name)
