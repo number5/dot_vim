@@ -10,7 +10,7 @@ return {
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-path",
-    "lttr/cmp-jira",
+    -- "lttr/cmp-jira",
     "lukas-reineke/cmp-rg",
     "lukas-reineke/cmp-under-comparator",
     -- "octaltree/cmp-look",
@@ -73,7 +73,7 @@ return {
 
       sources = {
         { name = "path", priority_weight = 110 },
-        { name = "cmp_jira", priority_weight = 110 },
+        -- { name = "cmp_jira", priority_weight = 110 },
         { name = "git", priority_weight = 110 },
         { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
         { name = "nvim_lua", priority_weight = 90 },
@@ -110,7 +110,7 @@ return {
             luasnip = "[Snip]",
             -- look = "[Look]",
             rg = "[RG]",
-            cmp_jira = "[JIRA]",
+            -- cmp_jira = "[JIRA]",
           }
           vim_item.menu = menu_map[entry.source.name] or string.format("[%s]", entry.source.name)
 
