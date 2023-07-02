@@ -11,7 +11,7 @@ return {
   { "nyoom-engineering/oxocarbon.nvim" },
   {
     "catppuccin/nvim",
-    lazy = true,
+    lazy = false,
     name = "catppuccin",
     opts = {
       integrations = {
@@ -50,7 +50,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "dracula",
+      colorscheme = "catppuccin-mocha",
     },
   },
 }
