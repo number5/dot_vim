@@ -5,26 +5,70 @@ return {
   dependencies = {
     "dmitmel/cmp-cmdline-history",
     "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-emoji",
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lsp-signature-help",
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-path",
-    -- "lttr/cmp-jira",
     "lukas-reineke/cmp-rg",
     "lukas-reineke/cmp-under-comparator",
-    -- "octaltree/cmp-look",
     "petertriho/cmp-git",
     "saadparwaiz1/cmp_luasnip",
   },
   opts = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
     local cmp = require "cmp"
+    local cmdline_mappings = {
+      select_next_item = {
+        c = function(fallback)
+          if cmp.visible() then
+            return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
+          else
+            return cmp.mapping.complete { reason = cmp.ContextReason.Auto }(fallback)
+          end
+        end,
+      },
+      select_prev_item = {
+        c = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+      },
+    }
+
+    cmp.setup.cmdline(":", {
+      mapping = {
+        ["<C-n>"] = cmdline_mappings.select_next_item,
+        ["<Tab>"] = cmdline_mappings.select_next_item,
+        ["<C-p>"] = cmdline_mappings.select_prev_item,
+        ["<S-Tab>"] = cmdline_mappings.select_prev_item,
+      },
+      sources = cmp.config.sources({
+        { name = "path" },
+      }, {
+        { name = "cmdline" },
+      }, {
+        { name = "buffer" },
+      }, {
+        { name = "cmdline_history" },
+      }),
+    })
+    cmp.setup.cmdline("/", {
+      mapping = {
+        ["<C-n>"] = cmdline_mappings.select_next_item,
+        ["<Tab>"] = cmdline_mappings.select_next_item,
+        ["<C-p>"] = cmdline_mappings.select_prev_item,
+        ["<S-Tab>"] = cmdline_mappings.select_prev_item,
+      },
+      sources = cmp.config.sources({
+        { name = "buffer" },
+      }, {
+        { name = "cmdline_history" },
+      }),
+    })
+
     return {
       preselect = cmp.PreselectMode.None,
       completion = {
-        keyword_length = 0,
-        autocomplete = false,
+        completeopt = "menu,menuone,noinsert",
       },
 
       mapping = cmp.mapping.preset.insert {
@@ -73,28 +117,21 @@ return {
 
       sources = {
         { name = "path", priority_weight = 110 },
-        -- { name = "cmp_jira", priority_weight = 110 },
         { name = "git", priority_weight = 110 },
         { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
+        { name = "emoji", max_item_count = 5, priority_weight = 95 },
         { name = "nvim_lua", priority_weight = 90 },
-        { name = "luasnip", priority_weight = 80 },
         { name = "buffer", max_item_count = 5, priority_weight = 70 },
+        { name = "luasnip", priority_weight = 50 },
         {
           name = "rg",
           keyword_length = 5,
           max_item_count = 5,
-          priority_weight = 60,
+          priority_weight = 40,
           option = {
             additional_arguments = "--smart-case --hidden",
           },
         },
-        -- {
-        --   name = "look",
-        --   keyword_length = 5,
-        --   max_item_count = 5,
-        --   option = { convert_case = true, loud = true },
-        --   priority_weight = 40,
-        -- },
       },
 
       formatting = {
