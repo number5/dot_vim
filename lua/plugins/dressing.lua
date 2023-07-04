@@ -1,7 +1,7 @@
 return {
   "stevearc/dressing.nvim",
   lazy = true,
-  config = {
+  opts = {
     select = {
       backend = { "fzf_lua", "fzf" },
     },
