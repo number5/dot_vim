@@ -18,7 +18,16 @@ local lsp_servers = {
 local lspSettings = {}
 local lspFileTypes = {}
 
-lspSettings.ruff_lsp = {}
+-- Not using ruff-lsp, use python-lsp-ruff instead
+-- lspSettings.ruff_lsp = {}
+lspSettings.pylsp = {
+  plugins = {
+    ruff = {
+      enabled = true,
+      extendSelect = { "I" },
+    },
+  },
+}
 -- https://github.com/LuaLS/lua-language-server/wiki/Annotations#annotations
 -- https://github.com/LuaLS/lua-language-server/wiki/Settings
 lspSettings.lua_ls = {
