@@ -112,10 +112,11 @@ lspSettings.jsonls = {
   },
 }
 
+-- Use LazyVim default for yaml
 -- https://github.com/redhat-developer/yaml-language-server#language-server-settings
-lspSettings.yamlls = {
-  yaml = { keyOrdering = false }, -- FIX mapKeyOrder
-}
+-- lspSettings.yamlls = {
+--  yaml = { keyOrdering = false }, -- FIX mapKeyOrder
+-- }
 
 --------------------------------------------------------------------------------
 
