@@ -37,9 +37,9 @@ return {
     cmp.setup.cmdline(":", {
       mapping = {
         ["<C-n>"] = cmdline_mappings.select_next_item,
-        ["<Tab>"] = cmdline_mappings.select_next_item,
+        ["<Down>"] = cmdline_mappings.select_next_item,
         ["<C-p>"] = cmdline_mappings.select_prev_item,
-        ["<S-Tab>"] = cmdline_mappings.select_prev_item,
+        ["<Up>"] = cmdline_mappings.select_prev_item,
       },
       sources = cmp.config.sources({
         { name = "path" },
@@ -54,9 +54,9 @@ return {
     cmp.setup.cmdline("/", {
       mapping = {
         ["<C-n>"] = cmdline_mappings.select_next_item,
-        ["<Tab>"] = cmdline_mappings.select_next_item,
+        ["<Down>"] = cmdline_mappings.select_next_item,
         ["<C-p>"] = cmdline_mappings.select_prev_item,
-        ["<S-Tab>"] = cmdline_mappings.select_prev_item,
+        ["<Up>"] = cmdline_mappings.select_prev_item,
       },
       sources = cmp.config.sources({
         { name = "buffer" },
@@ -85,6 +85,7 @@ return {
             return fallback()
           end
         end,
+
         ["<C-n>"] = function(fallback)
           if cmp.visible() then
             return cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert }(fallback)
