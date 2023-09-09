@@ -290,6 +290,9 @@ return {
         },
       }
 
+      -- Nixd
+      require("lspconfig").nixd.setup {}
+
       -- Workaround for warning when using clang-format (via null-ls) with clangd lsp.
       capabilities.offsetEncoding = { "utf-16" }
 
