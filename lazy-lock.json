@@ -22,7 +22,7 @@
   "conform.nvim": { "branch": "master", "commit": "45edf9462d06db0809d4a4a7afc6b7896b63fa35" },
   "debugprint.nvim": { "branch": "main", "commit": "4562d99f7e0e535b11b20b6068d6579bc51fec9f" },
   "dracula.nvim": { "branch": "main", "commit": "9fe831e685a76e1a1898a694623b33247c4d036c" },
-  "dressing.nvim": { "branch": "master", "commit": "c1e1d5fa44fe08811b6ef4aadac2b50e602f9504" },
+  "dressing.nvim": { "branch": "master", "commit": "73a7d54b5289000108c7f52402a36cf380fced67" },
   "flash.nvim": { "branch": "main", "commit": "0256d8ecab33a9aa69fdaaf885db22e1103e2a3a" },
   "friendly-snippets": { "branch": "main", "commit": "ebf6d6e83494cdd88a54a429340256f4dbb6a052" },
   "fzf": { "branch": "master", "commit": "a3ff49aaf18eceefe4bf8b1df5bf275b3d982493" },

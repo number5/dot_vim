@@ -74,28 +74,6 @@ lspSettings.cssls = {
   },
 }
 
--- https://github.com/typescript-language-server/typescript-language-server#workspacedidchangeconfiguration
-local jsAndTsSettings = {
-  inlayHints = {
-    includeInlayEnumMemberValueHints = true,
-    includeInlayFunctionLikeReturnTypeHints = true,
-    includeInlayFunctionParameterTypeHints = true,
-    includeInlayParameterNameHints = "all", -- none | literals | all
-    includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-    includeInlayPropertyDeclarationTypeHints = true,
-    includeInlayVariableTypeHints = true,
-    includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-  },
-}
-
-lspSettings.tsserver = {
-  completions = { completeFunctionCalls = true },
-  typescript = jsAndTsSettings,
-  javascript = jsAndTsSettings,
-  -- https://github.com/microsoft/TypeScript/blob/master/src/compiler/diagnosticMessages.json
-  diagnostics = { ignoredCode = {} },
-}
-
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
 lspSettings.eslint = {
   quiet = false, -- = include warnings
