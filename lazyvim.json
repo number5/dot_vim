@@ -1,1 +1,9 @@
-{"extras":["editor.symbols-outline"],"hashes":{"\/Users\/bruce.wang\/.local\/share\/nvim\/lazy\/LazyVim\/NEWS.md":"2035"}}
+{
+  "extras": [
+    "lazyvim.plugins.extras.editor.symbols-outline"
+  ],
+  "news": {
+    "NEWS.md": "2123"
+  },
+  "version": 2
+}

@@ -6,11 +6,6 @@ return {
       lua = { "stylua" },
       sh = { "shfmt" },
     },
-    format_on_save = {
-    -- I recommend these options. See :help conform.format for details.
-    lsp_fallback = true,
-    timeout_ms = 500,
-  },
     -- LazyVim will merge the options you set here with builtin formatters.
     -- You can also define any custom formatters here.
     ---@type table<string,table>
