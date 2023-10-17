@@ -36,8 +36,8 @@ return {
 
   { "tenxsoydev/karen-yank.nvim", config = true },
   { "pmizio/typescript-tools.nvim", config = true },
-  {
-    "luckasRanarison/clear-action.nvim",
-    opts = {},
-  },
+  --  {
+  --    "luckasRanarison/clear-action.nvim",
+  --    opts = {},
+  --  },
 }
