@@ -1,15 +1,16 @@
 return {
   {
-    "rebelot/heirline.nvim",
+    "MunifTanjim/nougat.nvim",
     event = "VeryLazy",
-    config = function()
-      require("ui.heirline.init").load()
+    opts = function()
+      require "themes.slanty"
     end,
+    config = true,
   },
 
   {
     "lukas-reineke/headlines.nvim",
     dependencies = "nvim-treesitter/nvim-treesitter",
-    config = true, -- or `opts = {}`
+    config = true,
   },
 }
