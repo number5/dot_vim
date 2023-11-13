@@ -1,11 +1,10 @@
 return {
   {
-    "MunifTanjim/nougat.nvim",
+    "MunifTanjim/nougat.nvim", -- ☕
     event = "VeryLazy",
-    opts = function()
+    config = function(_, _)
       require "themes.slanty"
     end,
-    config = true,
   },
 
   {
