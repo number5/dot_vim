@@ -1,5 +1,5 @@
 local fn = vim.fn
-local api = vim.api
+-- local api = vim.api
 
 fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
 fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
@@ -15,14 +15,14 @@ vim.diagnostic.config {
     title_pos = "left",
     header = "",
   },
-  virtual_text = true,
+  virtual_text = false,
   underline = true,
   signs = true,
   update_in_insert = false,
   severity_sort = true,
 }
 
-local severity_hl = {
+local verity_hl = {
   "DiagnosticError",
   "DiagnosticSignWarn",
   "DiagnosticInfo",
