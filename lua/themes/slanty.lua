@@ -1,8 +1,8 @@
-local core = require("nougat.core")
-local Bar = require("nougat.bar")
-local bar_util = require("nougat.bar.util")
-local Item = require("nougat.item")
-local sep = require("nougat.separator")
+local core = require "nougat.core"
+local Bar = require "nougat.bar"
+local bar_util = require "nougat"
+local Item = require "nougat.item"
+local sep = require "nougat.separator"
 
 local nut = {
   buf = {
@@ -13,7 +13,7 @@ local nut = {
   },
   git = {
     branch = require("nougat.nut.git.branch").create,
-    status = require("nougat.nut.git.status"),
+    status = require "nougat.nut.git.status",
   },
   mode = require("nougat.nut.mode").create,
   spacer = require("nougat.nut.spacer").create,
@@ -60,7 +60,7 @@ local color = {
   },
 }
 
-local mode = nut.mode({
+local mode = nut.mode {
   prefix = " ",
   suffix = " ",
   sep_right = sep.right_lower_triangle_solid(true),
@@ -93,17 +93,17 @@ local mode = nut.mode({
       inactive = {},
     },
   },
-})
+}
 
-local stl = Bar("statusline")
+local stl = Bar "statusline"
 stl:add_item(mode)
-stl:add_item(nut.git.branch({
+stl:add_item(nut.git.branch {
   hl = { bg = color.purple, fg = color.bg },
   prefix = "  ",
   suffix = " ",
   sep_right = sep.right_upper_triangle_solid(true),
-}))
-stl:add_item(nut.git.status.create({
+})
+stl:add_item(nut.git.status.create {
   hl = { fg = color.bg },
   content = {
     nut.git.status.count("added", {
@@ -122,13 +122,13 @@ stl:add_item(nut.git.status.create({
       sep_right = sep.right_upper_triangle_solid(true),
     }),
   },
-}))
-local filename = stl:add_item(nut.buf.filename({
+})
+local filename = stl:add_item(nut.buf.filename {
   hl = { bg = color.bg3 },
   prefix = " ",
   suffix = " ",
-}))
-local filestatus = stl:add_item(nut.buf.filestatus({
+})
+local filestatus = stl:add_item(nut.buf.filestatus {
   hl = { bg = color.bg3 },
   suffix = " ",
   sep_right = sep.right_lower_triangle_solid(true),
@@ -138,10 +138,10 @@ local filestatus = stl:add_item(nut.buf.filestatus({
     readonly = "",
     sep = " ",
   },
-}))
+})
 stl:add_item(nut.spacer())
 stl:add_item(nut.truncation_point())
-stl:add_item(nut.buf.diagnostic_count({
+stl:add_item(nut.buf.diagnostic_count {
   sep_left = sep.left_lower_triangle_solid(true),
   prefix = " ",
   suffix = " ",
@@ -151,33 +151,33 @@ stl:add_item(nut.buf.diagnostic_count({
     info = { prefix = " ", fg = color.blue },
     hint = { prefix = " ", fg = color.green },
   },
-}))
-stl:add_item(nut.buf.filetype({
+})
+stl:add_item(nut.buf.filetype {
   hl = { bg = color.bg1 },
   sep_left = sep.left_lower_triangle_solid(true),
   prefix = " ",
   suffix = " ",
-}))
-stl:add_item(Item({
+})
+stl:add_item(Item {
   hl = { bg = color.bg2, fg = color.blue },
   sep_left = sep.left_lower_triangle_solid(true),
   prefix = "  ",
-  content = core.group({
-    core.code("l"),
+  content = core.group {
+    core.code "l",
     ":",
-    core.code("c"),
-  }),
+    core.code "c",
+  },
   suffix = " ",
-}))
-stl:add_item(Item({
+})
+stl:add_item(Item {
   hl = { bg = color.blue, fg = color.bg },
   sep_left = sep.left_lower_triangle_solid(true),
   prefix = " ",
-  content = core.code("P"),
+  content = core.code "P",
   suffix = " ",
-}))
+})
 
-local stl_inactive = Bar("statusline")
+local stl_inactive = Bar "statusline"
 stl_inactive:add_item(mode)
 stl_inactive:add_item(filename)
 stl_inactive:add_item(filestatus)

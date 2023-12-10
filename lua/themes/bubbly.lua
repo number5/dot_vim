@@ -1,8 +1,8 @@
-local core = require("nougat.core")
-local Bar = require("nougat.bar")
-local bar_util = require("nougat.bar.util")
-local Item = require("nougat.item")
-local sep = require("nougat.separator")
+local core = require "nougat.core"
+local Bar = require "nougat.bar"
+local bar_util = require "nougat"
+local Item = require "nougat.item"
+local sep = require "nougat.separator"
 
 local nut = {
   buf = {
@@ -12,7 +12,7 @@ local nut = {
   },
   git = {
     branch = require("nougat.nut.git.branch").create,
-    status = require("nougat.nut.git.status"),
+    status = require "nougat.nut.git.status",
   },
   mode = require("nougat.nut.mode").create,
   spacer = require("nougat.nut.spacer").create,
@@ -59,7 +59,7 @@ local color = {
   },
 }
 
-local mode = nut.mode({
+local mode = nut.mode {
   sep_left = sep.left_half_circle_solid(true),
   sep_right = sep.right_half_circle_solid(true),
   config = {
@@ -91,10 +91,10 @@ local mode = nut.mode({
       inactive = {},
     },
   },
-})
+}
 
 local filename = (function()
-  local item = Item({
+  local item = Item {
     prepare = function(_, ctx)
       local bufnr, data = ctx.bufnr, ctx.ctx
       data.readonly = vim.api.nvim_buf_get_option(bufnr, "readonly")
@@ -103,23 +103,23 @@ local filename = (function()
     end,
     sep_left = sep.left_half_circle_solid(true),
     content = {
-      Item({
+      Item {
         hl = { bg = color.bg4, fg = color.fg },
         hidden = function(_, ctx)
           return not ctx.ctx.readonly
         end,
         suffix = " ",
         content = "RO",
-      }),
-      Item({
+      },
+      Item {
         hl = { bg = color.bg4, fg = color.fg },
         hidden = function(_, ctx)
           return ctx.ctx.modifiable
         end,
         content = "",
         suffix = " ",
-      }),
-      nut.buf.filename({
+      },
+      nut.buf.filename {
         hl = { bg = color.fg, fg = color.bg },
         prefix = function(_, ctx)
           local data = ctx.ctx
@@ -135,18 +135,18 @@ local filename = (function()
           end
           return ""
         end,
-      }),
-      Item({
+      },
+      Item {
         hl = { bg = color.bg4, fg = color.fg },
         hidden = function(_, ctx)
           return not ctx.ctx.modified
         end,
         prefix = " ",
         content = "+",
-      }),
+      },
     },
     sep_right = sep.right_half_circle_solid(true),
-  })
+  }
 
   return item
 end)()
@@ -157,28 +157,28 @@ local ruler = (function()
     [false] = { bg = color.bg4 },
   }
 
-  local item = Item({
+  local item = Item {
     content = {
-      Item({
+      Item {
         hl = { bg = color.bg4 },
         sep_left = sep.left_half_circle_solid(true),
         content = core.group({
-          core.code("l"),
+          core.code "l",
           ":",
-          core.code("c"),
+          core.code "c",
         }, { align = "left", min_width = 8 }),
         suffix = " ",
-      }),
-      Item({
+      },
+      Item {
         hl = function(_, ctx)
           return scroll_hl[ctx.is_focused]
         end,
         prefix = " ",
-        content = core.code("P"),
+        content = core.code "P",
         sep_right = sep.right_half_circle_solid(true),
-      }),
+      },
     },
-  })
+  }
 
   return item
 end)()
@@ -204,17 +204,17 @@ local function paired_space(item)
   }
 end
 
-local stl = Bar("statusline")
+local stl = Bar "statusline"
 stl:add_item(mode)
 stl:add_item(sep.space())
-stl:add_item(nut.git.branch({
+stl:add_item(nut.git.branch {
   hl = { bg = color.purple, fg = color.bg },
   sep_left = sep.left_half_circle_solid(true),
   prefix = " ",
   sep_right = sep.right_half_circle_solid(true),
-}))
+})
 stl:add_item(sep.space())
-local gitstatus = stl:add_item(nut.git.status.create({
+local gitstatus = stl:add_item(nut.git.status.create {
   hl = { fg = color.bg },
   sep_left = sep.left_half_circle_solid(true),
   content = {
@@ -242,19 +242,19 @@ local gitstatus = stl:add_item(nut.git.status.create({
     }),
   },
   sep_right = sep.right_half_circle_solid(true),
-}))
+})
 stl:add_item(paired_space(gitstatus))
 stl:add_item(filename)
 stl:add_item(sep.space())
 stl:add_item(nut.spacer())
 stl:add_item(nut.truncation_point())
-stl:add_item(nut.buf.filetype({
+stl:add_item(nut.buf.filetype {
   hl = { bg = color.blue, fg = color.bg },
   sep_left = sep.left_half_circle_solid(true),
   sep_right = sep.right_half_circle_solid(true),
-}))
+})
 stl:add_item(sep.space())
-local diagnostic_count = stl:add_item(nut.buf.diagnostic_count({
+local diagnostic_count = stl:add_item(nut.buf.diagnostic_count {
   hl = { bg = color.bg4 },
   sep_left = sep.left_half_circle_solid(true),
   sep_right = sep.right_half_circle_solid(true),
@@ -264,12 +264,12 @@ local diagnostic_count = stl:add_item(nut.buf.diagnostic_count({
     info = { prefix = " ", fg = color.blue },
     hint = { prefix = " ", fg = color.green },
   },
-}))
+})
 stl:add_item(paired_space(diagnostic_count))
 stl:add_item(ruler)
 stl:add_item(sep.space())
 
-local stl_inactive = Bar("statusline")
+local stl_inactive = Bar "statusline"
 stl_inactive:add_item(mode)
 stl_inactive:add_item(sep.space())
 stl_inactive:add_item(filename)
