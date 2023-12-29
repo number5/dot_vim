@@ -1,11 +1,8 @@
-local fn = vim.fn
--- local api = vim.api
-
-fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
-fn.sign_define("DiagnosticSignWarn", { text = "", texthl = "DiagnosticSignWarn" })
-fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSignInfo" })
-fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
---    
+local signs = { Error = "🤬", Warn = "🖐️", Hint = "☝️", Info = "🤓" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
 
 vim.diagnostic.config {
   float = {
@@ -20,11 +17,4 @@ vim.diagnostic.config {
   signs = true,
   update_in_insert = false,
   severity_sort = true,
-}
-
-local verity_hl = {
-  "DiagnosticError",
-  "DiagnosticSignWarn",
-  "DiagnosticInfo",
-  "DiagnosticHint",
 }
