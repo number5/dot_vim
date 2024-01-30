@@ -1,15 +1,11 @@
--- INFO: Server names are LSP names, not Mason names
--- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
 local lsp_servers = {
-  "lua_ls",
-  "yamlls",
-  "jsonls",
-  "cssls",
-  "emmet_ls", -- css & html completion
-  "pylsp", -- python
+  "lua-language-server",
+  "yaml-language-server",
+  "json-lsp",
+  "python-lsp-server", -- python
   "marksman", -- markdown
-  "eslint", -- ts/js
-  "bashls", -- also used for zsh
+  "eslint_d", -- ts/js
+  "bash-language-server", -- also used for zsh
   "taplo", -- toml
 }
 
@@ -20,7 +16,7 @@ local lspFileTypes = {}
 
 -- Not using ruff-lsp, use python-lsp-ruff instead
 -- lspSettings.ruff_lsp = {}
-lspSettings.pylsp = {
+lspSettings["python-lsp-server"] = {
   plugins = {
     ruff = {
       enabled = true,
@@ -30,7 +26,7 @@ lspSettings.pylsp = {
 }
 -- https://github.com/LuaLS/lua-language-server/wiki/Annotations#annotations
 -- https://github.com/LuaLS/lua-language-server/wiki/Settings
-lspSettings.lua_ls = {
+lspSettings["lua-language-server"] = {
   Lua = {
     format = { enable = false }, -- using stylua instead. Also, sumneko-lsp-formatting has this weird bug where all folds are opened
     workspace = { checkThirdParty = false },
@@ -57,25 +53,8 @@ lspSettings.lua_ls = {
   },
 }
 
--- https://github.com/sublimelsp/LSP-css/blob/master/LSP-css.sublime-settings
-lspSettings.cssls = {
-  css = {
-    lint = {
-      vendorPrefix = "ignore",
-      propertyIgnoredDueToDisplay = "error",
-      universalSelector = "ignore",
-      float = "ignore",
-      boxModel = "ignore",
-      -- since these would be duplication with stylelint
-      duplicateProperties = "ignore",
-      emptyRules = "warning",
-    },
-    colorDecorators = { enable = true }, -- not supported yet
-  },
-}
-
 -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#eslint
-lspSettings.eslint = {
+lspSettings.eslint_d = {
   quiet = false, -- = include warnings
   codeAction = {
     disableRuleComment = { location = "sameLine" }, -- add ignore-comments on the same line
@@ -83,23 +62,16 @@ lspSettings.eslint = {
 }
 
 -- https://github.com/sublimelsp/LSP-json/blob/master/LSP-json.sublime-settings
-lspSettings.jsonls = {
+lspSettings["json-lsp"] = {
   json = {
     validate = { enable = true },
     format = { enable = true },
   },
 }
 
--- Use LazyVim default for yaml
--- https://github.com/redhat-developer/yaml-language-server#language-server-settings
--- lspSettings.yamlls = {
---  yaml = { keyOrdering = false }, -- FIX mapKeyOrder
--- }
-
 --------------------------------------------------------------------------------
 
 lspFileTypes.bashls = { "sh", "zsh", "bash" } -- force lsp to work with zsh
-lspFileTypes.emmet_ls = { "css", "scss", "html" }
 
 --------------------------------------------------------------------------------
 
@@ -127,6 +99,7 @@ return {
       "ray-x/lsp_signature.nvim",
     },
     opts = {
+      ensure_installed = lsp_servers,
       diagnostics = {
         float = {
           source = "always",
@@ -134,29 +107,6 @@ return {
         virtual_text = false,
       },
     },
-
-    config = function()
-      require("mason").setup {
-        ui = {
-          border = BorderStyle,
-          icons = {
-            package_installed = "✓",
-            package_pending = "羽",
-            package_uninstalled = "✗",
-          },
-        },
-      }
-    end,
-  },
-  { -- auto-install lsp servers
-    "williamboman/mason-lspconfig.nvim",
-    event = "VeryLazy",
-    dependencies = "williamboman/mason.nvim",
-    config = function()
-      require("mason-lspconfig").setup {
-        ensure_installed = lsp_servers,
-      }
-    end,
   },
 
   { -- configure LSPs
@@ -169,20 +119,20 @@ return {
       }
 
       -- LSP Server setup
-      for _, lsp in pairs(lsp_servers) do
-        local config = {
-          capabilities = lspCapabilities,
-          settings = lspSettings[lsp], -- if no settings, will assign nil and therefore to nothing
-          filetypes = lspFileTypes[lsp],
-        }
-        require("lspconfig")[lsp].setup(config)
-      end
+      -- for _, lsp in pairs(lsp_servers) do
+      --   local config = {
+      --     capabilities = lspCapabilities,
+      --     settings = lspSettings[lsp], -- if no settings, will assign nil and therefore to nothing
+      --     filetypes = lspFileTypes[lsp],
+      --   }
+      --   require("lspconfig")[lsp].setup(config)
+      -- end
 
-      -- Border Styling
-      require("lspconfig.ui.windows").default_options.border = BorderStyle
       vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = BorderStyle })
-      vim.lsp.handlers["textDocument/signatureHelp"] =
-        vim.lsp.with(vim.lsp.handlers.signature_help, { border = BorderStyle })
+      vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+        vim.lsp.handlers.signature_help,
+        { border = BorderStyle }
+      )
     end,
     config = function(_, opts)
       local on_attach = function(client, bufnr)
