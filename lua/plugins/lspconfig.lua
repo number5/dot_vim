@@ -13,7 +13,7 @@ local lspToMasonMap = {
   marksman = "marksman", -- markdown lsp
   taplo = "taplo", -- toml lsp
   typos_lsp = "typos-lsp", -- spellchecker for code
-  vale_ls = "vale-ls", -- natural language linter
+  -- vale_ls = "vale-ls", -- natural language linter
   yamlls = "yaml-language-server",
 }
 
@@ -76,7 +76,6 @@ serverConfigs.efm = {
 
 local efmDependencies = {
   "shellcheck", -- PENDING https://github.com/bash-lsp/bash-language-server/issues/663
-  "markdownlint",
 }
 --------------------------------------------------------------------------------
 -- DOCS https://luals.github.io/wiki/settings/
@@ -168,20 +167,20 @@ serverConfigs.typos_lsp = {
 -- VALE
 -- DOCS https://vale.sh/docs/integrations/guide/#vale-ls
 -- DOCS https://vale.sh/docs/topics/config#search-process
-serverConfigs.vale_ls = {
-  init_options = {
-    configPath = vim.g.linterConfigFolder .. "/vale/vale.ini",
-    installVale = true, -- needs to be set, since false by default
-    syncOnStartup = false,
-  },
-  -- just needs any root directory to work, we are providing the config already
-  root_dir = function()
-    return os.getenv "HOME"
-  end,
-}
+-- serverConfigs.vale_ls = {
+--   init_options = {
+--     configPath = vim.g.linterConfigFolder .. "/vale/vale.ini",
+--     installVale = true, -- needs to be set, since false by default
+--     syncOnStartup = false,
+--   },
+--   -- just needs any root directory to work, we are providing the config already
+--   root_dir = function()
+--     return os.getenv "HOME"
+--   end,
+-- }
 
 -- FIX https://github.com/errata-ai/vale-ls/issues/4
-vim.env.VALE_CONFIG_PATH = vim.g.linterConfigFolder .. "/vale/vale.ini"
+-- vim.env.VALE_CONFIG_PATH = vim.g.linterConfigFolder .. "/vale/vale.ini"
 
 --------------------------------------------------------------------------------
 

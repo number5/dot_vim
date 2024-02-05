@@ -21,16 +21,8 @@ return {
         illuminate = true,
         indent_blankline = { enabled = true },
         lsp_trouble = true,
+        mason = true,
         mini = true,
-        native_lsp = {
-          enabled = true,
-          underlines = {
-            errors = { "undercurl" },
-            hints = { "undercurl" },
-            warnings = { "undercurl" },
-            information = { "undercurl" },
-          },
-        },
         navic = { enabled = true },
         neotest = true,
         noice = true,
@@ -50,7 +42,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin-mocha",
+      colorscheme = "kanagawa",
     },
   },
 }
