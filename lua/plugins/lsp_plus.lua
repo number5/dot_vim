@@ -21,15 +21,6 @@ return {
   },
 
   {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>o", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    opts = {
-      position = "left",
-    },
-  },
-
-  {
     "someone-stole-my-name/yaml-companion.nvim",
     dependencies = {
       { "nvim-lua/plenary.nvim" },
