@@ -7,6 +7,7 @@ local lspToMasonMap = {
   efm = "efm", -- linter integration, only used for shellcheck in zsh files
   emmet_language_server = "emmet-language-server", -- css/html completions
   jedi_language_server = "jedi-language-server", -- python lsp (with better hovers)
+  gopls = "gopls",
   pylsp = "python-lsp-server",
   jsonls = "json-lsp",
   lua_ls = "lua-language-server",
@@ -150,6 +151,7 @@ serverConfigs.jsonls = {
   },
 }
 
+serverConfigs.gopls = {}
 -- SIC needs to be enabled, can be removed with nvim 0.10 support for dynamic config
 serverConfigs.biome = {
   on_attach = function(client)
