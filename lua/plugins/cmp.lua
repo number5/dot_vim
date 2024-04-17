@@ -14,7 +14,6 @@ return {
     "lukas-reineke/cmp-rg",
     "lukas-reineke/cmp-under-comparator",
     "petertriho/cmp-git",
-    "saadparwaiz1/cmp_luasnip",
   },
   opts = function()
     vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -96,12 +95,6 @@ return {
         ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
       },
 
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
-      },
-
       sorting = {
         priority_weight = 100,
         comparators = {
@@ -123,7 +116,6 @@ return {
         { name = "emoji", max_item_count = 5, priority_weight = 95 },
         { name = "nvim_lua", priority_weight = 90 },
         { name = "buffer", max_item_count = 5, priority_weight = 70 },
-        { name = "luasnip", priority_weight = 50 },
         {
           name = "rg",
           keyword_length = 5,
@@ -145,7 +137,6 @@ return {
             nvim_lsp = "[LSP]",
             nvim_lua = "[API]",
             path = "[Path]",
-            luasnip = "[Snip]",
             -- look = "[Look]",
             rg = "[RG]",
             -- cmp_jira = "[JIRA]",
