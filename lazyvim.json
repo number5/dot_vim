@@ -1,10 +1,9 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.coding.native_snippets",
-    "lazyvim.plugins.extras.editor.outline"
+    "lazyvim.plugins.extras.editor.trouble-v3"
   ],
   "news": {
-    "NEWS.md": "3314"
+    "NEWS.md": "4828"
   },
   "version": 3
 }
