@@ -20,7 +20,7 @@ local prompts = {
 }
 
 return {
-  -- { import = "plugins.extras.copilot-vim" }, -- Or use { import = "lazyvim.plugins.extras.coding.copilot" },
+  { import = "plugins.extras.copilot-vim" }, -- Or use { import = "lazyvim.plugins.extras.coding.copilot" },
   { import = "plugins.extras.fzf" }, -- Use fzf for fuzzy finding
   {
     dir = IS_DEV and "~/Projects/research/CopilotChat.nvim" or nil,
