@@ -29,7 +29,7 @@ return {
         notify = true,
         nvimtree = true,
         semantic_tokens = true,
-        telescope = true,
+        telescope = false,
         treesitter = true,
         which_key = true,
       },
