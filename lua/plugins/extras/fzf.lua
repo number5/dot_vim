@@ -22,21 +22,19 @@ return {
         ["--border"] = false,
         ["--preview-window"] = false,
       },
-      winopts = {
-        height = 0.85,
-        width = 0.80,
-        row = 0.35,
-        col = 0.55,
-        preview = {
-          layout = "flex",
-          flip_columns = 130,
-          scrollbar = "float",
-        },
-      },
+      --  winopts = {
+      --    height = 0.85,
+      --    width = 0.80,
+      --    row = 0.35,
+      --    col = 0.55,
+      --    preview = {
+      --      layout = "flex",
+      --      flip_columns = 130,
+      --      scrollbar = "float",
+      --    },
+      --  },
       files = {
         multiprocess = true,
-        git_icons = false,
-        file_icons = false,
       },
       grep = {
         multiprocess = true,
@@ -77,7 +75,8 @@ return {
       -- Shift+up/down to move the preview window
       -- Alt+q to send to quickfix
       -- Alt+a to toggle all
-      fzf_lua.setup(options)
+      -- fzf_lua.setup(options)
+      fzf_lua.setup("fzf-native", options)
 
       -- Automatic sizing of height/width of vim.ui.select
       fzf_lua.register_ui_select(function(_, items)
