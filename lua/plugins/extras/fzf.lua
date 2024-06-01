@@ -22,17 +22,6 @@ return {
         ["--border"] = false,
         ["--preview-window"] = false,
       },
-      --  winopts = {
-      --    height = 0.85,
-      --    width = 0.80,
-      --    row = 0.35,
-      --    col = 0.55,
-      --    preview = {
-      --      layout = "flex",
-      --      flip_columns = 130,
-      --      scrollbar = "float",
-      --    },
-      --  },
       files = {
         multiprocess = true,
       },
@@ -160,7 +149,7 @@ return {
       },
       -- Find open buffers
       {
-        "<C-\\>",
+        "<leader>,",
         "<cmd> :FzfLua buffers<CR>",
         desc = "Find Buffers",
       },
