@@ -113,9 +113,12 @@ return {
         { name = "path", priority_weight = 110 },
         { name = "git", priority_weight = 110 },
         { name = "nvim_lsp", max_item_count = 20, priority_weight = 100 },
+        { name = "cmp_yanky", max_item_count = 5, priority_weight = 100 },
         { name = "emoji", max_item_count = 5, priority_weight = 95 },
         { name = "nvim_lua", priority_weight = 90 },
         { name = "buffer", max_item_count = 5, priority_weight = 70 },
+        { name = "nvim_lsp_signature_help" },
+        { name = "snippets", max_item_count = 5, priority_weight = 70 },
         {
           name = "rg",
           keyword_length = 5,
@@ -161,12 +164,6 @@ return {
         },
         completion = {
           border = vim.g.floating_window_border_dark,
-        },
-      },
-
-      experimental = {
-        ghost_text = {
-          hl_group = "CmpGhostText",
         },
       },
     }
