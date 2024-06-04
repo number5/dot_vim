@@ -33,23 +33,23 @@ return {
       },
     }
 
-    cmp.setup.cmdline(":", {
-      mapping = {
-        ["<C-n>"] = cmdline_mappings.select_next_item,
-        ["<Down>"] = cmdline_mappings.select_next_item,
-        ["<C-p>"] = cmdline_mappings.select_prev_item,
-        ["<Up>"] = cmdline_mappings.select_prev_item,
-      },
-      sources = cmp.config.sources({
-        { name = "path" },
-      }, {
-        { name = "cmdline" },
-      }, {
-        { name = "buffer" },
-      }, {
-        { name = "cmdline_history" },
-      }),
-    })
+    -- cmp.setup.cmdline(":", {
+    --   mapping = {
+    --     ["<C-n>"] = cmdline_mappings.select_next_item,
+    --     ["<Down>"] = cmdline_mappings.select_next_item,
+    --     ["<C-p>"] = cmdline_mappings.select_prev_item,
+    --     ["<Up>"] = cmdline_mappings.select_prev_item,
+    --   },
+    --   sources = cmp.config.sources({
+    --     { name = "path" },
+    --   }, {
+    --     { name = "cmdline" },
+    --   }, {
+    --     { name = "buffer" },
+    --   }, {
+    --     { name = "cmdline_history" },
+    --   }),
+    -- })
     cmp.setup.cmdline("/", {
       mapping = {
         ["<C-n>"] = cmdline_mappings.select_next_item,
