@@ -16,6 +16,7 @@ local lspToMasonMap = {
   typos_lsp = "typos-lsp", -- spellchecker for code
   -- vale_ls = "vale-ls", -- natural language linter
   yamlls = "yaml-language-server",
+  nil_ls = "nil_ls",
 }
 
 --------------------------------------------------------------------------------
@@ -151,6 +152,7 @@ serverConfigs.jsonls = {
   },
 }
 
+serverConfigs.nil_ls = {}
 serverConfigs.gopls = {}
 -- SIC needs to be enabled, can be removed with nvim 0.10 support for dynamic config
 serverConfigs.biome = {
