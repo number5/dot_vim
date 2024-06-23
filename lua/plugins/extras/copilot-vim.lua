@@ -2,17 +2,17 @@
 return {
   -- { import = "lazyvim.plugins.extras.coding.luasnip", enable = true },
   -- Disable default <tab> and <s-tab> behavior in nvim-cmp
-  {
-    "nvim-cmp",
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      -- Disable ghost text for nvim-cmp, use copilot suggestion instead
-      opts.experimental.ghost_text = false
-    end,
-    keys = function()
-      return {}
-    end,
-  },
+  -- {
+  --   "nvim-cmp",
+  --   ---@param opts cmp.ConfigSchema
+  --   opts = function(_, opts)
+  --     -- Disable ghost text for nvim-cmp, use copilot suggestion instead
+  --     opts.experimental.ghost_text = false
+  --   end,
+  --   keys = function()
+  --     return {}
+  --   end,
+  -- },
   -- Setup copilot.vim
   {
     "github/copilot.vim",
