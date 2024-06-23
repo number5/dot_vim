@@ -33,6 +33,4 @@ return {
   --  },
 
   { "kevinhwang91/nvim-bqf" },
-
-  { "tenxsoydev/karen-yank.nvim", config = true },
 }
