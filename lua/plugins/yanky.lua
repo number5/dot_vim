@@ -30,6 +30,6 @@ return {
       { "=P", "<Plug>(YankyPutBeforeFilter)", desc = "Put Before Applying a Filter" },
     },
   },
-  { "chrisgrieser/cmp_yanky" },
+  -- { "chrisgrieser/cmp_yanky" },
   { "tenxsoydev/karen-yank.nvim", config = true },
 }
