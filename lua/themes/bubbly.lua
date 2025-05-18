@@ -259,10 +259,10 @@ local diagnostic_count = stl:add_item(nut.buf.diagnostic_count {
   sep_left = sep.left_half_circle_solid(true),
   sep_right = sep.right_half_circle_solid(true),
   config = {
-    error = { prefix = " ", fg = color.red },
+    error = { prefix = "󰅚", fg = color.red },
     warn = { prefix = " ", fg = color.yellow },
     info = { prefix = " ", fg = color.blue },
-    hint = { prefix = " ", fg = color.green },
+    hint = { prefix = "󰛩", fg = color.green },
   },
 })
 stl:add_item(paired_space(diagnostic_count))

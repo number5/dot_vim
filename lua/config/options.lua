@@ -14,4 +14,7 @@ vim.g.loaded_node_provider = 0
 
 vim.g.vimsyn_embed = "lPr"
 
+
+vim.g.snacks_animate = false
+
 require "misc.diagnostics-config"
