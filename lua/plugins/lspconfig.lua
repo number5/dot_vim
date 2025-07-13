@@ -69,6 +69,7 @@ serverConfigs.bashls = {
   },
 }
 
+
 -- HACK use efm to use shellcheck with zsh files
 -- EFM: Markdown & Shell
 serverConfigs.efm = {
@@ -92,7 +93,7 @@ serverConfigs.lua_ls = {
       },
       diagnostics = {
         globals = { "vim" }, -- when contributing to nvim plugins missing a `.luarc.json`
-        disable = { "trailing-space" }, -- formatter already does that
+        disable = { "trailing-space" }, -- formatte:1r already does that
       },
       hint = { -- inlay hints
         enable = true,
@@ -105,43 +106,7 @@ serverConfigs.lua_ls = {
   },
 }
 
--- Not using ruff-lsp, use python-lsp-ruff instead
--- lspSettings.ruff_lsp = {}
--- serverConfigs.pylsp = {
---   plugins = {
---     ruff = {
---       enabled = true,
---       extendSelect = { "I" },
---     },
---   },
--- }
 
--- DOCS https://github.com/pappasam/jedi-language-server#configuration
-serverConfigs.jedi_language_server = {
-  init_options = {
-    diagnostics = { enable = true },
-    codeAction = { nameExtractVariable = "extracted_var", nameExtractFunction = "extracted_func" },
-  },
-  -- HACK since init_options cannot be changed during runtime, we need to use
-  -- `on_new_config` to set it.
-  -- on_new_config = function(config, root_dir)
-  --   -- Since `vim.env.VIRTUAL_ENV` is not set in time, we need to hardcode the
-  --   -- identification of the venv-dir here
-  --   local venv_python = root_dir .. "/.venv/bin/python"
-  --   local fileExists = vim.loop.fs_stat(venv_python) ~= nil
-  --   if not fileExists then
-  --     return
-  --   end
-  --   config.init_options.workspace = { environmentPath = venv_python }
-  -- end,
-  on_attach = function()
-		-- use jedi instead of refactoring.nvim
-		-- stylua: ignore start
-		codeActionKeymap({ "n", "x" }, "<leader>fe", "^Extract expression into variable", " Extract Var")
-		codeActionKeymap({ "n", "x" }, "<leader>fE", "^Extract expression into function", " Extract Func")
-    -- stylua: ignore end
-  end,
-}
 
 -- DOCS https://github.com/Microsoft/vscode/tree/main/extensions/json-language-features/server#configuration
 -- Disable formatting in favor of biome

@@ -1,5 +1,14 @@
 return {
 
+{
+    "rachartier/tiny-inline-diagnostic.nvim",
+    event = "VeryLazy", -- Or `LspAttach`
+    priority = 1000, -- needs to be loaded in first
+    config = function()
+        require('tiny-inline-diagnostic').setup()
+        vim.diagnostic.config({ virtual_text = false }) -- Only if needed in your configuration, if you already have native LSP diagnostics
+    end,
+},
   {
     "icholy/lsplinks.nvim",
     setup = function()
@@ -9,17 +18,17 @@ return {
     end,
   },
 
-  {
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-    config = function()
-      require("lsp_lines").setup()
-      -- Disable virtual_text since it's redundant due to lsp_lines.
-      vim.diagnostic.config {
-        virtual_text = false,
-      }
-    end,
-  },
-
+  -- {
+  --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  --   config = function()
+  --     require("lsp_lines").setup()
+  --     -- Disable virtual_text since it's redundant due to lsp_lines.
+  --     vim.diagnostic.config {
+  --       virtual_text = false,
+  --     }
+  --   end,
+  -- },
+  --
   --  {
   --    "someone-stole-my-name/yaml-companion.nvim",
   --    dependencies = {
