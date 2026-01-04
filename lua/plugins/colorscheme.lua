@@ -37,12 +37,12 @@ return {
   },
 
   { "Mofiqul/dracula.nvim" },
-
+  { "sainnhe/gruvbox-material" },
   -- setting colorscheme the Lazy way
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "kanagawa",
+      colorscheme = "gruvbox-material",
     },
   },
 }
