@@ -16,10 +16,10 @@ return {
     end,
   },
   {
-    "MunifTanjim/nougat.nvim", -- ☕
-    event = "VeryLazy",
+    "nvim-mini/mini.statusline",
+    version = "*",
     config = function(_, _)
-      require "themes.slanty"
+      require "themes.slanty-mini"
     end,
   },
 }
